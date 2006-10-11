@@ -1,6 +1,6 @@
  SUBDIRS = @D2X_MAIN_SUBDIRS@
 
-DIST_SUBDIRS = editor
+DIST_SUBDIRS = 
 
 EXTRA_SUBDIRS = old
 
@@ -10,10 +10,6 @@ INCLUDES = -I$(top_srcdir)/include -I$(top_srcdir)/arch/include -I$(top_srcdir)/
 
 if USE_NETWORK
 NETWORK_SRCS = kmatrix.c multi.c multibot.c network.c netmisc.c
-endif
-
-if EDITOR
-EDITOR_SRCS = bmread.c dumpmine.c
 endif
 
 libmain_a_SOURCES = ${EDITOR_SRCS} ${NETWORK_SRCS} \

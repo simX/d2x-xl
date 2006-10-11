@@ -8,11 +8,7 @@ if !USE_LINUX_JOY
 JOYSTICK_SRCS = joy.c joydefs.c
 endif
 
-if !USE_SVGALIB
-if !USE_GGI
 INPUT_SRCS = event.c key.c mouse.c
-endif
-endif
 
 if !USE_OPENGL
 VIDEO_SRCS = gr.c

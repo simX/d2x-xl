@@ -1,20 +1,9 @@
-noinst_LIBRARIES = libmaths.a
 INCLUDES = -I $(top_srcdir)/include -I $(top_srcdir)/main -I $(top_srcdir)/3d
 
-if USE_ASM
-libmaths_a_SOURCES = vecmat.c rand.c tables.c
-else
-libmaths_a_SOURCES = vecmat.c rand.c tables.c fixc.c
-endif
+noinst_LIBRARIES = libmaths.a
 
-SUFFIXES = .asm
-%.o: %.asm
-	$(NASM) $(NASMFLAGS) $< -o $@
-
-if USE_ASM
-libmaths_a_LIBADD = vecmata.o fix.o
-endif
-
-EXTRA_DIST = \
-fix.asm vecmata.asm \
-fixc.c rand.c tables.c vecmat.c
+libmaths_a_SOURCES = \
+	fixc.c \
+	rand.c \
+	tables.c \
+	vecmat.c

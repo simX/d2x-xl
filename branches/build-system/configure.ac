@@ -57,10 +57,7 @@ case $host_os in
         ;;
     darwin*)
         MACOSX=yes
-	CFLAGS="-no-cpp-precomp $CFLAGS"
-	;;
-    msdos*)
-        MSDOS=yes
+        CFLAGS="-no-cpp-precomp $CFLAGS"
         ;;
 esac
 
@@ -90,16 +87,6 @@ CFLAGS="-Wall -Wno-char-subscripts $CFLAGS"
 D2X_SUBDIRS=""
 D2X_MAIN_SUBDIRS=""
 
-dnl Enable editor build?
-AC_ARG_ENABLE(editor,
-    [  --enable-editor         Build editor? (not functional)],,)
-if test x$enable_editor = xyes; then
-    AC_DEFINE(EDITOR,,[Define if you want to build the editor])
-    D2X_SUBDIRS="ui ${D2X_SUBDIRS}"
-    D2X_MAIN_SUBDIRS="editor ${D2X_MAIN_SUBDIRS}"
-fi
-AM_CONDITIONAL(EDITOR, test x$enable_editor = xyes)
-
 dnl Enable macdata build?
 AC_ARG_ENABLE(macdata,
     [  --enable-macdata        Build for mac datafiles],,)
@@ -111,19 +98,19 @@ AM_CONDITIONAL(MACDATA, test x$enable_macdata = xyes)
 
 dnl Build with NDEBUG?
 AC_ARG_ENABLE(debug,
-    [  --enable-debug         Take out debug symbols, Asserts, Int3, etc ],,)
+    [  --enable-debug         Take out debug symbols, asserts, etc ],,)
 if test x$enable_debug != xyes; then
-    AC_DEFINE(NDEBUG,,[Define to disable asserts, int3, etc.])
+    AC_DEFINE(NDEBUG,,[Define to disable asserts, etc.])
     CFLAGS="-O2 $CFLAGS"
 else
     CFLAGS="-g $CFLAGS"
-    AC_DEFINE(_DEBUG,,[Define to enable asserts, int3, etc.])
+    AC_DEFINE(_DEBUG,,[Define to enable asserts, etc.])
     D2X_FEATURES="debug ${D2X_FEATURES}"
 fi
 
 dnl Build with RELEASE?
 AC_ARG_ENABLE(release,
-    [  --enable-release        Release build.  Removes debug/editor things ],,)
+    [  --enable-release        Release build.  Removes debug things ],,)
 if test x$enable_release != xno; then
     AC_DEFINE(RELEASE,,[Define for a "release" build])
     D2X_FEATURES="release ${D2X_FEATURES}"
@@ -249,44 +236,6 @@ else
     D2X_FEATURES="OpenGL ${D2X_FEATURES}"
     AM_CONDITIONAL(USE_OPENGL, test x$with_opengl != xno)
 
-  # Check for GGI
-    AC_ARG_WITH(ggi,
-        [  --with-ggi              Build GGI support ],,)
-    if test x$with_ggi = xyes; then
-        AC_CHECK_LIB(ggi, ggiInit,
-            GGI_LIBS="-lggi",
-            [AC_MSG_ERROR([GGI not found, GGI version cannot be built]); ggi=false])
-        AC_CHECK_LIB(gii, giiInit,
-            GGI_LIBS="${GGI_LIBS} -lgii",
-            [AC_MSG_ERROR([GII not found, GGI version cannot be built]); ggi=false])
-        AC_DEFINE(GGI,,[Define if you want a GGI build])
-        TARGETS=d2x-ggi
-        D2X_ARCH_SUBDIRS="ggi ${D2X_ARCH_SUBDIRS}"
-    fi
-    AC_SUBST(GGI_LIBS)
-    AM_CONDITIONAL(USE_GGI, test x$with_ggi = xyes)
-
-  # Check for SVGALib
-    AC_ARG_WITH(svga,
-        [  --with-svga             Build SVGALib support ],,)
-    if test x$with_svga = xyes; then
-        AC_CHECK_LIB(vga,vga_getmousetype,
-            SVGA_LIBS="-lvga",
-            [AC_MSG_ERROR([vga not found, SVGALib cannot be built])
-                svga=false],
-        )
-        AC_CHECK_LIB(vgagl,gl_getcontext,
-            SVGA_LIBS="${SVGA_LIBS} -lvgagl",
-            [AC_MSG_ERROR([vgagl not found, SVGALib cannot be built])
-                svga=false],
-            -lvga)
-        AC_DEFINE(SVGA,,[Define if you want an SVGALib build])
-        TARGETS=d2x-svga
-        D2X_ARCH_SUBDIRS="svgalib ${D2X_ARCH_SUBDIRS}"
-    fi
-    AC_SUBST(SVGA_LIBS)
-    AM_CONDITIONAL(USE_SVGALIB, test x$with_svga = xyes)
-
     if test x$MINGW32 = xyes; then
         D2X_ARCH_SUBDIRS="win32 ${D2X_ARCH_SUBDIRS}"
     else
@@ -339,38 +288,6 @@ fi
 AM_CONDITIONAL(USE_NETWORK, test x$enable_network != xno)
 AM_CONDITIONAL(USE_NATIVE_IPX, test x$enable_native_ipx != xno)
 AM_CONDITIONAL(USE_KALINIX, test x$enable_kalinix != xno)
-
-dnl Check for assembler
-AC_ARG_ENABLE(assembler,
-    [  --disable-assembler     Do not use assembler optimization ],,)
-if test x$enable_assembler == xyes; then
-    if test x$NASM = xno; then
-        AC_MSG_WARN([nasm not found. disabling assembler])
-        enable_assembler="no"
-    else
-        NASMFLAGS="-i\$(srcdir)/ $NASMFLAGS"
-        case $host_os in
-            cygwin* | mingw*)
-                NASMFLAGS="-f win32 $NASMFLAGS"
-                ;;
-            msdos*)
-                NASMFLAGS="-f coff $NASMFLAGS"
-                ;;
-			linux* | freebsd*)
-				NASMFLAGS="-f elf -d__ELF__ $NASMFLAGS"
-                ;;
-            *)
-                AC_MSG_WARN([nasm not supported for this OS. disabling assembler])
-                enable_assembler="no"
-                ;;
-        esac
-    fi
-fi
-if test x$enable_assembler != xyes; then
-    AC_DEFINE(NO_ASM,,[Define if you want an assembler free build])
-    D2X_FEATURES="no_asm ${D2X_FEATURES}"
-fi
-AM_CONDITIONAL(USE_ASM, test x$enable_assembler = xyes)
 
 AH_BOTTOM([
         /* General defines */
@@ -444,7 +361,6 @@ AC_OUTPUT(
     iff/Makefile
     libmve/Makefile
     main/Makefile
-    main/editor/Makefile
     maths/Makefile
     mem/Makefile
     misc/Makefile

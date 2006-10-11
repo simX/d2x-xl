@@ -280,11 +280,7 @@ int gr_uline(fix _a1, fix _b1, fix _a2, fix _b2)
 		return 0;
 #endif
 	case BM_LINEAR:
-#ifdef NO_ASM
 		gr_universal_uline( a1,b1,a2,b2);
-#else
-		gr_linear_line( a1, b1, a2, b2 );
-#endif
 		return 0;
 #ifdef __DJGPP__
 	case BM_MODEX:

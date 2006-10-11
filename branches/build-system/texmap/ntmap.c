@@ -147,10 +147,6 @@ static char rcsid[] = "$Id: ntmap.c,v 1.8 2003/03/19 19:21:34 btb Exp $";
 #include "rle.h"
 #include "scanline.h"
 
-#ifdef EDITOR
-#define EDITOR_TMAP 1       //if in, include extra stuff
-#endif
-
 #define F15_5 (F1_0*15 + F0_5)
 
 // Temporary texture map, interface from Matt's 3d system to Mike's texture mapper.
@@ -515,15 +511,7 @@ void ntmap_scanline_lighted(grs_bitmap *srcb, int y, fix xleft, fix xright, fix 
 			break;
 		}
 		case 2:
-#ifdef EDITOR_TMAP
-			fx_xright = f2i(xright);
-			fx_xleft = f2i(xleft);
-
-			tmap_flat_color = 1;
-			cur_tmap_scanline_flat();
-#else
 			Int3();	//	Illegal, called an editor only routine!
-#endif
 			break;
 	}
 
@@ -804,14 +792,7 @@ void ntmap_scanline_lighted_linear(grs_bitmap *srcb, int y, fix xleft, fix xrigh
 				cur_tmap_scanline_lin();
 				break;
 			case 2:
-#ifdef EDITOR_TMAP
-				fx_xright = f2i(xright);
-				fx_xleft = f2i(xleft);
-				tmap_flat_color = 1;
-				cur_tmap_scanline_flat();
-#else
 				Int3();	//	Illegal, called an editor only routine!
-#endif
 				break;
 		}
 }

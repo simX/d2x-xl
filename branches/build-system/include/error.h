@@ -83,50 +83,6 @@ void _CDECL_ LogErr (char *fmt, ...);
 void Int3();
 #ifndef NDEBUG		//macros for debugging
 
-#ifdef NO_ASM
-//# define Int3() Error("int 3 %s:%i\n",__FILE__,__LINE__);
-//# define Int3() {volatile int a=0,b=1/a;}
-# define Int3() ((void)0)
-
-#else // NO_ASM
-
-#ifdef __GNUC__
-#ifdef SDL_INPUT
-#ifdef __macosx__
-# include <SDL/SDL.h>
-#else
-# include <SDL.h>
-#endif
-#endif
-#include "args.h"
-static inline void _Int3()
-{
-	if (FindArg("-debug")) {
-#ifdef SDL_INPUT
-		SDL_WM_GrabInput(SDL_GRAB_OFF);
-#endif
-		asm("int $3");
-	}
-}
-#define Int3() _Int3()
-
-#elif defined __WATCOMC__
-void Int3(void);								      //generate int3
-#pragma aux Int3 = "int 3h";
-
-#elif defined _MSC_VER
-static __inline void _Int3()
-{
-	__asm { int 3 }
-}
-#define Int3() _Int3()
-
-#else
-#error Unknown Compiler!
-#endif
-
-#endif // NO_ASM
-
 #define Assert(expr) ((expr)?(void)0:(void)_Assert(0,#expr,__FILE__,__LINE__))
 
 #ifdef __GNUC__

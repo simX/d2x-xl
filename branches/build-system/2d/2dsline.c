@@ -85,60 +85,6 @@ COPYRIGHT 1993-1998 PARALLAX SOFTWARE CORPORATION.  ALL RIGHTS RESERVED.
 #include "inferno.h"
 #include "ogl_init.h"
 
-#if !defined(NO_ASM) && defined(__WATCOMC__)
-
-void gr_linear_darken( ubyte * dest, int darkening_level, int count, ubyte * fade_table );
-#pragma aux gr_linear_darken parm [edi] [eax] [ecx] [edx] modify exact [eax ebx ecx edx edi] = \
-"               xor ebx, ebx                "   \
-"               mov bh, al                  "   \
-"gld_loop:      mov bl, [edi]               "   \
-"               mov al, [ebx+edx]           "   \
-"               mov [edi], al               "   \
-"               inc edi                     "   \
-"               dec ecx                     "   \
-"               jnz gld_loop                "
-
-#elif !defined(NO_ASM) && defined(__GNUC__)
-
-static inline void gr_linear_darken( ubyte * dest, int darkening_level, int count, ubyte * fade_table ) {
-   int dummy[4];
-   __asm__ __volatile__ (
-"               xorl %%ebx, %%ebx;"
-"               movb %%al, %%bh;"
-"0:             movb (%%edi), %%bl;"
-"               movb (%%ebx, %%edx), %%al;"
-"               movb %%al, (%%edi);"
-"               incl %%edi;"
-"               decl %%ecx;"
-"               jnz 0b"
-   : "=D" (dummy[0]), "=a" (dummy[1]), "=c" (dummy[2]), "=d" (dummy[3])
-   : "0" (dest), "1" (darkening_level), "2" (count), "3" (fade_table)
-   : "%ebx");
-}
-
-#elif !defined(NO_ASM) && defined(_MSC_VER)
-
-__inline void gr_linear_darken( ubyte * dest, int darkening_level, int count, ubyte * fade_table )
-{
-	__asm {
-    mov edi,[dest]
-    mov eax,[darkening_level]
-    mov ecx,[count]
-    mov edx,[fade_table]
-    xor ebx, ebx
-    mov bh, al
-gld_loop:
-    mov bl,[edi]
-    mov al,[ebx+edx]
-    mov [edi],al
-    inc edi
-    dec ecx
-    jnz gld_loop
-	}
-}
-
-#else // Unknown compiler, or no assembler. So we use C.
-
 void gr_linear_darken(ubyte * dest, int darkening_level, int count, ubyte * fade_table) {
 	register int i;
 
@@ -149,9 +95,6 @@ void gr_linear_darken(ubyte * dest, int darkening_level, int count, ubyte * fade
 	}
 }
 
-#endif
-
-#ifdef NO_ASM // No Assembler. So we use C.
 #if 0
 void gr_linear_stosd( ubyte * dest, ubyte color, unsigned short count )
 {
@@ -174,7 +117,6 @@ void gr_linear_stosd( ubyte * dest, grs_color *color, unsigned int nbytes)
 {
 memset(dest, color->index, nbytes);
 }
-#endif
 #endif
 
 #if defined(POLY_ACC)

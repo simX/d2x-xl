@@ -40,24 +40,6 @@
 #include "inferno.h"
 #include "text.h"
 
-//edited 05/17/99 Matt Mueller - added ifndef NO_ASM
-//added on 980905 by adb to add inline FixMul for mixer on i386
-#ifndef NO_ASM
-#ifdef __i386__
-#define do_fixmul(x,y)				\
-({						\
-	int _ax, _dx;				\
-	asm("imull %2\n\tshrdl %3,%1,%0"	\
-	    : "=a"(_ax), "=d"(_dx)		\
-	    : "rm"(y), "i"(16), "0"(x));	\
-	_ax;					\
-})
-extern inline fix FixMul(fix x, fix y) { return do_fixmul(x,y); }
-#endif
-#endif
-//end edit by adb
-//end edit -MM
-
 //changed on 980905 by adb to increase number of concurrent sounds
 #define MAX_SOUND_SLOTS 32
 //end changes by adb

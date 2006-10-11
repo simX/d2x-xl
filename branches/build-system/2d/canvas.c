@@ -145,13 +145,13 @@ con_printf (CON_DEBUG,
 	canv, grdCurCanv, grdCurScreen);
 #endif
 grdCurCanv = canv ? canv : &(grdCurScreen->sc_canvas);
-#ifndef NO_ASM
-gr_var_color = 
-	(!grdCurCanv->cv_color_rgb && (grdCurCanv->cv_color >= 0) && (grdCurCanv->cv_color <= 255)) ? 
-	grdCurCanv->cv_color : 0;
-gr_var_bitmap = grdCurCanv->cv_bitmap.bm_texBuf;
-gr_var_bwidth = grdCurCanv->cv_bitmap.bm_props.rowsize;
-#endif
+//#ifndef NO_ASM
+//gr_var_color = 
+//	(!grdCurCanv->cv_color_rgb && (grdCurCanv->cv_color >= 0) && (grdCurCanv->cv_color <= 255)) ? 
+//	grdCurCanv->cv_color : 0;
+//gr_var_bitmap = grdCurCanv->cv_bitmap.bm_texBuf;
+//gr_var_bwidth = grdCurCanv->cv_bitmap.bm_props.rowsize;
+//#endif
 }
 
 //	-----------------------------------------------------------------------------
@@ -174,9 +174,9 @@ void GrSetColor(int color)
 {
 grdCurCanv->cv_color.index =color % 256;
 grdCurCanv->cv_color.rgb = 0;
-#ifndef NO_ASM
-gr_var_color = color % 256;
-#endif
+//#ifndef NO_ASM
+//gr_var_color = color % 256;
+//#endif
 }
 
 //	-----------------------------------------------------------------------------
@@ -188,9 +188,9 @@ grdCurCanv->cv_color.color.red = red;
 grdCurCanv->cv_color.color.green = green;
 grdCurCanv->cv_color.color.blue = blue;
 grdCurCanv->cv_color.color.alpha = alpha;
-#ifndef NO_ASM
-	gr_var_color = color % 256;
-#endif
+//#ifndef NO_ASM
+//	gr_var_color = color % 256;
+//#endif
 }
 
 //	-----------------------------------------------------------------------------
