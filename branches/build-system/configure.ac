@@ -14,7 +14,7 @@ AC_CANONICAL_TARGET
 AC_EXEEXT
 AC_OBJEXT
 
-AM_INIT_AUTOMAKE([1.6])
+AM_INIT_AUTOMAKE([1.7])
 
 AM_CONFIG_HEADER(conf.h)
 
@@ -35,7 +35,7 @@ AC_CHECK_TOOL(RANLIB, ranlib, :)
 AC_CHECK_TOOL(STRIP, strip, :)
 AC_CHECK_TOOL(AR, ar, :)
 AC_PROG_CC
-AC_PROG_CXX
+#AC_PROG_CXX
 AC_STDC_HEADERS
 AC_PATH_PROGS(NASM, nasm nasmw, no)
 AC_C_BIGENDIAN
@@ -444,11 +444,12 @@ AC_OUTPUT(
     iff/Makefile
     libmve/Makefile
     main/Makefile
+    main/editor/Makefile
     maths/Makefile
     mem/Makefile
     misc/Makefile
     texmap/Makefile
-	 cfile/Makefile
+    cfile/Makefile
 )
 
 AC_MSG_RESULT([
