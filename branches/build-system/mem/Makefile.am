@@ -1,4 +1,6 @@
-noinst_LIBRARIES = libmem.a
-INCLUDES = -I $(top_srcdir)/include
+INCLUDES = -I$(top_srcdir)/include
 
-libmem_a_SOURCES = mem.c
+noinst_LIBRARIES = libmem.a
+
+libmem_a_SOURCES = \
+	mem.c
