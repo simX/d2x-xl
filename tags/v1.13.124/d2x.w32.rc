@@ -1,0 +1,54 @@
+// Microsoft Visual C++ generated resource script.
+//
+#include "resource.h"
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Version
+//
+
+VS_VERSION_INFO VERSIONINFO
+ FILEVERSION 1,13,123,0
+ PRODUCTVERSION 1,13,123,0
+ FILEFLAGSMASK 0x3fL
+#ifdef _DEBUG
+
+ FILEFLAGS 0x1L
+#else
+ FILEFLAGS 0x0L
+#endif
+ FILEOS 0x44004L
+ FILETYPE 0x1L
+ FILESUBTYPE 0x0L
+BEGIN
+    BLOCK "StringFileInfo"
+    BEGIN
+        BLOCK "045014b0"
+        BEGIN
+            VALUE "Comments", "D2X-XL - Descent 2 OpenGL for MS Windows"
+            VALUE "FileDescription", "D2X-XL - Descent 2 OpenGL for MS Windows"
+            VALUE "FileVersion", "1,13,123,0"
+            VALUE "InternalName", "D2X-XL"
+            VALUE "OriginalFilename", "d2x-xl.exe"
+            VALUE "ProductName", "D2X-XL"
+            VALUE "ProductVersion", "1,13,123,0"
+        END
+    END
+    BLOCK "VarFileInfo"
+    BEGIN
+        VALUE "Translation", 0x450, 1230
+    END
+END
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Icon
+//
+
+// Icon with lowest ID value placed first to ensure application icon
+// remains consistent on all systems.
+IDI_ICON1               ICON                    "d2x-xl.ico"
+IDI_D2XW32              ICON                    "d2x-w32.ico"
+IDI_DESCENT2            ICON                    "descent.ico"
+
+/////////////////////////////////////////////////////////////////////////////
