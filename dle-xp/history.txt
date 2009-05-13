@@ -1,0 +1,21 @@
+ A D E P T   S O F T W A R E                      PLC RELEASE HISTORY
+_____________________________________________________________________
+
+v1.50  Sep  1, 1998 : Converted source to WIN32, Visual C++
+                      Running sample now included
+                      Library now unrestricted freeware
+                      Error handling system replaced
+                      Variable-parameter commands allowed
+                      Data type size reduced, string max increased
+                      Data type system rearranged for more flexibility
+                      Auto-allocation added for more ease of use
+                      Data types source file included
+                      Tools file added
+                      Minor bug fixes
+                      Manual expanded
+v1.00c Jun 10, 1998 : Minor changes.
+v1.00b Jly 30, 1997 : Minor fixes.  Word DOC file now included.
+v1.00a May  4, 1997 : Fixed a bug in the token precedence compiler
+                      PLC.lib & Adept.lib are now separate
+v1.00  Apr 22, 1997 : Initial public release
+_____________________________________________________________________

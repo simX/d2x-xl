@@ -1,0 +1,1167 @@
+DLE-XP history
+
+25 oct 05
+
+v1.4.33
+
+o Added texture filters.
+
+24 oct 05
+
+v1.4.32
+
+o New: Textures will now be sorted by their type/function/appearance, i.e. first the rocks (gray, brown, red, blue, green, sand, lava, water),
+  next steel, then concrete and wall textures, floors, ceilings, grates, fans, lights, signs, energy and force fields, tech stuff, doors.
+  Next new feature will be a texture filter based on these texture properties.
+  
+22 oct 05
+
+v1.4.31
+
+o Fixed: Issuing a "previous line" command switched to the next line.
+o Fixed: Unjoining points would destroy the level.
+
+13 oct 05
+
+v1.4.30
+
+o Fixed: Editing/displaying the strength of Descent 1 shield damage and energy drain switches.
+
+11 oct 05
+
+v1.4.29
+
+o Fixed: Crash when aligning textures and only using secondary textures.
+o Improved: Texture alignment.
+
+v1.4.28
+
+o Fixed: Texture selection not working properly with partial texture display, if the texture list was 
+  bigger than what fitted into the texture view and was scrolled down.
+
+10 oct 05
+
+v1.4.27
+
+o Fixed: Overloaded textures that were reset to their defaults were still kept in the pog files,
+  leading to D2X-W32 not overloading them with their highres equivalents.
+o Fixed: TGA custom textures displayed upside down.
+
+5 oct 05
+
+v1.4.26
+
+o Fixed: Level names from mission files containing whitespace characters (e.g. blanks) were mutilated
+o Fixed: When creating a new level, no extension was added to the level file name
+
+1 oct 05
+
+v1.4.25
+
+o Fixed: DLE-XP sometimes screwed up levels when splitting cubes.
+o Fixed: Joining the current side with the wrong cube.
+o New: Support for custom palettes (RGB palettes with 256 1-byte color entries)
+
+12 jul 05
+
+v1.4.24
+
+o Fixed: Image type not properly stored when loading a TGA image with the same size as the overloaded
+  default image. This would lead to transparency information loss for such images.
+
+8 jul 05
+
+v1.4.23
+
+o New: Transparency can now be set for every wall type.
+
+7 jul 05
+
+v1.4.22
+
+o Fixed: Render depth settings weren't handled properly in wireframe view.
+o Fixed: Buggy TGA handling.
+o Fixed: Display of textures where their height is larger than their width (i.e. textures containing
+  animations).
+o Improved: Hit test for segment selection.
+
+5 jul 05
+
+v1.4.21
+
+o Improved: DLE-XP will now accept textures where width and height are different (this is targetted
+  at textures containing animation frames where the height is a multiple of the width).
+o Fixed: Display of textures where the height is greater than their width.
+
+2 jul 05
+
+v1.4.20
+
+o Fixed: Program hanging when having two or more (groups of) segments that aren't connected.
+
+v1.4.19
+
+o Fixed: Bugs in TGA file handling.
+
+29 jun 05
+
+v1.4.18
+
+o Fixed: Crash when restoring default texture if the replacement texture is a tga texture.
+o New: Mine render depth slider.
+
+24 jun 05
+
+v1.4.17
+
+o Fixed: Undoing block movements undid one vertex position change after the other instead of 
+  reverting all marked vertices to their previous positions at once.
+o Fixed: Couldn't set primary or secondary textures using the texture tool's texture dropdown boxes.
+o Fixed: Deleting a cube deleted walls in adjacent cubes.
+
+v1.4.16
+
+o Improved: TGA processing (still cannot process compressed TGA images).
+o Fixed: Couldn't process images >= 256x256 pixels.
+
+23 jun 05
+
+v1.4.15
+
+o Changed: Vertigo missions will now use the name "zname" and D2X-W32 missions will
+  now use "d2x-name" in mission files. That should take care of older program versions
+  reading D2X-W32 missions and crashing when trying to display them.
+
+22 jun 05
+
+v1.4.14
+
+o Fixed: Quad concussion missile pack images wasn't displayed in the object tool.
+
+19 jun 05
+
+v1.4.13
+
+o Fixed: Advanced object properties tool didn't work.
+
+17 jun 05
+
+v1.4.12
+
+o Fixed: Infinitely appearing error message when trying to edit TGA textures.
+o Improved: Conversion routine creating temporary bitmaps from TAGs is way faster now.
+
+13 jun 05
+
+v1.4.11
+
+o Fixed: Mine rotation rate not depending on rotation rate setting in preferences tool.
+
+11 jun 05
+
+v1.4.10
+
+o New: Support for TGA textures w/o alpha channel.
+o Fixed: Handling of TGA textures w/ alpha channel.
+
+9 jun 05
+
+v1.4.9
+
+o New: You can now set a transparent walls transparency and make it a fly-through or solid wall.
+
+7 jun 05
+
+v1.4.8
+
+o Fixed: Setting side colors from texture colors.
+
+v1.4.7
+
+o Fixed: Texture alignment sometimes bogus when adding a new segment.
+
+6 jun 05
+
+v1.4.6
+
+o New: Stretch to fix aligment operation now works on all marked sides, if any marked
+  (otherwise on the current side only).
+
+1 jun 05
+
+v1.4.5
+
+o Fixed: When saving a level under a different name, pog, hxm and lgt files got lost.
+
+31 may 05
+
+v1.4.4
+
+o New: Split cube command, splitting a segment into 7 segments. The cube to be split will be 
+  shrunk and be surrounded by 6 new segments filling up the space previously occupied by the 
+  source cube.
+
+30 may 05
+
+v1.4.3
+
+o Fixed: DLE-XP couldn't handle textures > 128x128.
+
+27 may 05
+
+v1.4.2
+
+o New: Segment type "No Damage". A ship in such a segment cannot be damaged, nor can it 
+  fire a weapon or drop a mine.
+o Fixed: TGA textures not loaded properly from pog files.
+o Improved: Transparent wall colors can now be set via the walls texture (assign a unique
+  texture to all walls of a given color).
+o Fixed: When saving/loading walls to/from extended block files, wall and trigger info could
+  go bogus.
+
+26 may 05
+
+v1.4.1
+
+o New: Assignment of colors to light textures and not single sides of the mine only.
+  This allows to colorize all lights in a level by only setting the light color for 
+  each light texture used once.
+  Chose the setting in the preferences dialog.
+  Texture colors can be transferred to light colors when calling the illumination 
+  routine by checking "create side colors from textures" in the Light Tool.
+o Fixed: DLE-XP will now preserve the alpha channel of TGA textures.
+
+25 may 05
+
+v1.4.0
+
+o New: Support for TGA image files (max. size 1024x1024). DLE-XP will actually store TGA 
+  images in POG files.
+  DLE-XP will create temporary bitmap representations of such images to display them 
+  during level editing. 
+  D2X-W32 is capable of using TGA (RGB) images starting from v1.4.6.
+
+o New: Camera triggers.
+
+24 may 05
+
+v1.3.16
+
+o New: Camera triggers.
+
+23 may 05
+
+v1.3.15
+
+o New: Adjustable acceleration for speed boost triggers.
+o New: Cube type "speed boost" to support construction of speed boost areas.
+o New: Cube type "blocked" to create impassable areas that are also not used for 
+  spawning powerups (can support construction of speed boost areas, too).
+
+20 may 05
+
+v1.3.14
+
+o New: Trigger type "Speed Boost" to support speed boost areas.
+o Fixed: Changing a wall's type detached any trigger attached to it.
+
+v1.3.13
+
+o Fixed: Cloak value wasn't computed properly (100% in DLE-XP was about 80% in D2)
+o Fixed: Cloak value wasn't remembered when adding several cloaked walls
+o Fixed: Color index of new transparent walls was always set to 63 instead to 0 or 
+  the value of a previously added transparent wall.
+
+19 may 05
+
+v1.3.12
+
+o Fixed: Color of transparent walls not displayed.
+o Fixed: Deleting segments lead to errors in light color mapping.
+o Fixed: Wall error checking reporting transparent walls as errors.
+o Fixed: Light brightness maps reset to defaults when loading an existing level.
+o Improved: Wall error checking and fixing.
+
+14 may 05
+
+v1.3.11
+
+o Fixed: Replace function failing for certain (light) textures.
+
+13 may 05
+
+v1.3.10
+
+o Fixed: Wrong textures when creating a new level.
+o New: Wall type "Transparent", allowing to create impenetrable, colored, transparent walls.
+
+v1.3.9
+
+o Fixed: Custom textures being reset when e.g. aligning a side with a custom texture
+o Improved: Palette matching for custom textures
+
+8 may 05
+
+v1.3.8
+
+o Fixed: Crash when exceeding a vertex count of 3600 (e.g. by adding segment #900 in a level
+  consisting only of one straight tunnel made of 899 segments).
+
+7 may 05
+
+v1.3.7
+
+o Fixed: D1 texture names not loaded in texture tool when loading/creating a D1 level.
+
+6 may 05
+
+v1.3.6
+
+o Fixed: DLE-XP still crashing if it doesn't find the proper texture file.
+5 may 05
+
+v1.3.5
+
+o Fixed: Crash if DLE-XP doesn't find the proper texture file (descent.pig or descent2.pig).
+o Fixed: DLE-XP constantly asking for a valid number in the reactor dialog if an invalid or
+  empty input for count down or secret return are given.
+
+4 may 05
+
+v1.3.4
+
+o Fixed: Couldn't set D1 trigger types or D2 trigger flags.
+o Fixed: Crash when saving a level if light tool hadn't been called up at least once before.
+
+v1.3.3
+
+o Fixed: Preferences settings only applied when switching to the preferences dialog
+o Fixed: Side brightness and alignment reset when changing cube types although default
+  texture application was turned off.
+
+30 apr 05
+
+v1.3.2
+
+o Fixed: Program crashing when changing segment types.
+
+28 apr 05
+
+v1.3.1
+
+o Fixed: Program crashing when adding segments or walls.
+
+25 apr 05
+
+v1.3.0
+
+o Added support for high-res textures up to 1024x1024 pixels in size.
+
+18 apr 05
+
+v1.2.10
+
+o Fixed: Descent 1 trigger info wasn't saved properly.
+
+v1.2.9
+
+o Fixed: HXM data unknown to DLE-XP (e.g. custom models) wasn't preserved when saving a 
+  level containing such data.
+
+17 apr 05
+
+v1.2.8
+
+o Improved: Handling of hog sub files (e.g. hxm) with invalid length entries (these can e.g. 
+  be created by programs modifying hxm files to add custom models).
+o New: Light color edit controls in alternative layout.
+
+15 apr 05
+
+v1.2.7 
+
+o Fixed: Vertex color blending still did not work correctly.
+
+v1.2.6
+
+o Fixed: Vertex color blending did not work correctly.
+
+14 apr 05
+
+v1.2.5
+
+o New: Per vertex colored lighting.
+
+13 apr 05
+
+v1.2.4
+
+o Fixed: Query Message Boxes did not offer a yes/no choice.
+o Improved: Texture alignment across side planes.
+
+v1.2.3
+
+o New: Added a function to check matcen validity to the diagnostics tool.
+
+12 apr 05
+
+v1.2.2
+
+o New: Increased max. # of segments for D2X-W32 levels to 1800, max. # of objects to 700.
+o Fixed: Still setting default textures for repair and fuel centers if corresponding texture
+  tool checkbox was unchecked.
+
+v1.2.1
+
+o Blinking/exploding light values weren't computed
+o Preferences tool's visibility settings weren't restored
+
+v1.2.0
+
+o New: Colored lighting!
+
+11 apr 05
+
+v1.1.4
+
+o Fixed: Viewing options in the preferences tool couldn't be changed any more.
+
+9 apr 05
+
+v1.1.3
+
+o Fixed: DLE-XP did override fuel and repair center segment textures even if setting default
+  textures was disabled.
+o New: When adding a trigger and auto-add wall is enabled, DLE-XP will chose an appropriate
+  wall type and texture.
+o New: Trigger type "teleport". Will send the player to one of the segments in the target
+  list. The destination randomly chosen when more than one target segment given. The 
+  target side is ignored.
+o New: DLE-XP will now save visibility settings from the preferences tool and restore them
+  when launched.
+
+8 apr 05
+
+v1.1.2
+
+o Fixed: DLE-XP did not accept special D2X segment types if a level was of type D2X-W32.
+
+7 apr 05
+
+v1.1.1
+
+o Added conversion to D2X-W32 level
+o Limited segment group to [-1,127]
+o Disallowed segment types not compatible to standard D2 for non D2X-W32 levels
+
+5 apr 05
+
+v1.1.0
+
+o Added new level type "D2X-W32" allowing to assign team and group tags to segments as a 
+  preparation for Entropy multiplayer game mode in D2X-W32
+
+2 apr 05
+
+v1.0.0.82
+
+o Added check and fix for another wall problem in the diagnostics tool
+
+31 mar 05
+
+v1.0.0.81
+
+o Applied some more fixes to texture alignment across side planes
+o Made "align all sides" check box value stay when clicking any of the texture tool's alignment buttons
+
+v1.0.0.80
+
+o Fixed checking/unchecking "align all sides" not affecting subsequent texture alignment operations
+  immediately
+o Fixed dynamic player ship/robot brightness calculation - again
+o Improved alignment across side planes
+
+30 mar 05
+
+v1.0.0.79
+
+o Fixed dynamic player ship/robot brightness calculation more (results were still too dark)
+o Fixed program crash when aligning textures
+
+v1.0.0.78
+
+o Fixed dynamic player ship/robot brightness calculation (results were too dark)
+o Added horizontal and vertical texture flipping to texture tool
+o Added texture alignment across side planes
+
+29 mar 05
+
+v1.0.0.77
+
+o Added dynamic player ship/robot brightness calculation (average of a segment's vertices' light values)
+
+28 mar 05
+
+v1.0.0.76
+
+o Preferences weren't loaded at program start, but only when viewing the preferences dialog.
+
+27 mar 05
+
+v1.0.0.75
+
+o Exploding light calculation didn't work anymore.
+
+21 feb 05
+
+v1.0.0.74
+
+o When lines or points were split, the corresponding sides weren't split too, 
+  resulting in invalid child cube information
+
+19 feb 05
+
+v1.0.0.73
+
+o Level name couldn't be changed.
+o Object counts weren't always displayed correctly in the object tool.
+
+18 feb 05
+
+v1.0.0.72
+
+o Added new cube types "blue team" and "red team" to support D2X-W32's enhanced CTF mode.
+
+v1.0.0.71
+
+o Fixed grow/shrink geometry operations not working properly on blocks.
+
+16 feb 05
+
+v1.0.0.70
+
+o Relaxed tunnel generator limitiations.
+o Fixed secondary texture getting undefined at certain occasions. DLE-XP will automatically fix
+  such textures when loading a mine.
+
+13 feb 05
+
+v1.0.0.69
+
+o Joining the current side with the closest other side did not work.
+
+11 feb 05
+
+v1.0.0.68
+
+o Added shortcut key Ctrl+I to toggle the insert mode.
+o Fixed some problems with lightmap detection and brightness rounding errors.
+
+v1.0.0.67
+
+o Cloaked and bright flags weren't editable in object tool.
+o Removed superfluous "Advanced" button from object tool.
+
+10 feb 05
+
+v1.0.0.66
+
+o changed internal lightmap handling.
+o Fixed DLE-XP erroneously placing lightmaps in hog files when no texture brightness was changed - again.
+o Brightness setting will now affect the secondary texture if the "use 2nd" check box is tagged and the
+  "use 1st" check box is untagged.
+
+8 feb 05
+
+v1.0.0.65
+
+o Fixed DLE-XP erroneously placing lightmaps in hog files when no texture brightness was changed.
+
+5 feb 05
+
+v1.0.0.64
+
+o A few semantics fixes after conversion to MSVC++ .NET
+o Added texture lightmaps, i.e. the basic brightness value of each texture can now be changed, 
+  allowing to make any texture a light texture. Using lightmaps goes per level, i.e. each level in
+  a hog file can have its own lightmap. The corresponding lightmap files have the extension ".lgt".
+  They will only be evaluated by DLE-XP. If a light map is changed, level lighting needs to be redone;
+  DLE-XP will not do that automatically.
+
+14 nov 04
+
+v1.0.0.63
+
+o Fixed bug, where a secret level number equalling the number of regular levels was rejected
+
+18 oct 04
+
+v1.0.0.62
+
+o Allowed fractional move rate
+o Fixed texture layer selection not working when pasting textures
+
+29 aug 04
+
+v1.0.0.61
+
+o Fixed custom robots being persistent when creating new levels
+o Fixed palette usage in level conversion dialog (D2 textures not painted properly)
+o Fixed D1 textures not painted properly after calling up the level conversion dialog
+  but cancelling the conversion
+o When creating a new D1 level, the texture names in the texture tool were wrong (still D2
+  texture names)
+o Improved the trigger tool's auto add wall feature 
+o Fixed delete all triggers function (did not work)
+o Fixed delete all walls function (did not work)
+
+21 aug 04
+
+v1.0.0.60
+
+o Adding blastable doors (prison, guide bot) did not assign the proper door clips to these doors
+
+19 aug 04
+
+v1.0.0.59
+
+o Custom textures and robots did not get saved into newly created hog files in expert mode.
+
+18 aug 04
+
+v1.0.0.58
+
+o Wall tool displayed wrong side numbers (0 - 5 instead of 1 - 6).
+
+16 aug 04
+
+o end of exit switch could not be added to cube sides not leading to another cube
+o When adding player objects and then changing that objects' types to coop or vice 
+  versa, object ids weren't handled properly and you could add more than the maximum
+  allowed number of that type of objects.
+
+29 jul 04
+
+v1.0.0.57
+
+o Fixed a problem with pasting and replacing 2ndary textures not working in all cases
+o Fixed a problem with editing the blinking light control string
+
+20 jul 04
+
+v1.0.0.56
+
+o Improved texture alignment
+
+13 jul 04
+
+v1.0.0.55
+
+o Fixed a bug that lead to matcens being assigned invalid data when deleting some other 
+  matcens (matcens would not spawn robots anymore)
+
+12 jul 04
+
+v1.0.0.54
+
+o Fixed the infamous "matcen bug" (most or all cubes or level were turned into matcens
+  when saving a level - only if the level had custom robots though) and added code to 
+  automatically fix such levels (will not fix fuel centers, reactor cubes etc. lost due 
+  to cubes being turned into matcens).
+o Fixed some bugs related to changing cube types causing the mine view not to update any
+  more.
+
+v1.0.0.53
+
+o Fixed a problem with naming new levels (could be "new.hog", which was not desired)
+o Added mine view manipulation toolbar buttons (for panning and rotating)
+o Replaced the geometry edit tool bar by a small dialog like it was in DMB2
+
+9 jul 04
+
+v1.0.0.52
+o Added level name to mission tool
+o Fixed some error messages
+o improved some i/o operations
+
+7 jul 04
+
+v1.0.0.51
+o Fixed a recently introduced bug in the lighting routines
+o Fixed DLE-XP never overwriting existing mission files
+o Fixed DLE-XP not saving all descriptive data fields to mission files
+
+4 jul 04
+
+v1.0.0.50
+o Fixed selected side number in status line (was one off)
+o rewrote the Undo system due to occasional severe bugs and program crashes with the old one
+
+2 jul 04
+
+v1.0.0.49
+o Fixed DLE-XP deleting custom polymodels etc. from HXM files when saving levels
+
+30 jun 04
+
+v1.0.0.48
+o Couldn't add secret levels in mission tool
+
+18 jun 04
+
+v1.0.0.47
+o Fixed "add trigger" menu command not working
+o Fixed setting cube type to blue or read goal not working
+
+6 jun04
+
+v1.0.0.46
+o Fixed bot maker bot list not being properly stored and evaluated
+o Fixed creating a standard D2 level when chosing a Vertigo level
+o Creation of Vertigo levels denied if Vertigo extension not available
+
+5 jun 04
+
+v1.0.0.45
+o Fixed "insert - cube - add reactor" adding a standard, not a reactor cube
+o Added "add reactor" option to insert object menu
+o Removed error message when d2x.hog not found in the missions folder at program start
+
+3 jun 04
+
+v1.0.0.44
+o Added missing object behaviour edit field in object tool
+
+30 may 04
+
+v1.0.0.43
+o Renaming missions didn't work
+o Vertigo robot data will now be properly read from d2x.hog if present
+
+28 may 04
+
+v1.0.0.42
+o level version (standard/Vertigo) wasn't handled properly
+o Picking a texture in condensed view did not work when texture view was scrolled down far in
+  uncondensed view
+o Secondary texture alignment didn't work too well and produced illegal texture ids at times
+
+20 may 04
+
+v1.0.0.41
+o Changed zoom mode (more intuitive now, so to say)
+
+15 may 04
+
+v1.0.0.40
+o Removed superfluous screen refreshes when setting type of more than one cube
+o Fixed undo function for changing type of more than one cube at a time
+o Fixed crash in undo function when reverting from changing a cube's type
+
+13 may 04
+
+v1.0.0.38
+o Deleting pairs of walls on adjacent sides did not work properly
+
+v1.0.0.39
+o Cube types "Water" and "Lava" will now be applied to all marked cubes, if any marked; if not, only
+  the current cube's type is changed.
+
+12 may 04
+
+v1.0.0.37
+o Delta light calculation caused overflows under very rare circumstances (extreme number of flashing
+  lights in a complicated level structure with many segments). Subsequent animated flashing light
+  animation in DLE-XP caused DLE-XP to crash.
+
+11 may 04
+
+v1.0.0.36
+o Added support for water and lava segments (currently only supported by D2X-W32).
+o Fixed key and door flags not handled properly by wall tool.
+o Scrolling textures wouldn't scroll in the texture tool's texture display
+
+9 may 04
+
+v1.0.0.33
+o DLE-XP temporary files will now be deleted when not needed anymore
+
+v1.0.0.34
+o You couldn't change spawned items in the objects dialog
+o Improved lighting a little more
+
+v1.0.0.35
+o You can now add repair centers to the mine. Repair centers are only supported by D2X-W32
+  and will simply do nothing in other D2/D2X versions. Default texture is the blue goal texture.
+
+7 may 04
+
+v1.0.0.29
+o Point coordinates weren't updated when changing them in the cube tool
+o Weapon list boxes were empty instead of showing '(none)' when objec had no weapon of that type
+o Robot aim wasn't handled properly when changing robot properties
+o Robot brightness wasn't handled properly when changing robot properties
+o Added "set to default" function to robot dialog (button was there, but did nothing)
+o Changed robot settings will not be saved if no robot of the corresponding type present or robot maker product
+
+v1.0.0.30
+o DLE-XP would still ruin POG files containing extraneous textures
+o DLE-XP was not writing HXM files properly
+o Check tool would report too many unused triggers if unused triggers were found and deleted
+o Improved spawned and contained objects display in object tool
+
+v1.0.0.31
+o Tunnel generator had no option to select "no" when asking whether to keep a tunnel
+o Fixed erroneous dialog caption "DLE-XP"
+
+v1.0.0.32
+o Fixed join command shortcuts
+o Fixed join segments command not updating the mine view on some occasions
+o Lighting greatly improved by improving calculation accuracy (way smoother light transitions)
+
+6 may 04
+
+v1.0.0.28
+o fixed the wall tool crashing on certain operations when changes were to apply to both sides of a wall
+o changed the block operation short cuts to the DMB2 settings
+o Fixed DLE-XP damaging pog files containing extra textures when saving levels
+
+5 may 04
+
+v1.0.0.26
+o POG and HXM files weren't read anymore after last change; fixed
+o DLE-XP will now open files specified on the command line; this means you can associate it with
+  Descent level files and double clicking on such a file (e.g. in the Windows Explorer) will launch
+  DLE-XP and open the file
+o Fixed hog files being destroyed when saving a file while exiting DLE-XP (i.e. closing DLE-XP with a
+  modified mine in it so that it asks "save file" and chosing yes).
+o Blinking light calculation didn't work any more due to an 'optimization' ... <cough>
+
+v1.0.0.27
+o couldn't set cube type in cube tool
+o couldn't add trigger targets
+o wall type can now be changed if no wall selected (to allow for presetting it)
+o robot makers had no bots to add
+o cube type wasn't updated when selecting cubes
+o cube tool wasn't updated when adding cubes
+o mission tool wasn't always updated when loading a new mission
+o operations that should have only worked on marked cube (e.g. replace texture) sides affected the entire mine
+o fixed various problems with the trigger tool
+o fixed various problems with robot makers
+o somewhat improved other cube's visibility
+
+4 may 04
+
+v1.0.0.25
+o texture light values weren't saved in the mine
+o wall and trigger tool texture display weren't updated when the wall's texture was changed
+o new files always were saved as 'new.hog' instead of <mission name>.hog.
+o light tool toolbar button will now not only make the light tool visible, but illuminate the mine as well
+o check tool toolbar button will now not only make the check tool visible, but check the mine as well
+o Levels from a hog file can now be loaded by double clicking on the level name in the mission tool's
+  level list
+o level file browser will now show all Descent level file types as default file types
+
+2 may 04
+
+v1.0.0.23
+o Lava will now be treated as a light emitting texture in D1
+
+v1.0.0.24
+o DLE-XP will now remember the last docking position of the edit toolbar (in most cases, that is;
+  if the edit bar was floating freely or closed, it will be restored in default state, i.e. docked
+  right of the main tool bar).
+
+1 may 04
+
+v1.0.0.21
+o Fixed block grow/shrink not affecting the very first vertex of the mine if it was marked.
+o Fixed reset marked textures not working properly (would only reset the first cube if marked)
+o Fixed align button overlap in texture tool
+o Pressing P/L/S/C will now first switch to point/line/side/cube mode if that mode isn't currently
+  active and only change the current point/line/side/cube when pressed again.
+
+v1.0.0.22
+o Chosing a different level type than D2 when creating a new level had no effect.
+
+30 apr 04
+
+v1.0.0.18
+o Added texture views to wall and trigger tools
+o Fixed occasional crash when aligning child textures
+
+v1.0.0.19
+o Added option to affect both sides to wall tool
+
+v1.0.0.20
+o Added short cuts to rotate view clockwise/counter clockwise
+o Fixed wall tool crashing DLE-XP
+o Added display of texture alignment values in texture tool
+o Adding a standard door will now use clip and texture of the last door added
+  (default door if no door added yet)
+o texture tool will now show a black texture window if the current side doesn't have a texture
+o DLE-XP will not attempt to create a POG file for D1 levels under certain circumstances any more
+o Fixed 2ndary texture alignment not being updated when changing the current side
+
+29 apr 04
+
+v1.0.0.16
+o Mine view will get the focus whenever it's updated. That means that you don't have to
+  click in the mine view before issuing a DLE-XP command, but that also means that the
+  tool dialogs lose the input focus everytime you do something there that causes DLE-XP
+  to refresh the mine view.
+
+v1.0.0.17
+o Fixed and improved window size, pos and layout management
+
+28 apr 04
+
+v1.0.0.13
+o Fixed split and join segments function
+o Fixed having walls between adjacent segments in pasted blocks
+o Fixed texture alignment edit controls reacting on every input
+v1.0.0.14
+o Fixed "paste touching" crashing occasionally
+o Fixed texture tool being redrawn unnecessarily
+o Added tool tips to bitmap buttons in dialogs
+v1.0.0.15
+o Fixed object type for reactors being not selectable
+o Fixed reactors not being selectable in the mineview
+
+26 apr 04
+
+o Added texture pane visibility toggle
+o Fixed DLE-XP crashing when pressing F12 (fit to view) by using Ctrl+F11 instead
+o Added alternative layout
+o Added "B" for selecting block mode
+o Added mouse wheel handling (mine view: zoom, texture view: scroll)
+o Shading is now by default off
+o Texture and tool pane will not be redrawn when inserting/deleting cubes
+o Added tool tips for the geometry editing toolbar
+o Pressing 'P' will now properly update the cube tool
+o Changing data paths in the preferences dialog will now take immediate effect
+o Window size & position and screen mode are persistent now
+o Diag tool setting of automatic bug fixing is persistent now
+o When converting a mine in non-expert mode, DLE-XP will now display the proper message
+o Added curve generator spline handling
+o About dialog will now display the nice new DLE-XP logo
+o Activated menu functions and added keys for rotating the mine
+o Added splash screen
+o Added a few toolbar tooltips
+o Fixed a problem with restoring window pos and size (esp. when the ini file didn't contain these)
+o Fixed the toolbars not re-docking
+o Fixed closed toolbars not reappearing when chosing 'view toolbar' from the view menu
+o Fixed 'save changes/discard changes/keep mine' dialog not working properly when chosing 'save'
+o Fixed splash screen setting not being persistent
+o Fixed undo buffer not being reset when loading or creating a new mine
+o Added great new logo and icon made by Steve Chamberlain
+
+25 apr 04
+
+o Fixed DLE-XP not adding missing backslashes to the game folders
+o Fixed object list not being resorted when sort on and object id changed
+o Fixed changing object ids not working
+o Selecting prev/next point/line/side/cube/object will now automatically set the appropriate select mode
+
+22 apr 04
+
+o Added object count display to object tool
+o Enlarged object tool to be able to display full robot ids
+o Added function to sort objects and corresponding check box in object tool
+o Fixed the mission manager overwriting the mission name with the current levels base name when saving a level
+o Changed the temporary file names to 'dle_temp.rdl/pog/hxm'.
+o Changed the default editor text for the mission file to 'DLE-XP'
+
+21 apr 04
+
+o Fixed a problem where ship (player) poly model data would not be loaded properly
+o Fixed a bug where the check tool messed up triggers when fixing trigger problems
+o Fixed a bug where reactor triggers weren't properly read from the level file
+o Fixed bug where DLE-XP would not ask whether to save changes when loading another level with the
+  file browser (not over the recent file menu)
+o Added 2ndary texture alignment
+o Added "align all" function: Will align all sides with the same texture(s) as the current side
+  relative to the current side
+o Fixed the object tool (lotsa bugs ...)
+
+19 apr 04
+
+o Fixed bugs in mine diagnosis tool
+o added delete all walls/triggers/objects function
+o Fixed more bugs in hog file manager
+
+18 apr 04
+
+o Fixed bug where DLE would not write extended block files
+o Added trigger data to extended block files
+o Fixed "Save as" function
+o Fixed mission tool not being updated when reading a level
+
+17 apr 04
+
+o added "auto bug fix" check box to diagnosis tool
+o added more automatic bug fixes to diag tool
+o current cube/side painted with thicker lines
+o fixed a problem with double backslashes in filenames causing dmb-xp to crash occasionally
+o fixed an issue with the undo function in connection with texture tool operations
+o improved DMB-XP info message handling (will be displayed in Diag tool problem report)
+o Fixed mission tool not being updated when loading a new level if already visible
+o Fixed mission data not being reset when loading a level w/o mission file or creating a new level
+
+16 apr 04
+
+o completed diagnosis function (check mine for problems)
+o added level converter
+o added extend block file handling
+o fixed a bug in undo function
+o fixed preferences handling
+o fixed toolbar display
+
+15 apr 04
+
+o added undo/redo function
+o fixed lighting ... again (sigh)
+o added mission manager
+o added tunnel generator
+o added advanced robot editor
+o added diagnostics/statistics tool (diagnostics function not yet done)
+o fixed problems with palette changes and texture reloads when switching- between Descent versions
+
+14 apr 04
+
+o added block manager
+
+13 apr 04
+
+o added hog file management
+   - fixed a bug where non-level files (e.g. txb) got deleted from hog file when they had the same name as a level file
+   - fixed a bug where saving a level into a hog file containing a level with the same name would not delete that level
+
+12 apr 04
+
+o fixed and expanded blinking lights animation
+
+11 apr 04
+
+o added blinking lights animation to mine view (toggle with F6)
+
+10 apr 04
+
+o added basic object editing functions
+
+9 apr 04
+
+o added "add" macro functions to menu and dialogs
+o fixed a view update issue with the trigger tool
+o adding a trigger will now automatically add a wall of proper type if the current side doesn't have a wall
+o fixed texture view not allowing texture selection when only showing used textures
+o fixed texture view not being updated when changing the current side
+
+8 apr 04
+
+o added cube tool
+o fixed minor wall and trigger tool bugs
+o when adding a new wall or cube, the new sides texture alignment will now automatically be reset
+o allowed flickering lights on all light textures (1st or 2nd)
+o more fixes to delta light calculation: delta lights are computed for
+   - all sides with a flickering light
+   - all sides with a blastable light that do not also have a non-blastable light
+   - all walls that have a light
+   - all static lights that are targets of light on/off triggers
+o fixed a bug in static illumination function not rendering to the full depth specified
+o you can now make a cube a robot maker in the cube tool (why not anyway?)
+
+7 apr 04
+
+o completed wall tool
+o putting a door texture on a door wall will now automatically set the corresponding wall clip
+o added replace texture function to texture tool (will also take care of door textures and clips)
+o added trigger tool
+
+6 apr 04
+
+o completed light editing
+o removed a bug where you could add a flickering light, and keep it even if removing the light texture
+o improved window refresh when scrolling the texture view
+o added texture editing
+o partially implemented wall edit tool
+
+5 apr 04
+
+o some more fixes and enhancement to lighting
+o fixed load/save file operation
+o added texture display to texture tool
+o added texture alignment editing
+o added parts of light editing
+
+3 apr 04
+
+o added new level function
+o added pog file saving
+o fixed unknown textures being removed from pog file when saving
+
+1 apr 04
+
+o fixed CMineView::FitToView()
+
+31 mar 04
+
+o added selection functions (next/previous point, line, cube, etc)
+
+30 mar 04
+
+o more and final fixes to delta light calculation
+o added current point drag&drop
+o added lighting and delta light display
+o completed preferences setting code
+o added function to fit mine to view client area
+
+28 mar 04
+
+o fixed returning from fullscreen mode when manually resizing a window pane
+o added and fixed delta light computation (proper resetting of depth info,
+  handling of delta light data overflows)
+o added preferences dialog and data path handling
+
+27 mar 04
+
+o fixed rubber box selection not updating marked cubes
+o fixed partial line view
+o added mouse zooming (ctrl+left click+mouse move)
+
+26 mar 04
+
+o fixed split screen toggling for tool dialog display
+o added missing buttons to alignment tool
+o added marking of mine elements
+o added mouse selection of mine elements
+o added rubber box and rubber box selection of mine elements
+
+25 mar 04
+
+o fixed texture picker scrolling
+o fixed  texture picker scrolling for filtered texture view
+o added texture tool dialog (contains alignment and light tools)
+o added vertical tool pane scrolling
+o restricted vertical tool pane size
+o added pog file processing
+o added used textures view
+o added texture name resource (thus fixing the animation frames being displayed in the texture picker)
+o added bitmaps
+o improved the toolbar
+o added view toggle (full screen / split screen)
+o added bitmap buttons to texture tool dialog
+
+24 mar 04
+
+o changed UI (3 panes for texture picker, mine view, tool dialogs)
+o added texture picker
+o added some tool dialogs (Cubes, Walls, Triggers, non-functional yet)
+
+23 mar 04
+o fixed secondary texture display (only shown if not rotated)
+o added wall display
+o added lights display
+o added object display
+
+// eof

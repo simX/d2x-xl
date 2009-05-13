@@ -1,0 +1,24 @@
+HKCR
+{
+	ComMine.ComMine.1 = s 'ComMine Class'
+	{
+		CLSID = s '{6530B922-69FD-11D2-AE2A-00C0F03014A5}'
+	}
+	ComMine.ComMine = s 'ComMine Class'
+	{
+		CurVer = s 'ComMine.ComMine.1'
+	}
+	NoRemove CLSID
+	{
+		ForceRemove {6530B922-69FD-11D2-AE2A-00C0F03014A5} = s 'ComMine Class'
+		{
+			ProgID = s 'ComMine.ComMine.1'
+			VersionIndependentProgID = s 'ComMine.ComMine'
+			ForceRemove 'Programmable'
+			InprocServer32 = s '%MODULE%'
+			{
+				val ThreadingModel = s 'Apartment'
+			}
+		}
+	}
+}

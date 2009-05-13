@@ -1,0 +1,11 @@
+HKCR
+{
+	NoRemove AppID
+	{
+		{C016A520-6A16-11d2-AE2A-00C0F03014A5} = s 'DLC'
+		'DLC.EXE'
+		{
+			val AppID = s {C016A520-6A16-11d2-AE2A-00C0F03014A5}
+		}
+	}
+}

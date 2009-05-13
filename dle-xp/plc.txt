@@ -1,0 +1,177 @@
+ A D E P T   S O F T W A R E             PROGRAMMING LANGUAGE CREATOR
+_____________________________________________________________________
+
+For up to date information on our products, please visit our homepage
+on the web at:  http://www.adeptsoftware.com
+_____________________________________________________________________
+
+COPYRIGHT NOTICE
+
+This product is protected by United States copyright laws and international treaty provisions.  All rights are reserved.  Copying any part of this product including the "look and feel", or creating derivative development tools using any part of this product is strictly forbidden.  
+
+DISCLAIMER
+
+This product is provided "as-is".  Your sole remedy from any problems relating to this product shall be a full refund of the purchase price submitted to Adept Software.  You are responsible for any creations made with this product. Adept Software shall not be liable for any damages whatsoever caused by your creations.
+ADEPT SOFTWARE DOES NOT WARRANT THAT THE OPERATION OF THE SOFTWARE WILL BE UNINTERRUPTED, ERROR FREE OR MEET YOUR SPECIFIC REQUIREMENTS.  THE WARRANTY SET FORTH ABOVE IS IN LIEU OF ALL OTHER EXPRESS WARRANTIES WHETHER ORAL OR WRITTEN.  THE AGENTS, EMPLOYEES, DISTRIBUTORS, AND DEALERS OF LICENSOR ARE NOT AUTHORIZED TO MAKE MODIFICATIONS TO THIS WARRANTY, OR ADDITIONAL WARRANTIES ON BEHALF OF ADEPT SOFTWARE.  ADDITIONAL STATEMENTS SUCH AS DEALER ADVERTISING OR PRESENTATIONS, WHETHER ORAL OR WRITTEN, DO NOT CONSTITUTE WARRANTIES AND SHOULD NOT BE RELIED UPON.  FURTHER WARRANTIES MAY BE GRANTED IN WRITTEN FORM AT ADEPT SOFTWARE'S DISCRETION.
+IN NO EVENT WILL ADEPT SOFTWARE BE LIABLE FOR ANY DAMAGES, INCLUDING LOSS OF DATA, LOSS OF PROFITS, LOST SAVINGS, SPECIAL, INCIDENTAL, CONSEQUENTIAL, INDIRECT OR OTHER SIMILAR DAMAGES ARISING FROM BREACH OF WARRANTY, BREACH OF CONTRACT, NEGLIGENCE, OR OTHER LEGAL THEORY EVEN IF LICENSOR OR ITS AGENT HAS BEEN ADVISED OF THE POSSIBILITY OF SUCH DAMAGES, OR FOR ANY CLAIM BY ANY OTHER PARTY. ADEPT SOFTWARE DISCLAIMS ALL OTHER WARRANTIES, BOTH EXPRESS IMPLIED, INCLUDING BUT NOT LIMITED TO, IMPLIED WARRANTIES OF MERCHANTABILITY OR FITNESS FOR A PARTICULAR PURPOSE WITH RESPECT TO THE SOFTWARE AND THE ACCOMPANYING WRITTEN MATERIALS.  THIS LIMITED WARRANTY GIVES YOU SPECIFIC LEGAL RIGHTS. YOU MAY HAVE OTHER RIGHTS WHICH VARY FROM JURISDICTION TO JURISDICTION.  Some jurisdictions do not allow the exclusion or limitation of incidental or consequential damages, so the above limitation or exclusion may not apply to you.
+_____________________________________________________________________
+
+OVERVIEW
+
+The Adept Software Programming Language Creator (PLC) allows you to easily create your own programming languages. PLC also includes a C language module, making it a C interpreter!
+PLC parses and executes source files in any language created - and creating a language definition only requires programming about 300 lines of C.  You can create custom keywords, operators, and commands just by filling in a data structure.  Almost any computer language can be approximated in a few hours.
+With the C language module, most keywords such as FOR & SWITCH, and all operators work just like compiled C.  Built-in enhancements allow you to do things like concatenate strings easily (String1+="p.m.").  Variable types are detected automatically, so declaration is not necessary.
+PLC can correctly execute a great variety of language statements, from this:
+
+10 PRINT "Hello World"
+20 GOTO 10
+
+to this:
+
+do{
+     Test+=(((++Count)/27)%3)+((Blah("test.exe",FIL_READONLY,4)>6)? 1 : 3);
+}while(Test<500);
+
+FREEWARE VERSION & SOURCE CODE AVAILABLE
+
+PLC is completely FREE!  Complete source code to PLC is also available for purchase.  Please visit the Adept Software web page for our current prices and license documents.
+_____________________________________________________________________
+
+SPECIFICATIONS
+
+PLC is divided into 2 parts, the compiler and the executor.  The compiler parses text into tokens according to the rules setup up in the language module.  Each separate routine has its own environment, providing local variable scope.  The executor begins execution with the routine specified, and stops when the routine returns control.  If any expressions exist outside of a routine, in the header of a source file, they are always executed BEFORE any other execution.  This allows for initialization of global variables.
+
+CREATING A LANGUAGE
+
+To create a language you need to first set up data structures for common strings, keywords, and operators (about 200 lines of code).  These are all used in the compilation process.  You also need a routine to handle the behavior of keywords during execution, and a routine to define the behavior of operators on different data types during execution (about 300 lines of code).
+
+RESTRICTIONS
+
+These restrictions are permanent in the PLC library, but may be changed manually after obtaining the source code with the Pro License.
+* Variables and routines may not be declared; a variable's type is determined automatically when an assignment first takes place
+* There are no structures, arrays, or pointers
+* A source file may consist of only: global declarations and routines
+
+The Programming Language Creator was written entirely in Visual C for Windows 95+.
+_____________________________________________________________________
+
+EXECUTING SOURCE CODE
+
+To execute a source file, follow these steps:
+* Call PLC_Startup()
+* Call the Init() routine for the language module you will be using
+* Use PLC_AddCommand() to add any external commands
+* Load a source file, and make sure the last byte of the buffer is a zero
+* Compile with PLC_Compile() or PLC_CompileStatements()
+* Check for errors
+* Call PLC_Execute() with the name of the routine to execute
+* Check for errors
+* Call PLC_Shutdown()
+
+COMPILATION
+
+To compile source code, use PLC_Compile() or PLC_CompileStatements().
+PLC_Compile() searches a file for the following:
+* Routines enclosed in CompoundOpen & CompoundClose strings
+* Global variable assignment expressions
+
+PLC_CompileStatements() compiles only statements within a routine, and may not include routine or global variable declarations.  If the language you are using does not support separate routines, use only this routine to compile.
+
+COMMANDS
+
+Use PLC_AddCommand() to add external commands, which may be called just like routines.
+PLC_GetParms() is for use within a command, to obtain an array of the parameters passed to it.
+PLC_Err() functions the same as ERR_Report(), and should be used to report any errors within a command.
+
+EXECUTION
+
+Expressions in the header of a file but not within a routine (such as global variable assignments) are always executed before anything else.
+PLC_Execute() is used to execute any routine that has been compiled.  
+PLC_Evaluate() evaluates a text expression (no keywords allowed).  The result is placed in PLC_Result.
+_____________________________________________________________________
+
+CREATING A LANGUAGE
+
+The easiest way to learn how to create a language is by example.  Examine the source code for the C language module "PLC_C.*".  The operators work for most languages, so you may find it easiest to copy this file and modify it to match the requirements of the language you are creating.
+
+DATA STRUCTURES
+
+The first thing to do when creating a language is to set up data structures for your common strings, keywords, and operators.  These are all used during compilation.
+
+COMMON STRINGS
+
+Common strings include comment strings, whitespace, compound statement enclosures, and other strings that are used in most languages.
+
+KEYWORDS
+
+A keyword definition includes the keyword name string, and a list of the objects the parser should look for after the keyword.
+
+OPERATORS
+
+An operator definition includes the operator string, the precedence group it belongs to, the direction to evaluate, and which of the surrounding expressions are affected by the operator.
+
+DATA TYPES
+
+There are 3 predefined data types, int, float, and string.  More can be created by modifying the file "PLC_DT.CPP".
+
+ROUTINES
+
+Your language must have 3 routines: Init(), ExecKeyword(), and ApplyOperator().
+Init() sets up some variables in PLC for use with your language.
+ExecKeyword() handles the behavior of keywords during execution.  This routines is called whenever a keyword token is encountered.
+ApplyOperator() defines the behavior of operators on different data types during execution.  The datatypes available are in "PLC_DT.H", and may not be modified unless you have the Pro Version of PLC.
+
+COMPILING
+
+If your language doesn't contain multiple routines within each source file, and has no routine headers, use PLC_CompileRoutine() instead of PLC_CompileFile().
+_____________________________________________________________________
+
+PROGRAM FLOW - COMPILATION (PLC PRO)
+
+COMPILING A SOURCE BUFFER
+
+Compile() compiles a source buffer containing only global expressions (usually variable initialization) and routines.  Expressions are compiled into the global environment, and are executed automatically before anything else.  Routines are parsed for parameter names then compiled with Compile_Block().
+
+COMPILING A ROUTINE
+
+1) Compile_Statement() is called until a compound close is reached, which looks for the following:
+	a) A compound statement (compiled with Compile_Block())
+	b) A keyword.  Any statements or expressions that are part of the keyword format are compiled.
+	c) A label.
+	d) If it is nothing else, it is then assumed to be an expression, compiled with Compile_Expression().
+
+COMPILING AN EXPRESSION
+
+1) The expression is converted into tokens by Expr_Tokenize(), which looks for the following:
+	a) A parameter separator (the expression could be part of a parameter list)
+	b) A subexpression (usually parenthesis)
+	c) An operator
+	d) A datatype value 
+	e) A symbol (variable or routine)
+2) The token list is rearranged into a hierarchy by Expr_ApplyPreced().  The token list is in operator-first format.
+	a) Different operators with the same string are now differentiated by the tokens surrounding them.
+_____________________________________________________________________
+
+PROGRAM FLOW - EXECUTION (PLC PRO)
+
+EXECUTING A ROUTINE
+
+1) ExecRoutine() first creates variables for all routine parameters.  The parameter expressions are evaluated with PLC_ExecExpression().  If the routine specified is an external command, the variables are then passed to the external command.  Otherwise, the routine is executed by PLC_ExecCompound().
+
+EXECUTING A COMPOUND STATEMENT
+
+1) PLC_ExecStatement() is called until the end of the token list, or until the program flow is changed from normal to continue, break, or return.
+2) The token type may be one of 3 things:
+	a) Another compound statement - executed by PLC_ExecStatement()
+	b) A keyword - executed by the language module's PLC_ExecKeyword()
+	c) An expression - executed by PLC_ExecExpression()
+
+EXECUTING AN EXPRESSION
+
+1) PLC_ExecExpression() calls GetTokenValue() and saves the result for all the tokens in the expression.
+	a) If the token is a subexpression, it is executed by PLC_ExecExpression()
+	b) If the token is a datatype value, the value is retrieved
+	c) If the token is a variable, the value is retrieved.  If the variable doesn't yet exist, it is created.
+	d) If the token is a routine, it is executed by ExecRoutine()
+2) If the expression has an operator, the operator and its components are passed to the language module's PLC_ApplyOperator().
+_____________________________________________________________________

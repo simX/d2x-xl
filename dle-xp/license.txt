@@ -1,0 +1,93 @@
+ A D E P T   S O F T W A R E                     PLC FREEWARE LICENSE
+_____________________________________________________________________
+
+The information in this document is subject to change without notice.
+
+Visit us on the web!                     http://www.adeptsoftware.com
+_____________________________________________________________________
+
+For the purposes of this document, "Library" refers to the library
+of software tools known as the "Programming Language Creator Freeware
+Version".
+"Licensor" is the owner and publisher of the Library, Adept Software.
+"Products" is one or more software products created with the Library.
+"Developer" is the developer of Products.
+
+LIBRARY DEFINITION:
+
+   The Library is a programming language parser and interpreter.
+   Programming language modules are combined with the Library to
+   create a software program capable of interpreting and executing
+   a language.
+
+By installing or using any part of the Library, you are agreeing to
+be bound by the terms of this license.  If you do not agree to the
+terms of this license, please remove the Library from your computer.
+
+LIBRARY USAGE LICENSE:
+
+1. LICENSING FEE
+
+   To use Library, Developer must agree to this license.
+   Developer may use the Library to develop and publish Products
+   without payment to Licensor.
+
+   Products released to the general public must contain the text:
+   "Created with the Programming Language Creator by Adept Software"
+
+2. COPYRIGHT NOTICE
+
+   Library is protected by United States copyright laws and
+   international treaty provisions.  All rights are reserved.
+   Copying any part of the Library including the "look and feel", or
+   creating derivative development tools using any part of Library
+   is strictly forbidden.
+
+3. CONFIDENTIALITY
+
+   Developer agrees to keep Library confidential.  Developer and
+   Licensor agree that in the course of doing business, the exchange
+   of confidential information is inevitable, and that best efforts
+   shall be made to keep this information confidential.  This
+   includes but is not limited to: all source code, algorithms,
+   and marketing plans.
+
+4. LIMITED WARRANTY & DISCLAIMER
+
+   The Library is provided "as-is".  No warranty is made by Licensor.
+
+   Developer owns the copyright to Products.  Developer only, and
+   not Licensor, shall be responsible for the contents of Products.
+   The licensing fee collected from Developer is not refundable
+   under any circumstances, including the event that Products is
+   never released.  Licensor shall not be liable for any damages
+   whatsoever caused by Products or by Developer's use of Library.
+   Developer agrees to accept all responsibility and legal costs
+   for any damage caused by Products.
+
+   IN NO EVENT WILL LICENSOR BE LIABLE FOR ANY DAMAGES, INCLUDING 
+   LOSS OF DATA, LOSS OF PROFITS, LOST SAVINGS, SPECIAL, INCIDENTAL,
+   CONSEQUENTIAL, INDIRECT OR OTHER SIMILAR DAMAGES ARISING FROM
+   BREACH OF WARRANTY, BREACH OF CONTRACT, NEGLIGENCE, OR OTHER LEGAL
+   THEORY.  DEVELOPER'S SOLE REMEDY FOR ANY DAMAGES SHALL BE A FULL
+   REFUND OF THE LICENSING FEE SUBMITTED TO LICENSOR.
+
+   LICENSOR DISCLAIMS ALL OTHER WARRANTIES, BOTH EXPRESS IMPLIED,
+   INCLUDING BUT NOT LIMITED TO, IMPLIED WARRANTIES OF
+   MERCHANTABILITY OR FITNESS FOR A PARTICULAR PURPOSE WITH RESPECT
+   TO THE SOFTWARE AND THE ACCOMPANYING WRITTEN MATERIALS.  THIS
+   LIMITED WARRANTY GIVES YOU SPECIFIC LEGAL RIGHTS. YOU MAY HAVE
+   OTHER RIGHTS WHICH VARY FROM JURISDICTION TO JURISDICTION.
+
+5. CONCLUSION
+
+   Developer agrees not to engage in conduct that disparages
+   Licensor's reputation.
+
+   This is a legally binding contract between Developer and
+   Licensor, and may not be terminated unless both parties agree
+   in writing.  If any term or condition of this agreement is
+   violated or deemed to be illegal or unenforceable under any
+   rule of law, all other terms shall remain in force.  This
+   contract shall be governed by the laws of the state of Washington.
+_____________________________________________________________________

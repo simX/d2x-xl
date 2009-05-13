@@ -1,0 +1,65 @@
+DMB_EXT_BLOCK_FILE
+segment 2
+  side 0
+    tmap_num 361
+    tmap_num2 0
+    uvls 0 0 -32768
+    uvls 0 2048 -32768
+    uvls -2048 2047 -32768
+    uvls -2048 0 -32768
+    wall_num 255
+  side 1
+    tmap_num 361
+    tmap_num2 0
+    uvls 0 0 -32768
+    uvls 0 2048 -32768
+    uvls -2048 2048 -32768
+    uvls -2048 0 -32768
+    wall_num 255
+  side 2
+    tmap_num 361
+    tmap_num2 0
+    uvls 0 0 -32768
+    uvls 0 2048 -32768
+    uvls -2047 2048 -32768
+    uvls -2048 0 -32768
+    wall_num 255
+  side 3
+    tmap_num 361
+    tmap_num2 0
+    uvls 0 0 -32768
+    uvls 0 2048 -32768
+    uvls -2048 2048 -32768
+    uvls -2048 0 -32768
+    wall_num 255
+  side 4
+    tmap_num 361
+    tmap_num2 0
+    uvls 0 0 -32768
+    uvls 0 2048 -32768
+    uvls -2048 2048 -32768
+    uvls -2048 0 -32768
+    wall_num 255
+  side 5
+    tmap_num 0
+    tmap_num2 0
+    uvls 0 0 0
+    uvls 0 0 0
+    uvls 0 0 0
+    uvls 0 0 0
+    wall_num 255
+  children -1 -1 -1 -1 -1 1
+  vms_vector 0 0 0 0
+  vms_vector 1 1310720 0 0
+  vms_vector 2 1310720 0 -1310720
+  vms_vector 3 0 0 -1310720
+  vms_vector 4 0 -1310720 0
+  vms_vector 5 1310720 -1310720 0
+  vms_vector 6 1310720 -1310720 -1310720
+  vms_vector 7 0 -1310720 -1310720
+  static_light 1537728
+  special 4
+  matcen_num 1
+  value 1
+  child_bitmask 96
+  wall_bitmask 128

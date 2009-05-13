@@ -1,0 +1,49 @@
+9
+
+dir
+2
+file:///D:/Projects/SVN/DLE-XP/Resource
+file:///D:/Projects/SVN/DLE-XP
+
+
+
+2007-01-24T11:47:27.125000Z
+2
+Mali
+
+
+svn:special svn:externals svn:needs-lock
+
+
+
+
+
+
+
+
+
+
+
+7aa9d30d-707f-f543-9c89-d932ddb43f70
+
+bitmaps
+dir
+
+cursors
+dir
+
+palettes
+dir
+
+registry
+dir
+
+data
+dir
+
+levels
+dir
+
+icons
+dir
+

@@ -1,0 +1,24 @@
+HKCR
+{
+	ComCube.ComCube.1 = s 'ComCube Class'
+	{
+		CLSID = s '{6530B925-69FD-11D2-AE2A-00C0F03014A5}'
+	}
+	ComCube.ComCube = s 'ComCube Class'
+	{
+		CurVer = s 'ComCube.ComCube.1'
+	}
+	NoRemove CLSID
+	{
+		ForceRemove {6530B925-69FD-11D2-AE2A-00C0F03014A5} = s 'ComCube Class'
+		{
+			ProgID = s 'ComCube.ComCube.1'
+			VersionIndependentProgID = s 'ComCube.ComCube'
+			ForceRemove 'Programmable'
+			InprocServer32 = s '%MODULE%'
+			{
+				val ThreadingModel = s 'Apartment'
+			}
+		}
+	}
+}

@@ -1,0 +1,24 @@
+HKCR
+{
+	Dlc.ComObj.1 = s 'ComObj Class'
+	{
+		CLSID = s '{A9C67592-6DF0-11D2-AE2A-00C0F03014A5}'
+	}
+	Dlc.ComObj = s 'ComObj Class'
+	{
+		CLSID = s '{A9C67592-6DF0-11D2-AE2A-00C0F03014A5}'
+		CurVer = s 'Dlc.ComObj.1'
+	}
+	NoRemove CLSID
+	{
+		ForceRemove {A9C67592-6DF0-11D2-AE2A-00C0F03014A5} = s 'ComObj Class'
+		{
+			ProgID = s 'Dlc.ComObj.1'
+			VersionIndependentProgID = s 'Dlc.ComObj'
+			ForceRemove 'Programmable'
+			LocalServer32 = s '%MODULE%'
+			val AppID = s '{C016A520-6A16-11d2-AE2A-00C0F03014A5}'
+			'TypeLib' = s '{3F315843-67AC-11D2-AE2A-00C0F03014A5}'
+		}
+	}
+}

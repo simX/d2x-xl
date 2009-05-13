@@ -1,0 +1,134 @@
+<html>
+<body>
+<pre>
+<h1>Build Log</h1>
+<h3>
+--------------------Configuration: dlc - Win32 Release--------------------
+</h3>
+<h3>Command Lines</h3>
+Creating temporary file "C:\DOKUME~1\Mali\LOKALE~1\Temp\RSP11.tmp" with contents
+[
+/nologo /Gr /Zp1 /MD /W3 /GX /Zi /Od /D "WIN32" /D "NDEBUG" /D "_WINDOWS" /D "_AFXDLL" /D DEMO=0 /FR"Release/" /Fo"Release/" /Fd"Release/" /FD /c 
+"D:\Projekte\DLE-XP\CHECK.CPP"
+]
+Creating command line "cl.exe @C:\DOKUME~1\Mali\LOKALE~1\Temp\RSP11.tmp" 
+Creating temporary file "C:\DOKUME~1\Mali\LOKALE~1\Temp\RSP12.tmp" with contents
+[
+opengl32.lib glu32.lib /nologo /subsystem:windows /incremental:no /pdb:"Release/dle-xp.pdb" /debug /machine:I386 /out:"Release/dle-xp.exe" 
+".\Release\advobjdlg.obj"
+".\Release\CHECK.OBJ"
+".\Release\ComCube.obj"
+".\Release\ComMine.obj"
+".\Release\ComObj.obj"
+".\Release\CONVERT.OBJ"
+".\Release\cubedlg.obj"
+".\Release\diagdlg.obj"
+".\Release\dlc.obj"
+".\Release\dlcDoc.obj"
+".\Release\lightdlg.obj"
+".\Release\MainFrm.obj"
+".\Release\mineview.obj"
+".\Release\missiondlg.obj"
+".\Release\objectdlg.obj"
+".\Release\Parser.obj"
+".\Release\prefsdlg.obj"
+".\Release\reactordlg.obj"
+".\Release\StdAfx.obj"
+".\Release\texaligndlg.obj"
+".\Release\TEXEDIT.OBJ"
+".\Release\texlightdlg.obj"
+".\Release\texturedlg.obj"
+".\Release\textureView.obj"
+".\Release\tooldlg.obj"
+".\Release\toolview.obj"
+".\Release\triggerdlg.obj"
+".\Release\txtfilterdlg.obj"
+".\Release\walldlg.obj"
+".\Release\ADD.OBJ"
+".\Release\block.obj"
+".\Release\FILE.OBJ"
+".\Release\global.obj"
+".\Release\io.obj"
+".\Release\Light.obj"
+".\Release\Matrix.obj"
+".\Release\Mine.obj"
+".\Release\MODIFY.OBJ"
+".\Release\OBJECT.OBJ"
+".\Release\palette.obj"
+".\Release\POLY.OBJ"
+".\Release\render.obj"
+".\Release\ROBOT.OBJ"
+".\Release\Segment.obj"
+".\Release\textures.obj"
+".\Release\TRIGGER.OBJ"
+".\Release\tunnelgen.obj"
+".\Release\WALL.OBJ"
+".\Release\dlc.res"
+]
+Creating command line "link.exe @C:\DOKUME~1\Mali\LOKALE~1\Temp\RSP12.tmp"
+<h3>Output Window</h3>
+Compiling...
+CHECK.CPP
+Linking...
+Creating temporary file "C:\DOKUME~1\Mali\LOKALE~1\Temp\RSP14.tmp" with contents
+[
+/nologo /o"Release/dlc.bsc" 
+".\Release\advobjdlg.sbr"
+".\Release\CHECK.SBR"
+".\Release\ComCube.sbr"
+".\Release\ComMine.sbr"
+".\Release\ComObj.sbr"
+".\Release\CONVERT.SBR"
+".\Release\cubedlg.sbr"
+".\Release\diagdlg.sbr"
+".\Release\dlc.sbr"
+".\Release\dlcDoc.sbr"
+".\Release\lightdlg.sbr"
+".\Release\MainFrm.sbr"
+".\Release\mineview.sbr"
+".\Release\missiondlg.sbr"
+".\Release\objectdlg.sbr"
+".\Release\Parser.sbr"
+".\Release\prefsdlg.sbr"
+".\Release\reactordlg.sbr"
+".\Release\StdAfx.sbr"
+".\Release\texaligndlg.sbr"
+".\Release\TEXEDIT.SBR"
+".\Release\texlightdlg.sbr"
+".\Release\texturedlg.sbr"
+".\Release\textureView.sbr"
+".\Release\tooldlg.sbr"
+".\Release\toolview.sbr"
+".\Release\triggerdlg.sbr"
+".\Release\txtfilterdlg.sbr"
+".\Release\walldlg.sbr"
+".\Release\ADD.SBR"
+".\Release\block.sbr"
+".\Release\FILE.SBR"
+".\Release\global.sbr"
+".\Release\io.sbr"
+".\Release\Light.sbr"
+".\Release\Matrix.sbr"
+".\Release\Mine.sbr"
+".\Release\MODIFY.SBR"
+".\Release\OBJECT.SBR"
+".\Release\palette.sbr"
+".\Release\POLY.SBR"
+".\Release\render.sbr"
+".\Release\ROBOT.SBR"
+".\Release\Segment.sbr"
+".\Release\textures.sbr"
+".\Release\TRIGGER.SBR"
+".\Release\tunnelgen.sbr"
+".\Release\WALL.SBR"]
+Creating command line "bscmake.exe @C:\DOKUME~1\Mali\LOKALE~1\Temp\RSP14.tmp"
+Creating browse info file...
+<h3>Output Window</h3>
+
+
+
+<h3>Results</h3>
+dle-xp.exe - 0 error(s), 0 warning(s)
+</pre>
+</body>
+</html>

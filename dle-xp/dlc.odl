@@ -1,0 +1,123 @@
+// dlc.odl : type library source for dlc.exe
+import "oaidl.idl";
+
+// This file will be processed by the MIDL compiler to produce the
+// type library (dlc.tlb).
+
+[ uuid(3F315843-67AC-11D2-AE2A-00C0F03014A5), version(1.0) ]
+library dlc
+{
+	importlib("stdole32.tlb");
+	importlib("stdole2.tlb");
+	
+
+	//  Primary dispatch interface for CDlcDoc
+	
+	[ uuid(3F315844-67AC-11D2-AE2A-00C0F03014A5) ]
+	dispinterface Idlc
+	{
+		properties:
+			// NOTE - ClassWizard will maintain property information here.
+			//    Use extreme caution when editing this section.
+			//{{AFX_ODL_PROP(CDlcDoc)
+			[id(1)] long MemberLong1;
+			//}}AFX_ODL_PROP
+			
+		methods:
+			// NOTE - ClassWizard will maintain method information here.
+			//    Use extreme caution when editing this section.
+			//{{AFX_ODL_METHOD(CDlcDoc)
+			[id(2)] long TestLong();
+			[id(3)] void SetMyText(BSTR string);
+			//}}AFX_ODL_METHOD
+
+	};
+
+	//  Class information for CAutoDoc
+	
+
+	[
+		object,
+		uuid(8B31FC81-69E2-11D2-8F0F-0060B0B41534),
+		dual,
+		helpstring("IComMine Interface"),
+		pointer_default(unique)
+	]
+	interface IComMine : IDispatch
+	{
+		[         id(1), helpstring("method InfoMessage")] HRESULT InfoMessage([in] BSTR strValue);
+		[propget, id(2), helpstring("Number of Cubes")]    HRESULT NumberOfCubes([out,retval] long* pRetVal);
+		[propget, id(3), helpstring("Number of Points")]   HRESULT NumberOfPoints([out,retval] long* pRetVal);
+		[propget, id(4), helpstring("Number of Walls")]    HRESULT NumberOfWalls([out,retval] long* pRetVal);
+		[propget, id(5), helpstring("Number of Triggers")] HRESULT NumberOfTriggers([out,retval] long* pRetVal);
+		[propget, id(6), helpstring("Number of Objects")]  HRESULT NumberOfObjects([out,retval] long* pRetVal);
+		[propget, id(7), helpstring("Cube")]		       HRESULT Cube  (VARIANT index, [out, retval] LPDISPATCH *pVal);
+		[propget, id(8), helpstring("Object")]             HRESULT Object(VARIANT index, [out, retval] LPDISPATCH *pVal);
+	};
+
+	[
+		object,
+		uuid(5DF6BE60-6A08-11d2-AE2A-00C0F03014A5),
+		dual,
+		helpstring("IComCube Interface"),
+		pointer_default(unique)
+	]
+	interface IComCube : IDispatch
+	{
+		[propput, id(1), helpstring("Set Static Light")]  HRESULT StaticLight([in] long val);
+		[propget, id(1), helpstring("Get Static Light")]  HRESULT StaticLight([out,retval] long* pRetVal);
+	};
+	[
+		object,
+		uuid(A9C67591-6DF0-11D2-AE2A-00C0F03014A5),
+		dual,
+		helpstring("IComObj Interface"),
+		pointer_default(unique)
+	]
+	interface IComObj : IDispatch
+	{
+		[propget, id(1), helpstring("Type")] HRESULT Type([out, retval] long *pVal);
+		[propput, id(1), helpstring("Type")] HRESULT Type([in] long newVal);
+		[propget, id(2), helpstring("Id")] HRESULT Id([out, retval] long *pVal);
+		[propput, id(2), helpstring("Id")] HRESULT Id([in] long newVal);
+	};
+
+
+	[ uuid(3F315842-67AC-11D2-AE2A-00C0F03014A5) ]
+	coclass Document
+	{
+		[default] dispinterface Idlc;
+	};
+
+
+	[
+		uuid(8B31FC82-69E2-11D2-8F0F-0060B0B41534),
+		helpstring("ComMine Class")
+	]
+	coclass ComMine
+	{
+		[default] interface IComMine;
+	};
+
+	[
+		uuid(5DF6BE61-6A08-11d2-AE2A-00C0F03014A5),
+		helpstring("ComCube Class")
+	]
+	coclass ComCube
+	{
+		[default] interface IComCube;
+	};
+
+
+
+	//{{AFX_APPEND_ODL}}
+	//}}AFX_APPEND_ODL}}
+	[
+		uuid(A9C67592-6DF0-11D2-AE2A-00C0F03014A5),
+		helpstring("ComObj Class")
+	]
+	coclass ComObj
+	{
+		[default] interface IComObj;
+	};
+};
