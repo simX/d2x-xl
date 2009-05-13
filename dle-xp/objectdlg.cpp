@@ -197,7 +197,8 @@ void CObjectTool::InitSliders ()
 {
 int h = sizeof (sliderData) / sizeof (tSliderData);
 tSliderData *psd = sliderData;
-for (int i = 0; i < h; i++, psd++) {
+int i;
+for (i = 0; i < h; i++, psd++) {
 	InitSlider (psd->nId, psd->nMin, psd->nMax);
 	((CSliderCtrl *) GetDlgItem (psd->nId))->SetPos (psd->nMin);
 	}
@@ -224,7 +225,8 @@ if (bAddNone) {
 	j = pcb->AddString ("(none)");
 	pcb->SetItemData (j, -1);
 	}
-for (int i = 0; i < nMax; i++) {
+int i;
+for (i = 0; i < nMax; i++) {
 	switch (nType) {
 		case 0:
 			h = pIndex ? pIndex [i]: i;
@@ -289,7 +291,8 @@ double CObjectTool::SliderFactor (int nId)
 {
 int h = sizeof (sliderData) / sizeof (tSliderData);
 tSliderData *psd = sliderData;
-for (int i = 0; i < h; i++, psd++)
+int i;
+for (i = 0; i < h; i++, psd++)
 	if (psd->nId == nId)
 		return (double) ((psd->nFactor < 0) ? -(psd->nFactor): psd->nFactor);
 return 1.0;
@@ -417,7 +420,8 @@ CToolDlg::EnableControls (IDC_OBJ_OBJNO, IDT_OBJ_CONT_PROB, bEnable);
 int CObjectTool::GetSliderData (CScrollBar *pScrollBar)
 {
 int h = sizeof (sliderData) / sizeof (tSliderData);
-for (int i = 0; i < h; i++)
+int i;
+for (i = 0; i < h; i++)
 	if (pScrollBar == (CScrollBar *) GetDlgItem (sliderData [i].nId))
 		return i;
 return -1;
@@ -479,7 +483,8 @@ INT16 type;
 // update object list box
 CBObjNo ()->ResetContent ();
 CDObject *obj = m_mine->Objects ();
-for (int i = 0; i < m_mine->GameInfo ().objects.count; i++, obj++) {
+int i;
+for (i = 0; i < m_mine->GameInfo ().objects.count; i++, obj++) {
 	switch(obj->type) {
 		case OBJ_ROBOT: /* an evil enemy */
 			LoadString (hInst, ROBOT_STRING_TABLE + obj->id, string, sizeof (string));
@@ -1113,7 +1118,8 @@ theApp.MineView ()->DelayRefresh (true);
 CDObject *obj = m_mine->Objects ();
 bool bAll = (m_mine->MarkedSegmentCount (true) > 0);
 int nDeleted = 0;
-for (int i = m_mine->GameInfo ().objects.count; i; i--, obj++) {
+int i;
+for (i = m_mine->GameInfo ().objects.count; i; i--, obj++) {
 	if (bAll || (m_mine->Segments (obj->segnum)->wall_bitmask &= MARKED_MASK)) {
 		m_mine->DeleteObject (i);
 		nDeleted++;
@@ -1197,8 +1203,8 @@ else {
 	CDObject *obj = m_mine->CurrObj ();
 	m_mine->CalcSegCenter (obj->pos, m_mine->Current ()->segment);
 	// bump position over if this is not the first object in the cube
-	int count = 0;
-	for (int i = 0; i < m_mine->GameInfo ().objects.count;i++)
+	int i, count = 0;
+	for (i = 0; i < m_mine->GameInfo ().objects.count;i++)
 		if (m_mine->Objects (i)->segnum == m_mine->Current ()->segment)
 			count++;
 	obj->pos.y += count*2*F1_0;
@@ -1230,9 +1236,9 @@ theApp.MineView ()->RefreshObject (old_object, new_object);
 bool CObjectTool::SetPlayerId (CDObject *obj, int objType, int *ids, int numIds, char *pszError)
 {
 CDObject *o = m_mine->Objects ();
-int		n = 0;
+int		i, n = 0;
 
-for (int i = m_mine->ObjCount (); i && (n < numIds); i--, o++)
+for (i = m_mine->ObjCount (); i && (n < numIds); i--, o++)
 	if (o->type == objType)
 		ids [n++] = -1;
 if (n == numIds) {
@@ -1337,7 +1343,8 @@ if ((nMaxId > 0) && (nId >= nMaxId)) {
 		return;
 	}
 // find object that currently has id nCurSel and swap ids
-for (int i = 0; i < nObjects; i++)
+int i;
+for (i = 0; i < nObjects; i++)
 	if (objList [i]->id == nId) {
 		objList [i]->id = obj->id;
 		break;
@@ -1754,7 +1761,8 @@ if (nId < 0)
 	nId =  m_mine->CurrObj ()->id;
 int nCount = 0;
 CDObject *obj = m_mine->Objects ();
-for (int i = m_mine->GameInfo ().objects.count; i; i--, obj++)
+int i;
+for (i = m_mine->GameInfo ().objects.count; i; i--, obj++)
 	if ((obj->type == nType) && ((obj->type == OBJ_PLAYER) || (obj->type == OBJ_COOP) || (obj->id == nId))) 
 		nCount++;
 return nCount;

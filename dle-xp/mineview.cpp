@@ -141,7 +141,8 @@ m_penHiBlue		= new CPen(PS_SOLID, 2, RGB(  0,  0,255));
 m_penHiYellow  = new CPen(PS_SOLID, 2, RGB(255,196,  0));
 m_penHiOrange  = new CPen(PS_SOLID, 2, RGB(255,128,  0));
 m_penHiMagenta = new CPen(PS_SOLID, 2, RGB(255,  0,255));
-for (int i = eMouseStateIdle; i < eMouseStateCount; i++)
+int i;
+for (i = eMouseStateIdle; i < eMouseStateCount; i++)
 	m_hCursors [i] = LoadCursor ((nIdCursors [i] == IDC_ARROW) ? NULL: theApp.m_hInstance, nIdCursors [i]);
 m_viewObjectFlags = eViewObjectsAll;
 m_viewMineFlags = eViewMineLights | eViewMineWalls | eViewMineSpecial;
@@ -331,8 +332,9 @@ if (m_nMineCenter == 2) {
 	APOINT pt;
 
 	m_pDC->SelectObject (m_penCyan);
-	for (int i=-60;i<=60;i+=30) {
-		for (int j=0;j<=360;j+=15) {
+	int i, j;
+	for (i=-60;i<=60;i+=30) {
+		for (j=0;j<=360;j+=15) {
 			double scale = (FIX)(5*F1_0*cos((double)i*(M_PI/180.0)));
 			circle.z = (FIX)(5*F1_0*sin((double)i*(M_PI/180.0)));
 			circle.x = (FIX)(scale*cos((double)j*(M_PI/180.0)) );
@@ -351,7 +353,7 @@ if (m_nMineCenter == 2) {
 		}
 	m_pDC->SelectObject (m_penGreen);
 	for (i=-60;i<=60;i+=30) {
-		for (int j=0;j<=360;j+=15) {
+		for (j=0;j<=360;j+=15) {
 			double scale = (FIX)(5*F1_0*cos((double)i*(M_PI/180.0)));
 			circle.y = (FIX)(5*F1_0*sin((double)i*(M_PI/180.0)));
 			circle.z = (FIX)(scale*cos((double)j*(M_PI/180.0)) );
@@ -370,7 +372,7 @@ if (m_nMineCenter == 2) {
 		}
 	m_pDC->SelectObject (m_penGray);
 	for (i=-60;i<=60;i+=30) {
-		for (int j=0;j<=360;j+=15) {
+		for (j=0;j<=360;j+=15) {
 			double scale = (FIX)(5*F1_0*cos((double)i*(M_PI/180.0)));
 			circle.x    = (FIX)(5*F1_0*sin((double)i*(M_PI/180.0)));
 			circle.y = (FIX)(scale*cos((double)j*(M_PI/180.0)) );
@@ -1139,7 +1141,7 @@ if (!Visible (seg))
 
 	INT16 x_max = m_viewWidth * 2;
 	INT16 y_max = m_viewHeight * 2;
-	int	chSegI, chSideI, chVertI, i, commonVerts;
+	int	chSegI, chSideI, chVertI, i, j, commonVerts;
 	CDSegment	*child;
 	INT16 *pv = seg->verts;
 
@@ -1172,7 +1174,7 @@ if (bPartial) {
 		// draw each line of the current side separately
 		// only draw if there is no child cube of the current cube with a common side
 		for (i = 0; i < 4; i++) {
-			for (int j = 0; j < 2; j++)
+			for (j = 0; j < 2; j++)
 				line [j] = side [(i+j)%4];
 
 			// check child cubes
@@ -1189,7 +1191,8 @@ if (bPartial) {
 					for (commonVerts = 0, chVertI = 0; (chVertI < 4) && (commonVerts < 2); chVertI++) {
 						vert.x = m_viewPoints [child->verts [side_vert [chSideI] [chVertI]]].x;
 						vert.y = m_viewPoints [child->verts [side_vert [chSideI] [chVertI]]].y;
-						for (int h = 0; h < 2; h++) {
+						int h;
+						for (h = 0; h < 2; h++) {
 							if ((line [h].x == vert.x) && (line [h].y == vert.y)) {
 								++commonVerts;
 								break;
@@ -1464,8 +1467,9 @@ void CMineView::DrawCubePoints (CDSegment *seg)
 {
 	INT16		*pv = seg->verts;
 	COLORREF	color = RGB (128,128,128);
+	int		h, i;
 
-for (int h, i = 0; i < 8; i++, pv++) {
+for (i = 0; i < 8; i++, pv++) {
 	h = *pv;
 	m_pDC->SetPixel (m_viewPoints [h].x, m_viewPoints [h].y, color);
 	}
@@ -1815,6 +1819,7 @@ void CMineView::DrawLights (CMine *mine)
   if (!m_pDC) return;
 
 #if 0
+  INT16 j, k;
   // first show lights that blow up (delta lights)
   SelectObject(m_pDC, m_penLtGray);
 
@@ -1832,28 +1837,28 @@ void CMineView::DrawLights (CMine *mine)
 	  if (segnum == current->segment && sidenum == current->side) {
 	    POINT light_source;
 	    light_source = segment_center_xy(sidenum,segnum);
-	    for (int j=0;j<DLIndex () [i].count;j++) {
+	    for (j=0;j<DLIndex () [i].count;j++) {
 	      POINT light_dest;
 	      int index = DLIndex () [i].index+j;
 	      sidenum = DeltaLights () [index].sidenum;
-		  segnum  = DeltaLights () [index].segnum;
+			segnum  = DeltaLights () [index].segnum;
 	      segment *seg = Segments () [segnum];
 	      light_dest = segment_center_xy(sidenum,segnum);
-		  for (int k=0;k<4;k++)  {
-		POINT corner;
-		UINT8 l = DeltaLights () [index].vert_light [k];
-		l = min(0x1f,l);
-		l <<= 3;
-		m_pen m_penLight = CreatePen(PS_SOLID, 1, RGB(l,l,255-l));
-		SelectObject(m_pDC,m_penLight);
-		corner.x = m_viewPoints [seg->verts [side_vert [sidenum] [k]]].x;
-		corner.y = m_viewPoints [seg->verts [side_vert [sidenum] [k]]].y;
-		corner.x = (corner.x + light_dest.x)>>1;
-		corner.y = (corner.y + light_dest.y)>>1;
-		MoveTo(m_pDC,light_source.x,light_source.y);
-		LineTo(m_pDC,corner.x,corner.y);
-		SelectObject(m_pDC, m_penLtGray);
-		DeleteObject(m_penLight);
+			for (k=0;k<4;k++)  {
+				POINT corner;
+				UINT8 l = DeltaLights () [index].vert_light [k];
+				l = min(0x1f,l);
+				l <<= 3;
+				m_pen m_penLight = CreatePen(PS_SOLID, 1, RGB(l,l,255-l));
+				SelectObject(m_pDC,m_penLight);
+				corner.x = m_viewPoints [seg->verts [side_vert [sidenum] [k]]].x;
+				corner.y = m_viewPoints [seg->verts [side_vert [sidenum] [k]]].y;
+				corner.x = (corner.x + light_dest.x)>>1;
+				corner.y = (corner.y + light_dest.y)>>1;
+				MoveTo(m_pDC,light_source.x,light_source.y);
+				LineTo(m_pDC,corner.x,corner.y);
+				SelectObject(m_pDC, m_penLtGray);
+				DeleteObject(m_penLight);
 	      }
 	    }
 	  }
@@ -2083,7 +2088,8 @@ for (poly = 0; poly < MAX_POLY; poly++) {
 
 // figure out world coordinates
 
-for (int i = 0; i < 6; i++)
+int i;
+for (i = 0; i < 6; i++)
 	if (!(IN_RANGE (poly_draw [i].x, x_max) &&
 			IN_RANGE (poly_draw [i].y, y_max)))
 		return;
@@ -2462,7 +2468,8 @@ if (!(m_xRenderOffs && m_yRenderOffs && GetMine ()))
 
 	APOINT *a = m_viewPoints;
 
-for (int i = m_mine->VertCount (); i; i--, a++) {
+int i;
+for (i = m_mine->VertCount (); i; i--, a++) {
 	a->x += m_xRenderOffs;
 	a->y += m_yRenderOffs;
 	}
@@ -3097,7 +3104,8 @@ if (!GetMine ())
 	APOINT	*pa = m_viewPoints;
 	int		x, y;
 
-for (int i = 0; i < m_mine->VertCount (); i++, pa++) {
+int i;
+for (i = 0; i < m_mine->VertCount (); i++, pa++) {
 	x = pa->x;
 	y = pa->y;
 	if (BETWEEN (m_clickPos.x, x, m_releasePos.x) &&
@@ -3474,7 +3482,8 @@ m_pDC->SetROP2 (R2_NOT);
 m_pDC->Ellipse (x-4, y-4, x+4, y+4);
 
 CRect	rc (x, y, x, y);
-for (int i = 0; i < 3; i++) {
+int i;
+for (i = 0; i < 3; i++) {
 	m_pDC->MoveTo (x, y);
 	INT16 nVert2 = connect_points [nVert] [i];
 	INT16 x2 = m_viewPoints [mine->CurrSeg ()->verts [nVert2]].x;
@@ -4244,7 +4253,8 @@ GLCreateTexture (nTexture);
 glEnable (GL_TEXTURE_2D);
 glBindTexture (GL_TEXTURE_2D, glHandles [nTexture & 0x1FFF]); 
 glBegin (GL_TRIANGLE_FAN);
-for (int i = 0; i < 4; i++) {
+int i;
+for (i = 0; i < 4; i++) {
 	uvls = side->uvls + j;
 	l = (bShaded ? uvls->l: F1_0) / UV_FACTOR;
 	glColor3d (l,l,l);
@@ -4341,7 +4351,8 @@ double cy = (double) rc.Height () / 2;
 glTranslated (-cx, -cy, glMinZ);
 #else
 glTranslated (glPan [0], glPan [1], glPan [2] -500);	
-for (int i = 0; i < 3; i++)
+int i;
+for (i = 0; i < 3; i++)
 	glRotated (glAngle [i], glRotMat [i][0], glRotMat [i][1], glRotMat [i][2]);
 #endif
 SetViewPoints ();

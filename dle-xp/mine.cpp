@@ -234,7 +234,8 @@ if (!dlcLogPalette) {
 	}
 dlcLogPalette->palVersion = 0x300;
 dlcLogPalette->palNumEntries = 256;
-for (int i = 0; i < 256; ++i) {
+int i;
+for (i = 0; i < 256; ++i) {
 	dlcLogPalette->palPalEntry [i].peRed = palette [i*3 + 0] << 2;
 	dlcLogPalette->palPalEntry [i].peGreen = palette [i*3 + 1] << 2;
 	dlcLogPalette->palPalEntry [i].peBlue = palette [i*3 + 2] << 2;
@@ -328,7 +329,8 @@ if (file_type != RDL_FILE) {
 // read palette name *.256
 	if (file_type != RDL_FILE) {
 		// read palette file name
-		for (int i = 0; i < 15; i++) {
+		int i;
+		for (i = 0; i < 15; i++) {
 			palette_name [i] = fgetc(loadFile);
 			if (palette_name [i]== 0x0a) {
 				palette_name [i] = NULL;
@@ -373,15 +375,16 @@ dlcLogPalette = (LPLOGPALETTE) malloc (sizeof(LOGPALETTE) + sizeof(PALETTEENTRY)
 if (dlcLogPalette) {
 	dlcLogPalette->palVersion = 0x300;
 	dlcLogPalette->palNumEntries = 256;
+	int i;
 #if 0
-	for (int i = 0; i < 256; ++i) {
+	for (i = 0; i < 256; ++i) {
 		dlcLogPalette->palPalEntry [i].peRed = *palette++;
 		dlcLogPalette->palPalEntry [i].peGreen = *palette++;
 		dlcLogPalette->palPalEntry [i].peBlue = *palette++;
 		dlcLogPalette->palPalEntry [i].peFlags = PC_RESERVED; palette++;
 		}
 #else
-	for (int i = 0; i < 256;++i) {
+	for (i = 0; i < 256;++i) {
 		dlcLogPalette->palPalEntry [i].peRed = palette [i*3 + 0] << 2;
 		dlcLogPalette->palPalEntry [i].peGreen = palette [i*3 + 1] << 2;
 		dlcLogPalette->palPalEntry [i].peBlue = palette [i*3 + 2] << 2;
@@ -2527,8 +2530,10 @@ void CMine::UpdateDeltaLights ()
 return;
 	bool found = FALSE;
 	CDSegment *seg = Segments ();
-	for (int segnum = 0; segnum < SegCount (); segnum++, seg++) {
-		for (int sidenum = 0; sidenum < 6; sidenum++) {
+	int segnum;
+	for (segnum = 0; segnum < SegCount (); segnum++, seg++) {
+		int sidenum;
+		for (sidenum = 0; sidenum < 6; sidenum++) {
 			INT16 tmapnum2 = seg->sides [sidenum].nOvlTex & 0x1fff;
 			if (IsLight(tmapnum2) != -1) {
 				found = TRUE;

@@ -95,7 +95,8 @@ for (nSeg = segCount; nSeg; nSeg--, seg++) {
 	for (side = seg->sides, nSide = 6; nSide; nSide--, side++) {
 		tnum [0] = side->nBaseTex;
 		tnum [1] = side->nOvlTex & 0x1fff;
-		for (int i = 0; i < 2; i++) {
+		int i;
+		for (i = 0; i < 2; i++) {
 			if (tnum [i] != -1) {
 				// read name of texture from Descent 1 texture resource
 				LoadString (m_hInst, D1_TEXTURE_STRING_TABLE + tnum [i], szName, sizeof (szName));
@@ -113,7 +114,8 @@ pcb->SetCurSel (0);
   // add complete set for Texture 2 combo box
 nTextures = (file_type == RDL_FILE) ? MAX_D1_TEXTURES : MAX_D2_TEXTURES;
 pcb = CBD2 ();
-for (int i = 0; i < nTextures; i++) {
+int i;
+for (i = 0; i < nTextures; i++) {
 // read szName of texture from Descent 2 texture resource
 	LoadString (m_hInst, D2_TEXTURE_STRING_TABLE + i, szName, sizeof (szName));
 	if (*szName != '*') {

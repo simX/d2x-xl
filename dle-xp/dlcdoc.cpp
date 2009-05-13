@@ -485,7 +485,8 @@ if (p) {
 	strcpy (szProg, descent2_path);
 	if (h = strstr (szProg, "data"))
 		*h = '\0';
-	for (int i = strlen (szProg); i && szProg [i - 1] != '\\'; i--)
+	int i;
+	for (i = strlen (szProg); i && szProg [i - 1] != '\\'; i--)
 		;
 	szProg [i] = '\0';
 	_chdir (szProg);

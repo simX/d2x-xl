@@ -919,7 +919,8 @@ void CMainFrame::UpdateInsModeButtons (INT16 mode)
 {
 	static char *szInsMode [] = {" insert: normal", " insert: extend", " insert: mirror"};
 
-for (int i = 0; i <= ID_INSMODE_MIRROR - ID_INSMODE_NORMAL; i++)
+int i;
+for (i = 0; i <= ID_INSMODE_MIRROR - ID_INSMODE_NORMAL; i++)
 	m_toolBar.GetToolBarCtrl ().CheckButton (ID_INSMODE_NORMAL + i, i == mode);
 InsModeMsg (szInsMode [mode]);
 }
@@ -1043,7 +1044,8 @@ void CMainFrame::UpdateSelectButtons (eSelectModes mode)
 {
 	static char *szSelMode [] = {" select: point", " select: line", " select: side", " select: cube", " select: object", " select: block"};
 
-for (int i = 0; i <= ID_SEL_BLOCKMODE - ID_SEL_POINTMODE; i++)
+int i;
+for (i = 0; i <= ID_SEL_BLOCKMODE - ID_SEL_POINTMODE; i++)
 	m_toolBar.GetToolBarCtrl ().CheckButton (ID_SEL_POINTMODE + i, i == mode);
 SelModeMsg (szSelMode [mode]);
 }
@@ -1700,7 +1702,8 @@ m_nEditFunc = -1;
 BOOL CEditTool::OnInitDialog ()
 {
 CDialog::OnInitDialog ();
-for (int i = 0; i < 10; i++)
+int i;
+for (i = 0; i < 10; i++)
 	m_btns [i].AutoLoad (IDC_EDITGEO7 + i, this);
 return TRUE;
 }

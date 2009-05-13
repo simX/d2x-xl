@@ -300,8 +300,8 @@ LoadString (hInst, texture_resource + tmapnum, szName, sizeof (szName));
 if (!strcmp (szName, "wall01 - anim"))
 	return wall->clip_num = 0;
 if (ps = strstr (szName, "door")) {
-	int nDoor = atol (ps + 4);
-	for (int i = 1; i < D2_NUM_OF_CLIPS; i++)
+	int i, nDoor = atol (ps + 4);
+	for (i = 1; i < D2_NUM_OF_CLIPS; i++)
 		if (nDoor == clip_door_number [i]) {
 			wall->clip_num = clip_num [i];
 			theApp.SetModified (TRUE);

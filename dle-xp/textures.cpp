@@ -797,13 +797,15 @@ nOffset += (d2texture.flags & 0x80) ? pTexture->m_size * 4: pTexture->m_size;
 
 // check for transparency and super transparency
 if (!pTexture->m_nFormat)
-	if (pSrc = (UINT8 *) pTexture->m_pDataBM)
-		for (int j = 0; j < pTexture->m_size; j++, pSrc++) {
+	if (pSrc = (UINT8 *) pTexture->m_pDataBM) {
+		int j;
+		for (j = 0; j < pTexture->m_size; j++, pSrc++) {
 			if (*pSrc == 255) 
 				d2texture.flags |= BM_FLAG_TRANSPARENT;
 			if (*pSrc == 254) 
 				d2texture.flags |= BM_FLAG_SUPER_TRANSPARENT;
 			}
+	}
 fwrite (&d2texture, sizeof (D2_PIG_TEXTURE), 1, pDestPigFile);
 }
 
@@ -824,8 +826,9 @@ if (pTexture->m_nFormat) {
 	tBGRA	bgra;
 
 	pSrc += w * (h - 1) * 4;
-	for (int i = h; i; i--) {
-		for (int j = w; j; j--) {
+	int i, j;
+	for (i = h; i; i--) {
+		for (j = w; j; j--) {
 			bgra.b = *pSrc++;
 			bgra.g = *pSrc++;
 			bgra.r = *pSrc++;
@@ -842,7 +845,8 @@ else {
 	UINT16 w = pTexture->m_width;
 	UINT16 h = pTexture->m_height;
 	pSrc += w * (h - 1); // point to last row of bitmap
-	for (int row = 0; row < h; row++) {
+	int row;
+	for (row = 0; row < h; row++) {
 		fwrite (pSrc, w, 1, pDestPigFile);
 		pSrc -= w;
 		}
@@ -988,8 +992,9 @@ return 0;
 void FreeTextureHandles (bool bDeleteModified) 
 {
   // free any textures that have been buffered
-for (int j = 0; j < 2; j++)
-	for (int i = 0; i < MAX_D2_TEXTURES; i++) {
+int i, j;
+for (j = 0; j < 2; j++)
+	for (i = 0; i < MAX_D2_TEXTURES; i++) {
 		if (!bDeleteModified && pTextures [j][i].m_bModified)
 			continue;
 		if (pTextures [j][i].m_pDataBM) {
@@ -1015,7 +1020,8 @@ while (extraTextures) {
 
 BOOL HasCustomTextures () 
 {
-for (int i = 0; i < MAX_D2_TEXTURES; i++)
+int i;
+for (i = 0; i < MAX_D2_TEXTURES; i++)
 	if (pTextures [file_type][i].m_bModified)
 		return TRUE;
 return FALSE;
@@ -1025,8 +1031,9 @@ return FALSE;
 
 int CountCustomTextures () 
 {
-	int count = 0;
-for (int i = 0; i < MAX_D2_TEXTURES; i++)
+	int i, count = 0;
+
+for (i = 0; i < MAX_D2_TEXTURES; i++)
 	if (pTextures [file_type][i].m_bModified)
 		count++;
 return count;
@@ -1194,8 +1201,9 @@ if (bShowTexture) {
 			}
 		else {
 			double scale = tx.Scale ();
-			for (int x = 0; x < tx.m_width; x = (int) (x + scale))
-				for (int y = 0; y < tx.m_width; y = (int) (y + scale))
+			int x, y;
+			for (x = 0; x < tx.m_width; x = (int) (x + scale))
+				for (y = 0; y < tx.m_width; y = (int) (y + scale))
 					pDC->SetPixel ((INT16) (x / scale), (INT16) (y / scale), PALETTEINDEX (bmBuf [y*tx.m_width+x]));
 			}
 		pDC->SelectPalette (pOldPalette, FALSE);

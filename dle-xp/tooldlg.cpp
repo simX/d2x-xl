@@ -143,7 +143,8 @@ return (m_mine = theApp.GetMine ());
 void CToolDlg::EnableControls (int nIdFirst, int nIdLast, BOOL bEnable)
 {
 CWnd *pWnd;
-for (int i = nIdFirst; i <= nIdLast; i++)
+int i;
+for (i = nIdFirst; i <= nIdLast; i++)
 	if (pWnd = GetDlgItem (i))
 		pWnd->EnableWindow (bEnable);
 }
@@ -180,8 +181,8 @@ void CToolDlg::SelectItemData (CComboBox *pcb, int nItemData)
 {
 //if (nItemData >= 0) 
 	{
-	int h = pcb->GetCount ();
-	for (int i = 0; i < h; i++)
+	int i, h = pcb->GetCount ();
+	for (i = 0; i < h; i++)
 		if (pcb->GetItemData (i) == (DWORD) nItemData) {
 			pcb->SetCurSel (i);
 			return;

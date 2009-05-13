@@ -92,9 +92,11 @@ void CMissionTool::BuildLevelList (void)
 	CListBox *plb = LBLevels ();
 
 plb->ResetContent ();
-for (int i = 0; i < m_missionData.numLevels; i++)
+int i;
+for (i = 0; i < m_missionData.numLevels; i++)
 	plb->AddString (m_missionData.levelList [i]);
-for (int j = 0; j < m_missionData.numSecrets; i++, j++)
+int j;
+for (j = 0; j < m_missionData.numSecrets; i++, j++)
 	plb->AddString (m_missionData.levelList [i]);
 }
 

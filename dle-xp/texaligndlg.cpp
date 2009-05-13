@@ -741,11 +741,12 @@ void CTextureTool::OnAlignStretch2Fit ()
 	UINT32		scale = 1; //pTextures [file_type][side->nBaseTex].Scale (side->nBaseTex);
 	CDSegment	*seg;
 	INT16			segnum, sidenum;
+	int			i;
 
 UpdateData (TRUE);
 theApp.SetModified (TRUE);
 if (!m_mine->GotMarkedSides ()) {
-	for (int i = 0; i < 4; i++) {
+	for (i = 0; i < 4; i++) {
 		side->uvls [i].u = default_uvls [i].u / scale;
 		side->uvls [i].v = default_uvls [i].v / scale;
 		}
@@ -755,7 +756,7 @@ else {
 	for (segnum = 0, seg = m_mine->Segments (); segnum < m_mine->SegCount (); segnum++, seg++) {
 		for (sidenum = 0, side = seg->sides; sidenum < 6; sidenum++, side++) {
 			if (m_mine->SideIsMarked (segnum, sidenum)) {
-				for (int i = 0; i < 4; i++) {
+				for (i = 0; i < 4; i++) {
 					side->uvls [i].u = default_uvls [i].u / scale;
 					side->uvls [i].v = default_uvls [i].v / scale;
 					}
@@ -777,7 +778,8 @@ if (!GetMine ())
 	return;
 if (bStart) {
 	CDSegment *seg = m_mine->Segments ();
-	for (int i = m_mine->SegCount (); i; i--, seg++)
+	int i;
+	for (i = m_mine->SegCount (); i; i--, seg++)
 		 seg->seg_number = 0; // all six sides not aligned yet
 	}
 // mark current side as aligned
@@ -826,7 +828,8 @@ for (segnum = 0, seg = m_mine->Segments (); segnum < m_mine->SegCount (); segnum
 		cangle = atan3 (childSide->uvls [linenum].v - childSide->uvls [(linenum + 1) & 3].v, 
 							 childSide->uvls [linenum].u - childSide->uvls [(linenum + 1) & 3].u); 
 		// now rotate childs (u, v) coords around child_point1 (cangle - sangle)
-		for (int i = 0; i < 4; i++) {
+		int i;
+		for (i = 0; i < 4; i++) {
 			angle = atan3 (childSide->uvls [i].v, childSide->uvls [i].u); 
 			length = sqrt ((double)childSide->uvls [i].u * (double) childSide->uvls [i].u +
 								(double)childSide->uvls [i].v * (double) childSide->uvls [i].v); 
@@ -854,11 +857,13 @@ theApp.LockUndo ();
 if (!m_mine->GotMarkedSegments ())
 	// call recursive function which aligns one at a time
 	AlignChildren (m_mine->Current ()->segment, m_mine->Current ()->side, true);
-else	// use all marked sides as alignment source
-	for (int segnum = 0; segnum < m_mine->SegCount (); segnum++)
-		for (int sidenum = 0; sidenum < 6; sidenum++)
+else {	// use all marked sides as alignment source
+	int segnum, sidenum;
+	for (segnum = 0; segnum < m_mine->SegCount (); segnum++)
+		for (sidenum = 0; sidenum < 6; sidenum++)
 			if (m_mine->SideIsMarked (segnum, sidenum)) 
 				AlignChildren (segnum, sidenum, true);
+	}
 theApp.UnlockUndo ();
 UpdateAlignWnd ();
 }

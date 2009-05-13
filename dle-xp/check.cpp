@@ -38,7 +38,8 @@ if (!m_bInited)
 	char szText [256];
 
 tBugPos *pbp;
-for (int i = 0; i < h; i++) {
+int i;
+for (i = 0; i < h; i++) {
 	plb->GetText (i, szText);
 	if (!strchr (szText, '['))
 		if (pbp = (tBugPos *) plb->GetItemDataPtr (i)) {
@@ -1310,7 +1311,8 @@ bool CDiagTool::CheckBotGens (void)
 	matcen_info*		matCenP = m_mine->BotGens (0);
 
 for (nPass = 0; nPass < 2; nPass++) {
-	for (int i = 0; i < nMatCens; i++) {
+	int i;
+	for (i = 0; i < nMatCens; i++) {
 		bOk = true;
 		if (!nPass) {
 			if (matCenP [i].fuelcen_num != i) {
@@ -1369,7 +1371,8 @@ bool CDiagTool::CheckEquipGens (void)
 	CDSegment*			segP;
 	matcen_info*		matCenP = m_mine->EquipGens (0);
 
-for (int i = 0; i < nMatCens; i++) {
+int i;
+for (i = 0; i < nMatCens; i++) {
 	bOk = true;
 	if (matCenP [i].fuelcen_num != i) {
 		bOk = false;

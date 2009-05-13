@@ -81,11 +81,11 @@ if (left < r)
 
 void CMine::SortObjects ()
 {
-	int	i;
+	int	i, j;
 
 if (m_bSortObjects && ((i = GameInfo ().objects.count) > 1)) {
 	QSortObjects (0, i - 1);
-	for (int j = 0; j < i; j++)
+	for (j = 0; j < i; j++)
 		RenumberObjTriggers (j, j);
 	}
 }
@@ -432,7 +432,8 @@ theApp.SetModified (TRUE);
 theApp.LockUndo ();
 DeleteObjTriggers (objectNumber);
 if (objectNumber < --GameInfo ().objects.count) {
-	for (int i = objectNumber; i < GameInfo ().objects.count; i++)
+	int i;
+	for (i = objectNumber; i < GameInfo ().objects.count; i++)
 		RenumberObjTriggers (i, i - 1);
 	memcpy (Objects () + objectNumber, 
 			  Objects () + objectNumber + 1, 

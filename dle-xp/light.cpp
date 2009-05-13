@@ -158,7 +158,8 @@ INT16 CMine::GetFlickeringLight (INT16 segnum, INT16 sidenum)
 {
 GetCurrent (segnum, sidenum);
 FLICKERING_LIGHT *pfl = FlickeringLights ();
-for (int i = FlickerLightCount (); i; i--, pfl++)
+int i;
+for (i = FlickerLightCount (); i; i--, pfl++)
 	if ((pfl->segnum == segnum) && (pfl->sidenum == sidenum))
 		break;
 if (i > 0)
@@ -492,7 +493,8 @@ if (bAll)
 for (segnum = SegCount (), seg = Segments (); segnum; segnum--, seg++)
 	if (bAll || (seg->wall_bitmask & MARKED_MASK))
 		for (sidenum=0, side = seg->sides;sidenum < MAX_SIDES_PER_SEGMENT; sidenum++, side++) {
-			for (int i = 0; i < 4; i++) {
+			int i;
+			for (i = 0; i < 4; i++) {
 				side->uvls [i].l = 0;
 				if (!bAll)
 					memset (VertexColors (seg->verts [side_vert [sidenum][i]]), 0, sizeof (CDColor));
@@ -622,7 +624,8 @@ if ((source_segnum == 911) && (source_sidenum == 3))
 
 // set child numbers
 //Segments ()[source_segnum].seg_number = m_lightRenderDepth;
-for (int i = SegCount (); i; i--, seg++)
+int i;
+for (i = SegCount (); i; i--, seg++)
 	seg->seg_number = -1;
 SetSegmentChildNum (NULL, source_segnum, m_lightRenderDepth);
 CDColor *plc = LightColor (source_segnum, source_sidenum);
@@ -650,7 +653,8 @@ for (child_segnum=0, child_seg = Segments ();child_segnum<SegCount ();child_segn
 //		continue;
 	// setup source corner vertex for length calculation later
 	vms_vector source_corner[4];
-	for (int j = 0; j < 4; j++) {
+	int j;
+	for (j = 0; j < 4; j++) {
 		int vertnum = side_vert [source_sidenum][j];
 		int h = seg->verts [vertnum];
 		source_corner[j].x = Vertices (h)->x;
@@ -658,7 +662,8 @@ for (child_segnum=0, child_seg = Segments ();child_segnum<SegCount ();child_segn
 		source_corner[j].z = Vertices (h)->z;
 		}
 	// loop on child sides
-	for (int child_sidenum=0;child_sidenum<6;child_sidenum++) {
+	int child_sidenum;
+	for (child_sidenum = 0; child_sidenum < 6; child_sidenum++) {
 		// if side has a child..
 		if (!(bAll || SideIsMarked (child_segnum, child_sidenum)))
 			continue;
@@ -682,7 +687,8 @@ for (child_segnum=0, child_seg = Segments ();child_segnum<SegCount ();child_segn
 			UINT32	vBr, lBr;
 
 			theApp.SetModified (TRUE);
-			for (int j = 0; j < 4; j++, uvlP++) {
+			int j;
+			for (j = 0; j < 4; j++, uvlP++) {
 				CDColor *pvc = VertexColors (child_seg->verts [side_vert [child_sidenum][j]]);
 				vBr = (UINT16) uvlP->l;
 				lBr = (UINT32) (brightness * fLightScale);
@@ -701,7 +707,8 @@ for (child_segnum=0, child_seg = Segments ();child_segnum<SegCount ();child_segn
 				uvl		*uvlP = child_seg->sides [child_sidenum].uvls;
 
 			theApp.SetModified (TRUE);
-			for (int j = 0; j < 4; j++, uvlP++) {
+			int j;
+			for (j = 0; j < 4; j++, uvlP++) {
 				CDColor *pvc = VertexColors (child_seg->verts [side_vert [child_sidenum][j]]);
 				if (child_seg->verts [side_vert [child_sidenum][j]] == 2368)
 					j = j;
@@ -758,7 +765,8 @@ for (child_segnum=0, child_seg = Segments ();child_segnum<SegCount ();child_segn
 void CMine::CalcDeltaLightData(double fLightScale, int force) 
 {
 theApp.SetModified (TRUE);
-for (int recursion_depth = m_deltaLightRenderDepth; recursion_depth; recursion_depth--)
+int recursion_depth;
+for (recursion_depth = m_deltaLightRenderDepth; recursion_depth; recursion_depth--)
 	if (CalcDeltaLights (fLightScale, force, recursion_depth))
 		break;
 }
@@ -818,7 +826,8 @@ for (source_segnum = 0, srcseg = Segments ();
 	if  (!(srcseg->wall_bitmask & MARKED_MASK) && !force) 
 		continue;
 	// loop on all sides
-	for (int source_sidenum=0;source_sidenum<6;source_sidenum++) {
+	int source_sidenum;
+	for (source_sidenum = 0; source_sidenum < 6; source_sidenum++) {
 		INT16 tmapnum = srcseg->sides [source_sidenum].nBaseTex & 0x3fff;
 		INT16 tmapnum2 = srcseg->sides [source_sidenum].nOvlTex & 0x3fff;
 		INT16 trignum;
@@ -909,14 +918,16 @@ for (source_segnum = 0, srcseg = Segments ();
 		//       This actually reduces the number of calls since most
 		//       Segments () do not have lights)
 
-		for (int h = 0; h < SegCount (); h++)
+		int h;
+		for (h = 0; h < SegCount (); h++)
 			Segments (h)->seg_number = -1;
 		SetSegmentChildNum (srcseg, source_segnum, recursion_depth);
 		srcseg->seg_number = recursion_depth;
 
 		// setup source corner vertex for length calculation later
 		vms_vector source_corner[4];
-		for (int j=0;j<4;j++) {
+		int j;
+		for (j = 0; j < 4; j++) {
 			UINT8 vertnum = side_vert[source_sidenum][j];
 			int h = srcseg->verts[vertnum];
 			source_corner[j].x = Vertices (h)->x;
@@ -931,7 +942,8 @@ for (source_segnum = 0, srcseg = Segments ();
 			if (childseg->seg_number < 0)
 				continue;
 			// loop on child sides
-			for (int child_sidenum=0;child_sidenum<6;child_sidenum++) {
+			int child_sidenum;
+			for (child_sidenum = 0; child_sidenum < 6; child_sidenum++) {
 				// if texture has a child..
 #ifdef _DEBUG
 			CBRK (source_segnum == 6 && source_sidenum == 2 &&
@@ -997,7 +1009,8 @@ for (source_segnum = 0, srcseg = Segments ();
 						dl->segnum = child_segnum;
 						dl->sidenum = child_sidenum;
 						dl->dummy = 0;
-						for (int iCorner = 0; iCorner < 4; iCorner++)
+						int iCorner;
+						for (iCorner = 0; iCorner < 4; iCorner++)
 							dl->vert_light [iCorner] = (UINT8) min(32, effect [iCorner]);
 						if (bD2XLights)
 							pdli->d2x.count++;
@@ -1153,7 +1166,8 @@ if (!bIgnoreAngle) {
 	if (angle >= (180.0 * M_PI)/180.0)
 		return false;
 	}
-for (int j = 0; j < 4; j++) {
+int i, j;
+for (j = 0; j < 4; j++) {
 	vms_vector corner;
 	int vertnum = side_vert[sidenum][j];
 	int h = seg->verts[vertnum];
@@ -1161,7 +1175,7 @@ for (int j = 0; j < 4; j++) {
 	corner.y = Vertices (h)->y;
 	corner.z = Vertices (h)->z;
 	double length = 20.0 * m_lightRenderDepth;
-	for (int i = 0; i < 4; i++)
+	for (i = 0; i < 4; i++)
 		length = min (length, CalcLength (source_corner + i, &corner) / F1_0);
 	length /= 10.0 * m_lightRenderDepth / 6.0; // divide by 1/2 a cubes length so opposite side
 	// light is recuded by 1/4

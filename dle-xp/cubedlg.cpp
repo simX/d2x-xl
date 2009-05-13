@@ -95,7 +95,8 @@ if (!GetMine ())
 CComboBox *pcb = CBCubeNo ();
 if (m_mine->SegCount () != pcb->GetCount ()) {
 	pcb->ResetContent ();
-	for (int i = 0; i < m_mine->SegCount (); i++)
+	int i;
+	for (i = 0; i < m_mine->SegCount (); i++)
 		pcb->AddString (itoa (i, message, 10));
 	}
 pcb->SetCurSel (m_nCube);
@@ -289,10 +290,12 @@ void CCubeTool::OnPoint4 () { OnPoint (3); }
 void CCubeTool::SetDefTexture (INT16 tmapnum)
 {
 CDSegment *seg = m_mine->Segments () + m_nCube;
-if (m_bSetDefTexture = ((CButton *) GetDlgItem (IDC_CUBE_SETDEFTEXTURE))->GetCheck ())
-	for (int i = 0; i < 6; i++)
+if (m_bSetDefTexture = ((CButton *) GetDlgItem (IDC_CUBE_SETDEFTEXTURE))->GetCheck ()) {
+	int i;
+	for (i = 0; i < 6; i++)
 		if (seg->children [i] == -1)
 			m_mine->SetTexture (m_nCube, i, tmapnum, 0);
+	}
 }
 
 //------------------------------------------------------------------------
@@ -327,12 +330,14 @@ OnResetCoord ();
   // show Triggers () that point at this cube
 LBTriggers()->ResetContent();
 CDTrigger *trigger = m_mine->Triggers ();
-for (int trignum = 0; trignum < m_mine->GameInfo ().triggers.count; trignum++, trigger++) {
+int trignum;
+for (trignum = 0; trignum < m_mine->GameInfo ().triggers.count; trignum++, trigger++) {
 	for (i = 0; i < trigger->num_links; i++) {
 		if ((trigger->seg [i] == m_nCube) && (trigger->side [i] == m_nSide)) {
 			// find the wall with this trigger
 			CDWall *wall = m_mine->Walls ();
-			for (int wallnum = 0; wallnum < m_mine->GameInfo ().walls.count ;wallnum++, wall++) {
+			int wallnum;
+			for (wallnum = 0; wallnum < m_mine->GameInfo ().walls.count ;wallnum++, wall++) {
 				if (wall->trigger == trignum) 
 					break;
 				}
@@ -346,7 +351,8 @@ for (int trignum = 0; trignum < m_mine->GameInfo ().triggers.count; trignum++, t
 	}
 // show if this is cube/side is triggered by the control_center
 control_center_trigger	*ccTrigger = m_mine->CCTriggers ();
-for (int control = 0; control < MAX_CONTROL_CENTER_TRIGGERS; control++, ccTrigger++) {
+int control;
+for (control = 0; control < MAX_CONTROL_CENTER_TRIGGERS; control++, ccTrigger++) {
 	int num_links = ccTrigger->num_links;
 	for (i = 0; i < num_links; i++) {
 		if ((m_nCube == ccTrigger->seg [i]) && (m_nSide == ccTrigger->side [i])) {
@@ -729,7 +735,8 @@ for (nSegNum = nMinSeg; nSegNum < nMaxSeg; nSegNum++, segP++) {
 			int nDelMatCen = m_mine->CurrSeg ()->value;
 			memcpy (m_mine->BotGens (nDelMatCen), m_mine->BotGens (nDelMatCen + 1), (nMatCens - 1 - nDelMatCen) * sizeof(matcen_info));
 			m_mine->GameInfo ().matcen.count--;
-			for (int i = 0; i < 6; i++)
+			int i;
+			for (i = 0; i < 6; i++)
 				m_mine->DeleteTriggerTargets (m_nCube, i);
 			}
 		}

@@ -28,7 +28,8 @@ t->flags = (INT8) flags;
 t->value = (type == TT_SPEEDBOOST) ? 10 : (type == TT_CHANGE_TEXTURE) ? 0 : 5 * F1_0; // 5% shield or energy damage
 t->time = -1;
 t->num_links = 0;
-for (int i = 0; i < MAX_TRIGGER_TARGETS; i++) {
+int i;
+for (i = 0; i < MAX_TRIGGER_TARGETS; i++) {
 	t->seg [i] = -1;
 	t->side [i] = -1;
 	}
@@ -203,7 +204,8 @@ return DeleteTargetFromTrigger (Triggers (trignum), linknum, bAutoDeleteTrigger)
 
 bool CMine::DeleteTriggerTarget (CDTrigger *trigger, INT16 segnum, INT16 sidenum, bool bAutoDeleteTrigger) 
 {
-for (int j = 0; j < trigger->num_links; j++)
+int j;
+for (j = 0; j < trigger->num_links; j++)
 	if ((trigger->seg [j] == segnum) && (trigger->side [j] == sidenum))
 		return DeleteTargetFromTrigger (trigger, j, bAutoDeleteTrigger) == 0;
 return false;
@@ -233,7 +235,8 @@ INT16 CMine::FindTriggerWall (INT16 *trignum, INT16 segnum, INT16 sidenum)
 {
 GetCurrent (segnum, sidenum);
 CDWall *wall = Walls ();
-for (int wallnum = GameInfo ().walls.count; wallnum; wallnum--, wall++) {
+int wallnum;
+for (wallnum = GameInfo ().walls.count; wallnum; wallnum--, wall++) {
 	if ((wall->segnum == segnum) && (wall->sidenum == sidenum)) {
 		*trignum = wall->trigger;
 		return wall - Walls ();
@@ -246,7 +249,8 @@ return GameInfo ().walls.count;
 INT16 CMine::FindTriggerWall (INT16 trignum)
 {
 CDWall *wall = Walls ();
-for (int wallnum = GameInfo ().walls.count; wallnum; wallnum--, wall++)
+int wallnum;
+for (wallnum = GameInfo ().walls.count; wallnum; wallnum--, wall++)
 	if (wall->trigger == trignum)
 		return wall - Walls ();
 return GameInfo ().walls.count;

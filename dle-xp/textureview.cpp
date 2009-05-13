@@ -181,7 +181,8 @@ if (left < r)
 void CTextureView::CrtTxtMap (void)
 {
 QSortTxtMap (0, m_nTextures [1] - 1);
-for (int i = 0; i < m_nTextures [1]; i++)
+int i;
+for (i = 0; i < m_nTextures [1]; i++)
 	m_mapTxtToView [m_mapViewToTxt [i]] = i;
 }
 
@@ -310,7 +311,8 @@ int y = 0;
 x = point.x / m_iconSpace.cx;
 y = point.y / m_iconSpace.cy;
 int h = nOffset + y * m_viewSpace.cx + x + 1;
-for (int i = 0; i < m_nTextures [1]; i++) {
+int i;
+for (i = 0; i < m_nTextures [1]; i++) {
 	if (BITSET (pFilter, i)) //pFilter [i / 8] & (1 << (i & 7)))
 		if (!--h) {
 			nBaseTex = m_mapViewToTxt [i]; //m_pTextures [i];
@@ -318,7 +320,8 @@ for (int i = 0; i < m_nTextures [1]; i++) {
 			}
 	}
 #else
-for (int i = nOffset; i < m_nTextures [1]; i++) {
+int i;
+for (i = nOffset; i < m_nTextures [1]; i++) {
 	if (BITSET (pFilter, i)) {
 		if ((point.x >= x * m_iconSpace.cx) && 
 			 (point.x <= (x + 1) * m_iconSpace.cx) &&
@@ -376,7 +379,8 @@ if (bShowAll) {
 	else {
 		memset (pFilter, 0, (MAX_D2_TEXTURES + 7) / 8);
 		m_nTextures [0] = 0;
-		for (int i = 0; i < m_nTextures [1]; i++) {
+		int i;
+		for (i = 0; i < m_nTextures [1]; i++) {
 			int t = m_mapViewToTxt [i];
 			int j = TxtFilterIndex (t);
 			if ((TXT_FILTERS [j].nFilter | TXT_FILTERS [j].n2ndFilter) & m_nTxtFilter) {
@@ -481,7 +485,8 @@ void CTextureView::RecalcLayout ()
 	pDC->SetStretchBltMode(STRETCH_DELETESCANS);
 	int x=0;
 	int y=0;
-	for (int i = 0; i < m_nTextures [1]; i++) {
+	int i;
+	for (i = 0; i < m_nTextures [1]; i++) {
 		if (!ShowAll ()) {
 			if (!BITSET (pFilter, i))
 				continue;

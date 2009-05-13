@@ -192,8 +192,8 @@ CreateImgWnd (&m_showTexWnd, IDC_TRIGGER_SHOW_TEXTURE);
 CComboBox *pcb = CBType ();
 pcb->ResetContent();
 if (file_type != RDL_FILE) {
-	int h, j = sizeof (triggerData) / sizeof (tTriggerData);
-	for (int i = 0; i < j; i++) {
+	int h, i, j = sizeof (triggerData) / sizeof (tTriggerData);
+	for (i = 0; i < j; i++) {
 		h = pcb->AddString (triggerData [i].pszName);
 		pcb->SetItemData (h, triggerData [i].nType);
 		}
@@ -202,7 +202,8 @@ else
 	pcb->AddString ("n/a");
 pcb->SetCurSel (0);
 InitSlider (IDC_TRIGGER_SLIDER, 1, 10);
-for (int i = 1; i <= 10; i++)
+int i;
+for (i = 1; i <= 10; i++)
 	SlCtrl (IDC_TRIGGER_SLIDER)->SetTic (i);
 LoadTextureListBoxes ();
 m_bInited = TRUE;
@@ -238,7 +239,8 @@ if (TriggerHasSlider () || (m_nType == TT_SHIELD_DAMAGE_D2) || (m_nType == TT_EN
 else if ((m_nType == TT_MESSAGE) || (m_nType == TT_SOUND))
 	DDX_Double (pDX, IDC_TRIGGER_STRENGTH, m_nStrength, 0, 1000, "%1.0f");
 DDX_Text (pDX, IDC_TRIGGER_TIME, m_nTime);
-for (int i = 0; i < 2; i++)
+int i;
+for (i = 0; i < 2; i++)
 	DDX_Check (pDX, IDC_TRIGGER_NOMESSAGE + i, m_bD2Flags [i]);
 for (i = 2; i < 5; i++)
 	DDX_Check (pDX, IDC_TRIGGER_NOMESSAGE + i, m_bD2Flags [i + 1]);
@@ -302,7 +304,8 @@ CToolDlg::EnableControls (IDC_TRIGGER_TRIGGERNO + 1, IDC_TRIGGER_ADD_CONTROLPANE
 CToolDlg::EnableControls (IDC_TRIGGER_SLIDER, IDC_TRIGGER_SLIDER, bEnable && TriggerHasSlider ());
 CToolDlg::EnableControls (IDC_TRIGGER_STRENGTH, IDC_TRIGGER_STRENGTH, bEnable && (m_nType != TT_SPEEDBOOST) && (m_nType != TT_CHANGE_TEXTURE));
 CToolDlg::EnableControls (IDC_TRIGGER_SHOW_TEXTURE, IDC_TRIGGER_TEXTURE2, bEnable && (m_nType == TT_CHANGE_TEXTURE));
-//for (int i = IDC_TRIGGER_TRIGGER_NO; i <= IDC_TRIGGER_PASTE; i++)
+//int i;
+//for (i = IDC_TRIGGER_TRIGGER_NO; i <= IDC_TRIGGER_PASTE; i++)
 //	GetDlgItem (i)->EnableWindow (bEnable);
 }
 
@@ -338,7 +341,8 @@ m_iTarget = plb->GetCurSel ();
 plb->ResetContent ();
 if (m_pTrigger) {
 	m_nTargets = m_pTrigger->num_links;
-	for (int i = 0; i < m_nTargets ; i++) {
+	int i;
+	for (i = 0; i < m_nTargets ; i++) {
 		sprintf (m_szTarget, "   %d, %d", m_pTrigger->seg [i], m_pTrigger->side [i] + 1);
 		plb->AddString (m_szTarget);
 		}
@@ -617,10 +621,10 @@ theApp.MineView ()->DelayRefresh (true);
 CDSegment *seg = m_mine->Segments ();
 CDSide *side;
 bool bAll = (m_mine->MarkedSegmentCount (true) == 0);
-int nDeleted = 0;
-for (int i = m_mine->SegCount (); i; i--, seg++) {
+int i, j, nDeleted = 0;
+for (i = m_mine->SegCount (); i; i--, seg++) {
 	side = seg->sides;
-	for (int j = 0; j < MAX_SIDES_PER_SEGMENT; j++, side++) {
+	for (j = 0; j < MAX_SIDES_PER_SEGMENT; j++, side++) {
 		if (side->nWall >= MAX_WALLS)
 			continue;
 		CDWall *wall = m_mine->Walls (side->nWall);
@@ -911,7 +915,8 @@ Refresh ();
 
 int CTriggerTool::FindTarget (INT16 segnum, INT16 sidenum)
 {
-for (int i = 0; i < m_pTrigger->num_links; i++)
+int i;
+for (i = 0; i < m_pTrigger->num_links; i++)
 	if ((segnum == m_pTrigger->seg [i]) && (sidenum == m_pTrigger->seg [i]))
 		return i;
 return -1;

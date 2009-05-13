@@ -51,7 +51,8 @@ void CMine::DeleteSegmentWalls (INT16 segnum)
 {
 	CDSide *side =Segments (segnum)->sides; 
 
-for (int i = MAX_SIDES_PER_SEGMENT; i; i--, side++)
+int i;
+for (i = MAX_SIDES_PER_SEGMENT; i; i--, side++)
 	if (side->nWall != NO_WALL)
 		DeleteWall (side->nWall); 
 }
@@ -83,7 +84,8 @@ void CMine::DeleteSegment(INT16 delSegNum)
 	UndefineSegment (delSegNum);
 
 	// delete any flickering lights that use this segment
-	for (int sidenum = 0; sidenum < 6; sidenum++) {
+	int sidenum;
+	for (sidenum = 0; sidenum < 6; sidenum++) {
 		DeleteTriggerTargets (delSegNum, sidenum); 
 		INT16 index = GetFlickeringLight(delSegNum, sidenum); 
 		if (index != -1) {
@@ -447,7 +449,8 @@ for (sideNum = 0; sideNum < MAX_SIDES_PER_SEGMENT; sideNum++) {
 	segP->sides [sideNum].nWall = NO_WALL; 
 	segP->sides [sideNum].nBaseTex =
 	segP->sides [sideNum].nOvlTex = 0; 
-	for (int i = 0; i < 4; i++)
+	int i;
+	for (i = 0; i < 4; i++)
 		segP->sides [sideNum].uvls [i].l = (UINT16) DEFAULT_LIGHTING; 
 	SetUV (segNum, sideNum, 0, 0, 0); 
 	}
@@ -1001,7 +1004,8 @@ void CMine::CalcSegCenter(vms_vector &pos, INT16 segnum)
   vms_vector *vert;
   
 memset (&pos, 0, sizeof (pos));
-for (int i = 0; i < 8; i++) {
+int i;
+for (i = 0; i < 8; i++) {
 	vert = Vertices (nVerts [i]);
 	pos.x += vert->x;
 	pos.y += vert->y;
@@ -1049,7 +1053,8 @@ bool CMine::SideIsMarked (INT16 segnum, INT16 sidenum)
 {
 GetCurrent (segnum, sidenum);
 CDSegment *seg = Segments (segnum);
-for (int i = 0;  i < 4; i++) {
+int i;
+for (i = 0;  i < 4; i++) {
 	if (!(*VertStatus (seg->verts [side_vert [sidenum][i]]) & MARKED_MASK))
 		return false;
 	}
@@ -1059,7 +1064,8 @@ return true;
 bool CMine::SegmentIsMarked (INT16 segnum)
 {
 CDSegment *seg = Segments (segnum);
-for (int i = 0;  i < 8; i++)
+int i;
+for (i = 0;  i < 8; i++)
 	if (!(*VertStatus (seg->verts [i]) & MARKED_MASK))
 		return false;
 return true;
@@ -1206,7 +1212,8 @@ side->nBaseTex = 0;
 side->nOvlTex = 0; 
 uvl *uvls = side->uvls;
 double scale = pTextures [file_type][side->nBaseTex].Scale (side->nBaseTex);
-for (int i = 0; i < 4; i++, uvls++) {
+int i;
+for (i = 0; i < 4; i++, uvls++) {
 	uvls->u = (INT16) (default_uvls [i].u / scale); 
 	uvls->v = (INT16) (default_uvls [i].v / scale); 
 	uvls->l = (UINT16) DEFAULT_LIGHTING; 
@@ -1227,20 +1234,23 @@ void CMine::UnlinkChild (INT16 parent_segnum, INT16 sidenum)
   CDSegment *parent_seg = Segments (parent_segnum); 
 
 // loop on each side of the parent
-//  for (int sidenum = 0; sidenum < 6; sidenum++) {
+//	int sidenum;
+//  for (sidenum = 0; sidenum < 6; sidenum++) {
 int child_segnum = parent_seg->children [sidenum]; 
 // does this side have a child?
 if (child_segnum < 0 || child_segnum >= SegCount ())
 	return;
 CDSegment *child_seg = Segments () + child_segnum; 
 // yes, see if child has a side which points to the parent
-for (int child_sidenum = 0; child_sidenum < 6; child_sidenum++)
+int child_sidenum;
+for (child_sidenum = 0; child_sidenum < 6; child_sidenum++)
 	if (child_seg->children [child_sidenum]== parent_segnum) break; 
 // if we found the matching side
 if (child_sidenum < 6) {
 // define vert numbers for comparison
 	INT16 pv [4], cv [4]; // (short names given for clarity)
-	for (int i = 0; i < 4; i++) {
+	int i;
+	for (i = 0; i < 4; i++) {
 		pv [i] = parent_seg->verts [side_vert [sidenum][i]]; // parent vert
 		cv [i] = child_seg->verts [side_vert [child_sidenum][i]]; // child vert
 		}
@@ -1355,7 +1365,8 @@ seg->wall_bitmask &= ~MARKED_MASK;
 // update total number of vertices
 *VertStatus (VertCount ()++) = 0; 
 
-for (int sidenum = 0; sidenum < 6; sidenum++)
+int sidenum;
+for (sidenum = 0; sidenum < 6; sidenum++)
 	if (IsPointOfSide (seg, sidenum, seg->verts [side_vert [Current ()->side][Current ()->point]]) &&
 		 GetOppositeSide (opp_segnum, opp_sidenum, Current ()->segment, sidenum)) {
 		UnlinkChild (seg->children [sidenum], opp_side [sidenum]);
@@ -1439,7 +1450,8 @@ for (i = 0; i < 2; i++)
 		// update total number of vertices
 		*VertStatus (VertCount ()++) = 0; 
 		}
-for (int sidenum = 0; sidenum < 6; sidenum++) {
+int sidenum;
+for (sidenum = 0; sidenum < 6; sidenum++) {
 	if (IsLineOfSide (seg, sidenum, linenum) && 
 		 GetOppositeSide (opp_segnum, opp_sidenum, Current ()->segment, sidenum)) {
 		UnlinkChild (opp_segnum, opp_sidenum);
@@ -1538,7 +1550,8 @@ if (!solidify) {
 			*VertStatus (VertCount ()++) = 0; 
 			}
 		}
-	for (int sidenum = 0; sidenum < 6; sidenum++)
+	int sidenum;
+	for (sidenum = 0; sidenum < 6; sidenum++)
 		if (sidenum != opp_side [sidenum])
 			UnlinkChild (Current ()->segment, sidenum); 
 	SetLinesToDraw(); 
@@ -1548,7 +1561,8 @@ else {
 	// does this side have a child?
 	CDSegment *child_seg = Segments (child_segnum); 
 	// yes, see if child has a side which points to the parent
-	for (int child_sidenum = 0; child_sidenum < 6; child_sidenum++)
+	int child_sidenum;
+	for (child_sidenum = 0; child_sidenum < 6; child_sidenum++)
 		if (child_seg->children [child_sidenum]== Current ()->segment) 
 			break; 
 	// if we found the matching side
@@ -2664,7 +2678,8 @@ INT16 segnum = Current ()->segment;
 CDSegment *otherSeg = OtherSeg (); 
 bUndo = theApp.SetModified (TRUE); 
 theApp.LockUndo ();
-for (int sidenum = 0; sidenum < 6; sidenum++)
+int sidenum;
+for (sidenum = 0; sidenum < 6; sidenum++)
 	if (SetTexture (segnum, sidenum, 
 						 otherSeg->sides [sidenum].nBaseTex, 
 						 otherSeg->sides [sidenum].nOvlTex))

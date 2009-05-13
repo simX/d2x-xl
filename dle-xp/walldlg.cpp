@@ -144,8 +144,8 @@ pcb->AddString ("Transparent");
 
 pcb = CBClipNo ();
 pcb->ResetContent ();
-int j = (file_type != RDL_FILE) ? D2_NUM_OF_CLIPS : NUM_OF_CLIPS;
-for (int i = 0; i < j; i++) {
+int i, j = (file_type != RDL_FILE) ? D2_NUM_OF_CLIPS : NUM_OF_CLIPS;
+for (i = 0; i < j; i++) {
 	sprintf (m_szMsg, i ? "door%02d" : "wall%02d", clip_door_number [i]);
 	pcb->AddString (m_szMsg);
 	}
@@ -165,7 +165,8 @@ if (!GetMine ())
 	return;
 CComboBox *pcb = CBWallNo ();
 pcb->ResetContent ();
-for (int i = 0; i < m_mine->GameInfo ().walls.count; i++)
+int i;
+for (i = 0; i < m_mine->GameInfo ().walls.count; i++)
 	pcb->AddString (itoa (i, message, 10));
 pcb->SetCurSel (m_nWall [0]);
 }
@@ -184,7 +185,8 @@ DDX_CBIndex (pDX, IDC_WALL_TYPE, m_nType);
 DDX_CBIndex (pDX, IDC_WALL_CLIPNO, m_nClip);
 DDX_Double (pDX, IDC_WALL_STRENGTH, m_nStrength, -100, 100, "%3.1f");
 DDX_Double (pDX, IDC_WALL_CLOAK, m_nCloak, 0, 100, "%3.1f");
-for (int i = 0; i < 4; i++)
+int i;
+for (i = 0; i < 4; i++)
 	DDX_Check (pDX, IDC_WALL_NOKEY + i, m_bKeys [i]);
 for (i = 0; i < MAX_WALL_FLAGS; i++)
 	DDX_Check (pDX, IDC_WALL_BLASTED + i, m_bFlags [i]);
@@ -201,7 +203,8 @@ SetDlgItemText (IDC_WALL_TRANSPARENCY_TEXT, szTransparency);
 
 void CWallTool::EnableControls (BOOL bEnable)
 {
-for (int i = IDC_WALL_WALLNO + 1; i <= IDC_WALL_FLYTHROUGH; i++)
+int i;
+for (i = IDC_WALL_WALLNO + 1; i <= IDC_WALL_FLYTHROUGH; i++)
 	GetDlgItem (i)->EnableWindow (bEnable);
 }
 
@@ -268,9 +271,11 @@ else {
 		GetDlgItem (IDC_WALL_CLOAK)->EnableWindow (FALSE);
 
     // enable buddy proof and switch checkboxes only if d2 level
-	if (file_type == RDL_FILE)
-		for (int i = 0; i < 2; i++)
+	if (file_type == RDL_FILE) {
+		int i;
+		for (i = 0; i < 2; i++)
 			GetDlgItem (IDC_WALL_SWITCH + i)->EnableWindow (FALSE);
+		}
 	// update wall data
 	if (m_pWall [0]->trigger == NO_TRIGGER)
 		sprintf (m_szMsg,"cube = %ld, side = %ld, no trigger", 
@@ -294,7 +299,8 @@ else {
 	CBType ()->SetCurSel (m_nType);
 	CBClipNo ()->EnableWindow ((m_nType == WALL_BLASTABLE) || (m_nType == WALL_DOOR));
 	// select list box index for clip
-	for (int i = 0; i < D2_NUM_OF_CLIPS; i++)
+	int i;
+	for (i = 0; i < D2_NUM_OF_CLIPS; i++)
 		if (clip_num [i] == m_nClip)
 			break;
 	m_nClip = i;
@@ -430,11 +436,11 @@ theApp.LockUndo ();
 theApp.MineView ()->DelayRefresh (true);
 CDSegment *seg = m_mine->Segments ();
 CDSide *side;
-int nDeleted = 0;
 bool bAll = (m_mine->MarkedSegmentCount (true) == 0);
-for (int i = m_mine->SegCount (); i; i--, seg++) {
+int i, j, nDeleted = 0;
+for (i = m_mine->SegCount (); i; i--, seg++) {
 	side = seg->sides;
-	for (int j = 0; j < MAX_SIDES_PER_SEGMENT; j++, side++) {
+	for (j = 0; j < MAX_SIDES_PER_SEGMENT; j++, side++) {
 		if (side->nWall >= MAX_WALLS)
 			continue;
 		if (bAll || m_mine->SideIsMarked (i, j)) {

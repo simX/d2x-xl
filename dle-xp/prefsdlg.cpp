@@ -155,7 +155,8 @@ m_objViewFlags = GetPrivateProfileInt ("DLE-XP", "ObjViewFlags", m_objViewFlags,
 m_texViewFlags = GetPrivateProfileInt ("DLE-XP", "TexViewFlags", m_texViewFlags, "dle-xp.ini");
 m_nMaxUndo = GetPrivateProfileInt ("DLE-XP", "MaxUndo", MAX_UNDOS, "dle-xp.ini");
 InitSlider (IDC_PREFS_VIEWDIST, 0, MAX_VIEWDIST);
-for (int i = 0; i <= MAX_VIEWDIST; i++)
+int i;
+for (i = 0; i <= MAX_VIEWDIST; i++)
 	SlCtrl (IDC_PREFS_VIEWDIST)->SetTic (i);
 CComboBox *pcb = CBMineCenter ();
 pcb->AddString ("None");

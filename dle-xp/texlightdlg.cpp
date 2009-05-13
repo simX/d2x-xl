@@ -86,7 +86,8 @@ if (m_iLight < 0)
 if (!GetMine ())
 	return;
 UINT32 nLightMask = 0;
-for (int i = 0; i < 32; i++)
+int i;
+for (i = 0; i < 32; i++)
 	if (m_szLight [i] == '1')
 		nLightMask |= (1 << i);
 bUndo = theApp.SetModified (TRUE);
@@ -137,7 +138,8 @@ void CTextureTool::SetLightString (void)
 	static char cLight [2] = {'0', '1'};
 	char szLight [33];
 
-for (int i = 0; i < 32; i++)
+int i;
+for (i = 0; i < 32; i++)
 	szLight [i] = cLight [LightButton (i)->GetCheck ()];
 szLight [32] = '\0';
 if (strcmp (szLight, m_szLight)) {
@@ -159,7 +161,8 @@ if (szLight) {
 	}
 else
 	UpdateData (TRUE);
-for (int i = 0; i < 32; i++) {
+int i;
+for (i = 0; i < 32; i++) {
 	if (!bDefault && (m_szLight [i] == '\0'))
 		bDefault = true;
 	if (bDefault)
@@ -177,7 +180,8 @@ if (!SetLightDelay (nSpeed)) {
 
 void CTextureTool::EnableLightControls (BOOL bEnable)
 {
-for (int i = IDC_TEXLIGHT_OFF; i <= IDC_TEXLIGHT_TIMER; i++)
+int i;
+for (i = IDC_TEXLIGHT_OFF; i <= IDC_TEXLIGHT_TIMER; i++)
 	GetDlgItem (i)->EnableWindow (bEnable);
 }
 
@@ -214,7 +218,8 @@ if (m_iLight < 0) {
 	}
 
 long nLightMask = m_mine->FlickeringLights (m_iLight)->mask;
-for (int i = 0; i < 32; i++)
+int i;
+for (i = 0; i < 32; i++)
 	m_szLight [i] = (nLightMask & (1 << i)) ? '1' : '0';
 m_szLight [32] = '\0';
 SetLightButtons (m_szLight, (int) (((1000 * m_mine->FlickeringLights (m_iLight)->delay + F0_5) / F1_0)));

@@ -135,7 +135,8 @@ last_texture1 = -1;
 last_texture2 = 0;
 save_texture1 = -1;
 save_texture2 = 0;
-for (int i = 0; i < 4; i++)
+int i;
+for (i = 0; i < 4; i++)
 	save_uvls [i].l = default_uvls [i].l;
 #if TEXTOODLG == 0
 m_frame [0] = 0;
@@ -790,8 +791,9 @@ if (!GetMine ())
 UpdateData (TRUE);
 CDSide *side = m_mine->CurrSide ();
 INT16 mode = side->nOvlTex & 0xc000;
-for (int i = 0; i < 4; i++) {
-	int j = (i + lightIdxFromMode [mode / 0x4000]) % 4;
+int i, j;
+for (i = 0; i < 4; i++) {
+	j = (i + lightIdxFromMode [mode / 0x4000]) % 4;
 	side->uvls [i].l = (UINT16) (m_lights [j] * 327.68);
 	}
 theApp.MineView ()->Refresh ();
@@ -837,7 +839,8 @@ if (!GetMine ())
 
 save_texture1 = side->nBaseTex & 0x3fff;
 save_texture2 = side->nOvlTex & 0x3fff;
-for (int i = 0; i < 4; i++)
+int i;
+for (i = 0; i < 4; i++)
 	save_uvls [i].l = side->uvls [i].l;
 
 //CBTexture1 ()->SelectString (-1, texture_name1);
@@ -886,7 +889,8 @@ if (!GetMine ())
 theApp.SetModified (TRUE);
 m_mine->SetTexture (m_mine->Current ()->segment, m_mine->Current ()->side, 
 						  m_bUse1st ? save_texture1 : -1, m_bUse2nd ? save_texture2 : -1);
-for (int i = 0; i < 4; i++)
+int i;
+for (i = 0; i < 4; i++)
 	side->uvls [i].l = save_uvls [i].l;
 Refresh ();
 theApp.MineView ()->Refresh ();
@@ -907,7 +911,8 @@ if (save_texture1 == -1 || save_texture2 == -1)
 //CheckForDoor ();
 // set all segment sides as not "pasted" yet
 	CDSegment *seg = m_mine->Segments ();
-for (int segnum = m_mine->SegCount (); segnum; segnum--, seg++)
+int segnum;
+for (segnum = m_mine->SegCount (); segnum; segnum--, seg++)
     seg->seg_number = 0;
 theApp.SetModified (TRUE);
 theApp.LockUndo ();
@@ -946,7 +951,8 @@ for (segnum = 0; segnum < m_mine->SegCount (); segnum++, seg++) {
 			if (seg->children [sidenum] == -1) {
 				bChange = true;
 				m_mine->SetTexture (segnum, sidenum, m_bUse1st ? save_texture1 : -1, m_bUse2nd ? save_texture2 : -1);
-				for (int i = 0; i < 4; i++)
+				int i;
+				for (i = 0; i < 4; i++)
 					side->uvls [i].l = save_uvls [i].l;
 				}
 			}
@@ -994,7 +1000,8 @@ for (segnum = 0; segnum < m_mine->SegCount (); segnum++, seg++)
 				 continue;
 			if (m_mine->SetTexture (segnum, sidenum, m_bUse1st ? save_texture1 : -1, m_bUse2nd ? save_texture2 : -1))
 				bChange = true;
-//			for (int i = 0; i < 4; i++)
+//			int i;
+//			for (i = 0; i < 4; i++)
 //				side->uvls [i].l = save_uvls [i].l;
 			}
 if (bChange)

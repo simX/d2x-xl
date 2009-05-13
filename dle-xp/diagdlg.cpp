@@ -93,7 +93,8 @@ void CDiagTool::CountObjects (void)
 CDObject *obj = m_mine->Objects ();
 memset (m_nObjects, 0, sizeof (m_nObjects));
 memset (m_nContained, 0, sizeof (m_nContained));
-for (int i = m_mine->GameInfo ().objects.count, j = 0; i; i--, j++, obj++)
+int i, j;
+for (i = m_mine->GameInfo ().objects.count, j = 0; i; i--, j++, obj++)
 	switch(obj->type) {
 		case OBJ_ROBOT:
 			m_nObjects [0]++;

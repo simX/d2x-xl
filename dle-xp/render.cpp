@@ -200,12 +200,12 @@ void TextureMap(int resolution,
 				UINT16 rowOffset)
 {
 	
-	int h,i,j;
-	int x,y;
-	LONG yi, yj;
+	int h, i, j, k;
+	int x, y;
+	LONG yi,  yj;
 	POINT a[4];
-	POINT minpt,maxpt;
-	double A[3][3],IA[3][3],B[3][3],UV[3][3]; // transformation matrices
+	POINT minpt, maxpt;
+	double A[3][3], IA[3][3], B[3][3], UV[3][3]; // transformation matrices
 	double w;
 	UINT8 *ptr;
 	uvl *uvls;
@@ -284,14 +284,14 @@ if (enable_delta_shading) {
 		 (delta_lights = mine->DeltaLights ())) {
 		// search delta light index to see if current side has a light
 		dl_index	*dli = dl_indices;
-		for (i=0;i<dlIdxCount;i++,dli ++) {
+		for (i = 0; i <dlIdxCount; i++, dli++) {
 //				if (dli->segnum == mine->current->segment) {
 			// loop on each delta light till the segment/side is found
 				delta_light *dl = delta_lights + dli->d2.index;
 				h = bD2XLights ? dli->d2x.count : dli->d2.count;
 				for (j = 0; j < h; j++, dl++) {
 					if (dl->segnum==segnum && dl->sidenum==sidenum) {
-						for (int k=0;k<4;k++) {
+						for (k = 0; k < 4; k++) {
 							INT16 dlight = dl->vert_light[k];
 							if (dlight >= 0x20)
 								dlight = 0x7fff;

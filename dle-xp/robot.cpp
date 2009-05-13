@@ -156,7 +156,7 @@ else if (type == EXTENDED_HAM)  {
     goto abort;
   }
 
-  INT16 i;
+  INT16 i, j;
   FILE *file;
   file = fopen("d:\\bc\\dlc2data\\poly.dat","wt");
   if (file) {
@@ -164,7 +164,7 @@ else if (type == EXTENDED_HAM)  {
       fread(&pm, sizeof(POLYMODEL), 1, fp );
       fprintf(file,"n_models        = %ld\n",pm.n_models);
       fprintf(file,"model_data_size = %ld\n",pm.model_data_size);
-      for (int j=0;j<pm.n_models;j++) {
+      for (j = 0; j < pm.n_models; j++) {
 	fprintf(file,"submodel_ptrs[%d]    = %#08lx\n",j,pm.submodel_ptrs[j]);
 	fprintf(file,"submodel_offsets[%d] = %#08lx %#08lx %#08lx\n",j,
 		pm.submodel_offsets[j].x,pm.submodel_offsets[j].y,pm.submodel_offsets[j].z);
@@ -565,7 +565,8 @@ return bFound;
 
 BOOL CMine::HasCustomRobots() 
 {
-for (int i = 0; i < (int) N_robot_types; i++)
+int i;
+for (i = 0; i < (int) N_robot_types; i++)
 	if (IsCustomRobot (i))
 		return TRUE;
 return (m_nHxmExtraDataSize > 0);

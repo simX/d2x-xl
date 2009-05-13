@@ -152,7 +152,8 @@ while(!feof(fBlk)) {
 
 	// read in side information 
 	side = seg->sides;
-	for (int sidenum = 0; sidenum < MAX_SIDES_PER_SEGMENT; sidenum++, side++) {
+	int sidenum;
+	for (sidenum = 0; sidenum < MAX_SIDES_PER_SEGMENT; sidenum++, side++) {
 		fscanf (fBlk,"  side %hd\n", &test);
 		if (test != sidenum) {
 			ErrorMsg ("Invalid side number read");
@@ -198,7 +199,8 @@ while(!feof(fBlk)) {
 					fscanf (fBlk, "			    value %ld\n", &t.value);
 					fscanf (fBlk, "			    timer %d\n", &t.time);
 					fscanf (fBlk, "			    num_links %hd\n", &t.num_links);
-					for (int iTarget = 0; iTarget < t.num_links; iTarget++) {
+					int iTarget;
+					for (iTarget = 0; iTarget < t.num_links; iTarget++) {
 						fscanf (fBlk, "			        seg %hd\n", t.seg + iTarget);
 						fscanf (fBlk, "			        side %hd\n", t.side + iTarget);
 						}
@@ -873,7 +875,8 @@ for (segnum = 0; segnum < SegCount (); segnum++, seg++) {
 					ResetSide (segnum,child);
 					// auto link the new segment with any touching Segments ()
 					seg2 = Segments ();
-					for (int segnum2 = 0; segnum2 < SegCount (); segnum2++, seg2++) {
+					int segnum2, sidenum2;
+					for (segnum2 = 0; segnum2 < SegCount (); segnum2++, seg2++) {
 						if (segnum != segnum2) {
 							// first check to see if Segments () are any where near each other
 							// use x, y, and z coordinate of first point of each segment for comparison
@@ -882,7 +885,7 @@ for (segnum = 0; segnum < SegCount (); segnum++, seg++) {
 							if (labs (v1->x - v2->x) < 0xA00000L &&
 								 labs (v1->y - v2->y) < 0xA00000L &&
 								 labs (v1->z - v2->z) < 0xA00000L) {
-								for (int sidenum2 = 0;sidenum2 < 6; sidenum2++) {
+								for (sidenum2 = 0;sidenum2 < 6; sidenum2++) {
 									LinkSegments (segnum, child, segnum2, sidenum2, 3 * F1_0);
 									}
 								}

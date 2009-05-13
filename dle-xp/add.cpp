@@ -31,7 +31,8 @@ for (INT16 sidenum = 0; sidenum < 6; sidenum++, side++) {
 		side->uvls [2].l = 0x8000;
 		side->uvls [3].l = 0x8000;
 	*/
-		for (int i = 0; i < 4; i++) {
+		int i;
+		for (i = 0; i < 4; i++) {
 			side->uvls [i].u = (INT16) ((double) default_uvls [i].u / scale);
 			side->uvls [i].v = (INT16) ((double) default_uvls [i].v / scale);
 			side->uvls [i].l = default_uvls [i].l;
@@ -78,7 +79,8 @@ if (seg->special == SEGMENT_IS_ROBOTMAKER) {
 			seg->matcen_num = -1;
 			}
 		GameInfo ().botgen.count--;
-		for (int i = 0; i < 6; i++)
+		int i;
+		for (i = 0; i < 6; i++)
 			DeleteTriggerTargets (segnum, i);
 		CDSegment *s;
 		for (i = SegCount (), s = Segments (); i; i--, s++)
@@ -101,7 +103,8 @@ if (seg->special == SEGMENT_IS_EQUIPMAKER) {
 			seg->matcen_num = -1;
 			}
 		GameInfo ().equipgen.count--;
-		for (int i = 0; i < 6; i++)
+		int i;
+		for (i = 0; i < 6; i++)
 			DeleteTriggerTargets (segnum, i);
 		CDSegment *s;
 		nDelMatCen += (int) GameInfo ().botgen.count;
@@ -482,7 +485,8 @@ int CMine::FuelCenterCount (void)
 {
 int n_fuelcen = 0;
 CDSegment *seg = Segments ();
-for (int i = 0; i < SegCount (); i++, seg++)
+int i;
+for (i = 0; i < SegCount (); i++, seg++)
 	if ((seg->special == SEGMENT_IS_FUELCEN) || (seg->special == SEGMENT_IS_REPAIRCEN))
 		n_fuelcen++;
 return n_fuelcen;

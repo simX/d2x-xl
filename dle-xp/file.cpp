@@ -64,10 +64,10 @@ return index;
 
 void ClearFileList (CListBox *plb)
 {
-	int h = plb->GetCount ();
+	int i, h = plb->GetCount ();
 	tHogFileData *pfd;
 
-for (int i = 0; i < h; i++)
+for (i = 0; i < h; i++)
 	if (pfd = (tHogFileData *) plb->GetItemDataPtr (i))
 		delete pfd;
 plb->ResetContent ();
@@ -169,7 +169,8 @@ void CHogManager::Reset (void)
 {
 /*
 m_fileData.m_nFiles = 0;
-for (int i = 0; i < MAX_HOGFILES - 1; i++)
+int i;
+for (i = 0; i < MAX_HOGFILES - 1; i++)
 	m_fileData.m_size [i] = i + 1;
 m_fileData.m_size [i] = -1;
 m_fileData.m_nFreeList = 0;
@@ -290,7 +291,8 @@ int CHogManager::FindFilename (LPSTR pszName)
 	CListBox	*plb = LBFiles ();
 	char szName [256];
 
-for (int h = plb->GetCount (), i = 0; i < h; i++) {
+int h, i;
+for (h = plb->GetCount (), i = 0; i < h; i++) {
 	plb->GetText (i, szName);
 	if (!strcmpi (szName, pszName))
 		return i;
@@ -464,7 +466,8 @@ if (pszExt) {
 		fseek (fSrc, sizeof (struct level_header) + offset, SEEK_SET);
 		theApp.GetMine ()->ReadHxmFile (fSrc, size);
 		CMine *mine = theApp.GetMine ();
-		for (int i = 0, count = 0; i < (int) N_robot_types;i++)
+		int i, count;
+		for (i = 0, count = 0; i < (int) N_robot_types;i++)
 			if (mine->RobotInfo (i)->pad [0])
 				count++;
 		sprintf (message," Hog manager: %d custom robots read", count);
@@ -1508,7 +1511,8 @@ static LPSTR *szTags [] = {szMissionName, szMissionInfo, szMissionType, szMissio
 int atob (LPSTR psz)
 {
 strlwr (psz);
-for (int i = 0; i < 2; i++)
+int i;
+for (i = 0; i < 2; i++)
 	if (!strcmp (psz, szBool [i]))
 		return i;
 return 0;

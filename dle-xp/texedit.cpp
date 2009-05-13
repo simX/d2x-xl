@@ -125,7 +125,8 @@ if (l < right)
 
 void CPaletteWnd::CreatePalette ()
 {
-for (int i = 0; i < 256; i++) {
+int i;
+for (i = 0; i < 256; i++) {
 	m_nSortedPalIdx [i] = i;
 	RgbFromIndex (i, m_palColors + i);
 	}
@@ -210,8 +211,9 @@ CreatePalette ();
 CRect rc;
 GetClientRect (&rc);
 UINT8 *pal_bitmap  = (UINT8 *) malloc (m_nWidth * m_nHeight);
-for (int c = 0, y = m_nHeight - 1; (y >= 0); y--) {
-	for (int x = 0, h = y * m_nWidth; x < m_nWidth; x++, h++) {
+int h, i, c, w, x, y;
+for (c = 0, y = m_nHeight - 1; (y >= 0); y--) {
+	for (x = 0, h = y * m_nWidth; x < m_nWidth; x++, h++) {
 		if (!y)
 			y = 0;
 		pal_bitmap [h] = (c < 256) ? m_nSortedPalIdx [c++] : 0;
@@ -221,8 +223,8 @@ BITMAPINFO *bmi = MakeBitmap ();
 bmi->bmiHeader.biWidth = m_nWidth;
 bmi->bmiHeader.biHeight = m_nHeight;
 if (m_nWidth & 1)
-	for (int i = 0; i < m_nHeight; i++) {
-		int w = (i == m_nHeight - 1) ? 256 % m_nWidth : m_nWidth;
+	for (i = 0; i < m_nHeight; i++) {
+		w = (i == m_nHeight - 1) ? 256 % m_nWidth : m_nWidth;
 		StretchDIBits (m_pDC->m_hDC, 0, i * 8, w * 8, 8, 0, 0, w, 1,
 						   (void *) (pal_bitmap + (m_nHeight - i - 1) * m_nWidth), bmi, 
 							DIB_RGB_COLORS, SRCCOPY);
@@ -776,7 +778,8 @@ bool CTextureEdit::LoadBitmap (FILE *file)
 				 (palette [i].rgbGreen != sysPal [i].peGreen) ||
 				 (palette [i].rgbBlue != sysPal [i].peBlue)) {
 				unsigned int closest_delta = 0x7fffffff;
-				for (int j = 0; (j < 255) && closest_delta; j++) {
+				int j;
+				for (j = 0; (j < 255) && closest_delta; j++) {
 					unsigned int delta = ColorDelta (palette + i, sysPal, j);
 					if (delta < closest_delta) {
 						closest_index = j;

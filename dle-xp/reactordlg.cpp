@@ -86,7 +86,8 @@ return CToolDlg::OnSetActive ();
 void CReactorTool::EnableControls (BOOL bEnable)
 {
 CToolDlg::EnableControls (IDC_REACTOR_COUNTDOWN, IDC_REACTOR_SECRETRETURN, bEnable);
-//for (int i = IDC_TRIGGER_TRIGGER_NO; i <= IDC_TRIGGER_PASTE; i++)
+//int i;
+//for (i = IDC_TRIGGER_TRIGGER_NO; i <= IDC_TRIGGER_PASTE; i++)
 //	GetDlgItem (i)->EnableWindow (bEnable);
 }
 
@@ -101,7 +102,8 @@ m_iTarget = plb->GetCurSel ();
 plb->ResetContent ();
 if (m_pTrigger) {
 	m_nTargets = m_pTrigger->num_links;
-	for (int i = 0; i < m_nTargets ; i++) {
+	int i;
+	for (i = 0; i < m_nTargets ; i++) {
 		sprintf (m_szTarget, "   %d, %d", m_pTrigger->seg [i], m_pTrigger->side [i] + 1);
 		plb->AddString (m_szTarget);
 		}
@@ -253,7 +255,8 @@ Refresh ();
 
 int CReactorTool::FindTarget (INT16 segnum, INT16 sidenum)
 {
-for (int i = 0; i < m_pTrigger->num_links; i++)
+int i;
+for (i = 0; i < m_pTrigger->num_links; i++)
 	if ((segnum = m_pTrigger->seg [i]) && (sidenum = m_pTrigger->seg [i]))
 		return i;
 return -1;

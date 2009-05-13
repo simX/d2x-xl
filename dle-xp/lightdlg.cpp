@@ -74,7 +74,8 @@ if (!CToolDlg::OnInitDialog ())
 InitSlider (IDC_LIGHT_RENDER_DEPTH, 1, 10);
 InitSlider (IDC_LIGHT_DELTA_RENDER_DEPTH, 1, 10);
 InitSlider (IDC_LIGHT_DELTA_FRAMERATE, 10, 100);
-for (int i = 20; i < 100; i += 10)
+int i;
+for (i = 20; i < 100; i += 10)
 	SlCtrl (IDC_LIGHT_DELTA_FRAMERATE)->SetTic (i);
 return TRUE;
 }

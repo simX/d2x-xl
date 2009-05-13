@@ -78,9 +78,10 @@ if (h != 3 * 256) {
 
 UINT8 *pFade = pCustomPalette + 3 * 256;
 
-for (int i = 0; i < 256; i++) {
+int i, j;
+for (i = 0; i < 256; i++) {
 	UINT8	c = pCustomPalette [i];
-	for (int j = 0; j < 34; j++)
+	for (j = 0; j < 34; j++)
 		pFade [j * 256 + i] = FadeValue (c, j + 1);
 	}
 return 1;
