@@ -1331,7 +1331,7 @@ for (nPass = 0; nPass < 2; nPass++) {
 				bOk = false;
 				if (m_bAutoFixBugs) {
 					for (j = 0; j < h; j++)
-						if (segP [j].matcen_num == i) {
+						if ((segP->special == SEGMENT_IS_ROBOTMAKER) && (segP->matcen_num == i)) {
 							matCenP [i].segnum = nSegment = j;
 							break;
 							}
@@ -1384,7 +1384,7 @@ for (i = 0; i < nMatCens; i++) {
 		bOk = false;
 		if (m_bAutoFixBugs) {
 			for (; h; h--, segP++)
-				if (segP->matcen_num == i) {
+				if ((segP->special == SEGMENT_IS_EQUIPMAKER) && (segP->matcen_num == i)) {
 					matCenP [i].segnum = nSegment = segP - m_mine->Segments ();
 					break;
 					}
