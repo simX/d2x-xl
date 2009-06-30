@@ -316,8 +316,8 @@
 #define	TRIGGER_ONE_SHOT			32	/* If Trigger can only be triggered once */
 #define	TRIGGER_MATCEN				64	/* Trigger for materialization centers */
 #define	TRIGGER_ILLUSION_OFF		128	/* Switch Illusion OFF trigger */
-#define	TRIGGER_ILLUSION_ON		512	/* Switch Illusion ON trigger */
 #define	TRIGGER_SECRET_EXIT		256	/* Exit to secret level */
+#define	TRIGGER_ILLUSION_ON		512	/* Switch Illusion ON trigger */
 
 // Trigger types for Descent 2
 #define TT_OPEN_DOOR				0	// Open a door

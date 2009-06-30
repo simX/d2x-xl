@@ -755,7 +755,7 @@ class CTriggerTool : public CTexToolDlg
 		void Refresh ();
 		void AddTarget (INT16 segnum, INT16 sidenum);
 		int FindTarget (INT16 segnum, INT16 sidenum);
-		void OnD1Flag (int i);
+		bool OnD1Flag (int i, int j = -1);
 		void OnD2Flag (int i, int j = 0);
 		void SetTriggerPtr (void);
 		void ClearObjWindow (void);

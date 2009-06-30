@@ -234,10 +234,6 @@ if (pDX->m_bSaveAndValidate)
 	m_nType = CBType ()->GetItemData (CBType ()->GetCurSel ());
 else
 	SelectItemData (CBType (), m_nType);
-if (TriggerHasSlider () || (m_nType == TT_SHIELD_DAMAGE_D2) || (m_nType == TT_ENERGY_DRAIN_D2))
-	DDX_Double (pDX, IDC_TRIGGER_STRENGTH, m_nStrength, -100, 100, "%3.1f");
-else if ((m_nType == TT_MESSAGE) || (m_nType == TT_SOUND))
-	DDX_Double (pDX, IDC_TRIGGER_STRENGTH, m_nStrength, 0, 1000, "%1.0f");
 DDX_Text (pDX, IDC_TRIGGER_TIME, m_nTime);
 int i;
 for (i = 0; i < 2; i++)
@@ -246,6 +242,12 @@ for (i = 2; i < 5; i++)
 	DDX_Check (pDX, IDC_TRIGGER_NOMESSAGE + i, m_bD2Flags [i + 1]);
 for (i = 0; i < 10; i++)
 	DDX_Check (pDX, IDC_TRIGGER_CONTROL + i, m_bD1Flags [i]);
+if (TriggerHasSlider () || (m_nType == TT_SHIELD_DAMAGE_D2) || (m_nType == TT_ENERGY_DRAIN_D2))
+	DDX_Double (pDX, IDC_TRIGGER_STRENGTH, m_nStrength, -100, 100, "%3.1f");
+else if ((m_nType == TT_MESSAGE) || (m_nType == TT_SOUND))
+	DDX_Double (pDX, IDC_TRIGGER_STRENGTH, m_nStrength, 0, 1000, "%1.0f");
+else if ((file_type == RDL_FILE) && (m_bD1Flags [1] || m_bD1Flags [2]))	// D1 shield/energy drain
+	DDX_Double (pDX, IDC_TRIGGER_STRENGTH, m_nStrength, -10000, 10000, "%1.0f");
 DDX_Text (pDX, IDC_TRIGGER_TARGET, m_szTarget, sizeof (m_szTarget));
 DDX_Check (pDX, IDC_TRIGGER_AUTOADDWALL, m_bAutoAddWall);
 char szLabel [40];
@@ -756,20 +758,25 @@ m_pTrigger->time = m_nTime;
 // CTriggerTool - TriggerFlags0Msg
 //------------------------------------------------------------------------
 
-void CTriggerTool::OnD1Flag (int i)
+bool CTriggerTool::OnD1Flag (int i, int j)
 {
 if (!GetMine ())	
-	return;
+	return false;
 m_nTrigger = CBTriggerNo ()->GetCurSel ();
 if (m_nTrigger == -1)
-	return;
+	return false;
 SetTriggerPtr ();
 theApp.SetModified (TRUE);
 int h = 1 << i;
 m_pTrigger->flags ^= h;
 m_bD1Flags [i] = ((m_pTrigger->flags & h) != 0);
 ((CButton *) GetDlgItem (IDC_TRIGGER_CONTROL + i))->SetCheck (m_bD1Flags [i]);
+if (m_bD1Flags [i] && (j >= 0)) {
+	m_bD1Flags [j] = 0;
+	((CButton *) GetDlgItem (IDC_TRIGGER_CONTROL + i))->SetCheck (0);
+	}
 UpdateData (FALSE);
+return m_bD1Flags [i] != 0;
 }
 
                         /*--------------------------*/
@@ -797,13 +804,13 @@ UpdateData (FALSE);
 void CTriggerTool::OnD1Flag1 () { OnD1Flag (0); }
 void CTriggerTool::OnD1Flag2 () { OnD1Flag (1); }
 void CTriggerTool::OnD1Flag3 () { OnD1Flag (2); }
-void CTriggerTool::OnD1Flag4 () { OnD1Flag (3); }
+void CTriggerTool::OnD1Flag4 () { OnD1Flag (3, 9); }
 void CTriggerTool::OnD1Flag5 () { OnD1Flag (4); }
 void CTriggerTool::OnD1Flag6 () { OnD1Flag (5); }
 void CTriggerTool::OnD1Flag7 () { OnD1Flag (6); }
-void CTriggerTool::OnD1Flag8 () { OnD1Flag (7); }
-void CTriggerTool::OnD1Flag9 () { OnD1Flag (8); }
-void CTriggerTool::OnD1Flag10 () { OnD1Flag (9); }
+void CTriggerTool::OnD1Flag8 () { OnD1Flag (7, 8); }
+void CTriggerTool::OnD1Flag9 () { OnD1Flag (8, 7); }
+void CTriggerTool::OnD1Flag10 () { OnD1Flag (9, 3); }
 
 void CTriggerTool::OnD2Flag1 () { OnD2Flag (0); }
 void CTriggerTool::OnD2Flag2 () { OnD2Flag (1); }
