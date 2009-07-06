@@ -160,8 +160,8 @@ while(!feof(fBlk)) {
 			return (0);
 			}
 		side->nWall = NO_WALL;
-		fscanf (fBlk,"    nBaseTex %hd\n",&side->nBaseTex);
-		fscanf (fBlk,"    nOvlTex %hd\n",&side->nOvlTex);
+		fscanf (fBlk,"    tmap_num %hd\n",&side->nBaseTex);
+		fscanf (fBlk,"    tmap_num2 %hd\n",&side->nOvlTex);
 		for (j = 0; j < 4; j++)
 			fscanf (fBlk,"    uvls %hd %hd %hd\n",
 						&side->uvls [j].u,
@@ -505,8 +505,8 @@ for (segnum = 0; segnum < SegCount (); segnum++, seg++) {
 		side = seg->sides;
 		for (i = 0; i < MAX_SIDES_PER_SEGMENT; i++, side++) {
 			fprintf (fBlk,"  side %d\n",i);
-			fprintf (fBlk,"    nBaseTex %d\n",side->nBaseTex);
-			fprintf (fBlk,"    nOvlTex %d\n",side->nOvlTex);
+			fprintf (fBlk,"    tmap_num %d\n",side->nBaseTex);
+			fprintf (fBlk,"    tmap_num2 %d\n",side->nOvlTex);
 			for (j = 0; j < 4; j++) {
 				fprintf (fBlk,"    uvls %d %d %d\n",
 				side->uvls [j].u,
