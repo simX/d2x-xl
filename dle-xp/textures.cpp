@@ -158,8 +158,8 @@ int DefineTexture (INT16 nBaseTex,INT16 nOvlTex, CDTexture *pDestTx, int x0, int
 	} tFrac;
 
 	UINT8			*ptr;
-	INT16			textures [2], mode, w, h, s;
-	int			i, x, y, y1, offs;
+	INT16			textures [2], mode, w, h;
+	int			i, x, y, y1, offs, s;
 	tFrac			scale, scale2;
 	int			rc; // return code
 	CDTexture	*pTx [2];
