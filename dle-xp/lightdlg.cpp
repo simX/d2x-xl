@@ -124,13 +124,13 @@ if (bAll = !mine->GotMarkedSides ())
 theApp.SetModified (TRUE);
 theApp.LockUndo ();
 if (m_bIlluminate)
-	mine->AutoAdjustLight (m_fBrightness, bAll, (bool) m_bCopyTexLights);
+	mine->AutoAdjustLight (m_fBrightness, bAll, m_bCopyTexLights != 0);
 if (m_bAvgCornerLight)
 	mine->CalcAverageCornerLight (bAll);
 if (m_bScaleLight)
 	mine->ScaleCornerLight (m_fLightScale, bAll);
 if (m_bCubeLight)
-	mine->SetCubeLight (m_fCubeLight, (int) bAll, (int) m_bDynCubeLights);
+	mine->SetCubeLight (m_fCubeLight, (int) bAll, m_bDynCubeLights != 0);
 if (m_bDeltaLight)
 	mine->CalcDeltaLightData (m_fDeltaLight, (int) bAll);
 theApp.UnlockUndo ();

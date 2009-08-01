@@ -1181,16 +1181,16 @@ INT16 CMine::LoadGameData(FILE *loadfile, bool bNewMine)
 		ErrorMsg("Error reading game info from mine.cpp");
 		return -1;
 	}
-	if (GameInfo ().fileinfo_version >= 14) {  /*load mine filename */
+	if (GameInfo ().fileinfo_version < 14) 
+		current_level_name [0] = 0;
+	else {  /*load mine filename */
 		char *p;
 		for (p = current_level_name; ; p++) {
 			*p = fgetc(loadfile);
 			if (*p== '\n') *p = 0;
 			if (*p== 0) break;
+			}
 		}
-	} else {
-		current_level_name [0] = 0;
-	}
 
 #if 0
 	if (GameInfo ().fileinfo_version >= 19) {  /*load pof names */
@@ -1217,9 +1217,8 @@ INT16 CMine::LoadGameData(FILE *loadfile, bool bNewMine)
 	//  gamesave_num_players = 0;
 
 	if (GameInfo ().objects.offset > -1) {
-		if (fseek(loadfile, GameInfo ().objects.offset, SEEK_SET)) {
+		if (fseek(loadfile, GameInfo ().objects.offset, SEEK_SET))
 			ErrorMsg("Error seeking to objects.");
-		}
 		else if (GameInfo ().objects.count > MAX_OBJECTS2) {
 			sprintf(message, "Error: Max number of objects (%ld/%d) exceeded", 
 					  GameInfo ().objects.count, MAX_OBJECTS2);
@@ -1238,40 +1237,43 @@ INT16 CMine::LoadGameData(FILE *loadfile, bool bNewMine)
 
 	//==================== = READ WALL INFO============================
 	// note: Wall size will automatically strip last two items
-	if (GameInfo ().walls.offset > -1)
-		if (!fseek(loadfile, GameInfo ().walls.offset, SEEK_SET))
-			if (GameInfo ().walls.count > MAX_WALLS) {
-				sprintf(message, "Error: Max number of walls (%d/%d) exceeded",
-					GameInfo ().walls.count, MAX_WALLS);
-				ErrorMsg(message);
-				GameInfo ().walls.count = MAX_WALLS;
-				}
-			else if (GameInfo ().fileinfo_version < 20)
-				ErrorMsg("Wall version < 20, walls not loaded");
-			else if (GameInfo ().walls.count &&
-						fread(Walls (), (INT16)GameInfo ().walls.size * GameInfo ().walls.count, 1, loadfile)!= 1) {
-				ErrorMsg("Error reading walls from mine.cpp");
 
-	//==================== = READ DOOR INFO============================
-	// note: not used for D1 or D2 since doors.count is always 0
-	if (GameInfo ().doors.offset > -1) {
-		if (!fseek(loadfile, GameInfo ().doors.offset, SEEK_SET))  {
-			if (GameInfo ().doors.count > MAX_DOORS) {
-				sprintf(message, "Error: Max number of doors (%ld/%d) exceeded", GameInfo ().doors.count, MAX_DOORS);
-				ErrorMsg(message);
-				GameInfo ().doors.count = MAX_DOORS;
+	if ((GameInfo ().walls.offset > -1) && !fseek(loadfile, GameInfo ().walls.offset, SEEK_SET)) {
+		if (GameInfo ().walls.count > MAX_WALLS) {
+			sprintf(message, "Error: Max number of walls (%d/%d) exceeded", GameInfo ().walls.count, MAX_WALLS);
+			ErrorMsg(message);
+			GameInfo ().walls.count = MAX_WALLS;
 			}
-			else if (GameInfo ().fileinfo_version < 20)
-				ErrorMsg("Door version < 20, doors not loaded");
-			else if(sizeof(*ActiveDoors (i)) != GameInfo ().doors.size)
-				ErrorMsg("Error: Door size incorrect");
-			else if (GameInfo ().doors.count && 
-				      fread(ActiveDoors (), (INT16)GameInfo ().doors.size * GameInfo ().doors.count, 1, loadfile)!= 1) {
-				ErrorMsg("Error reading doors.");
+		else if (GameInfo ().fileinfo_version < 20)
+			ErrorMsg ("Wall version < 20, walls not loaded");
+		else if (GameInfo ().walls.count) {
+			for (i = 0; i < GameInfo ().walls.count; i++) {
+				if (!ReadWall (Walls (i), loadfile, GameInfo ().fileinfo_version)) {
+					ErrorMsg("Error reading walls from mine.cpp");
+					break;
+					}
 				}
 			}
 		}
-	}
+
+	//==================== = READ DOOR INFO============================
+	// note: not used for D1 or D2 since doors.count is always 0
+	if ((GameInfo ().doors.offset > -1) && !fseek(loadfile, GameInfo ().doors.offset, SEEK_SET)) {
+		if (GameInfo ().doors.count > MAX_DOORS) {
+			sprintf(message, "Error: Max number of doors (%ld/%d) exceeded", GameInfo ().doors.count, MAX_DOORS);
+			ErrorMsg(message);
+			GameInfo ().doors.count = MAX_DOORS;
+			}
+		else if (GameInfo ().fileinfo_version < 20)
+			ErrorMsg("Door version < 20, doors not loaded");
+		else if(sizeof(*ActiveDoors (i)) != GameInfo ().doors.size)
+			ErrorMsg("Error: Door size incorrect");
+		else if (GameInfo ().doors.count && 
+				   fread(ActiveDoors (), (INT16)GameInfo ().doors.size * GameInfo ().doors.count, 1, loadfile)!= 1) {
+			ErrorMsg("Error reading doors.");
+			}
+		}
+
 
 	//==================== READ TRIGGER INFO==========================
 	// note: order different for D2 levels but size is the same
@@ -1422,7 +1424,7 @@ INT16 CMine::LoadGameData(FILE *loadfile, bool bNewMine)
 				GameInfo ().dl_indices.count, MAX_DL_INDICES);
 			ErrorMsg(message);
 			GameInfo ().dl_indices.count = MAX_DL_INDICES;
-		}
+			}
 		if (GameInfo ().dl_indices.offset > -1 && GameInfo ().dl_indices.count > 0) {
 			if (!fseek(loadfile, GameInfo ().dl_indices.offset, SEEK_SET)) {
 				if (fread(DLIndex (), TotalSize (GameInfo ().dl_indices), 1, loadfile)!= 1) {
@@ -1460,7 +1462,27 @@ INT16 CMine::LoadGameData(FILE *loadfile, bool bNewMine)
 	}
 
 
+
 	return 0;
+}
+
+// ------------------------------------------------------------------------
+
+int CMine::ReadWall (CDWall* wallP, FILE* fp, INT32 version)
+{
+wallP->segnum = read_INT32 (fp);
+wallP->sidenum = read_INT32 (fp); 
+wallP->hps = read_FIX (fp);
+wallP->linked_wall = read_INT32 (fp);
+wallP->type = UINT8 (read_INT8 (fp));
+wallP->flags = UINT16 ((version < 37) ? read_INT8 (fp) : read_INT16 (fp));         
+wallP->state = UINT8 (read_INT8 (fp));         
+wallP->trigger = UINT8 (read_INT8 (fp));       
+wallP->clip_num = UINT8 (read_INT8 (fp));      
+wallP->keys = UINT8 (read_INT8 (fp));          
+wallP->controlling_trigger = read_INT8 (fp);
+wallP->cloak_value = read_INT8 (fp);
+return 1;
 }
 
 // ------------------------------------------------------------------------
@@ -2180,7 +2202,7 @@ INT16 CMine::SaveGameData(FILE *savefile)
 		}
 	else {
 		GameInfo ().fileinfo_signature = 0x6705;
-		GameInfo ().fileinfo_version = (level_version < 13) ? 31 : 36;
+		GameInfo ().fileinfo_version = (level_version < 13) ? 31 : 37;
 		GameInfo ().fileinfo_size = (level_version < 13) ? 143 : sizeof (GameInfo ()); // same as sizeof(GameInfo ())
 		GameInfo ().level = 0;
 	}

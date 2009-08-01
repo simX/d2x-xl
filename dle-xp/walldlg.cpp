@@ -37,6 +37,7 @@ BEGIN_MESSAGE_MAP (CWallTool, CTexToolDlg)
 	ON_BN_CLICKED (IDC_WALL_SWITCH, OnSwitch)
 	ON_BN_CLICKED (IDC_WALL_BUDDYPROOF, OnBuddyProof)
 	ON_BN_CLICKED (IDC_WALL_RENDER_ADDITIVE, OnRenderAdditive)
+	ON_BN_CLICKED (IDC_WALL_IGNORE_MARKER, OnIgnoreMarker)
 	ON_BN_CLICKED (IDC_WALL_ADD_DOOR_NORMAL, OnAddDoorNormal)
 	ON_BN_CLICKED (IDC_WALL_ADD_DOOR_EXIT, OnAddDoorExit)
 	ON_BN_CLICKED (IDC_WALL_ADD_DOOR_SECRETEXIT, OnAddDoorSecretExit)
@@ -631,6 +632,7 @@ void CWallTool::OnIllusionOff () { OnFlag (4); }
 void CWallTool::OnSwitch () { OnFlag (5); }
 void CWallTool::OnBuddyProof () { OnFlag (6); }
 void CWallTool::OnRenderAdditive () { OnFlag (7); }
+void CWallTool::OnIgnoreMarker () { OnFlag (8); }
 
                         /*--------------------------*/
 

@@ -2,6 +2,8 @@
 // Microsoft Visual C++ generated include file.
 // Used by dlc.rc
 //
+#define IDC_WALL_IGNORE_MARKER          10143
+#define IDC_WALL_IGNORE_MARKER2         10144
 
 // Next default values for new objects
 // 

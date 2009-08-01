@@ -388,7 +388,7 @@ public:
 	void SetUV (INT16 segment, INT16 side, INT16 x, INT16 y, double angle);
 	void LoadSideTextures (INT16 segNum, INT16 sideNum);
 
-	CDWall *AddWall (INT16 segnum, INT16 sidenum, INT16 type, UINT8 flags, UINT8 keys, INT8 clipnum, INT16 tmapnum);
+	CDWall *AddWall (INT16 segnum, INT16 sidenum, INT16 type, UINT16 flags, UINT8 keys, INT8 clipnum, INT16 tmapnum);
 	CDWall *GetWall (INT16 segnum = -1, INT16 sidenum = -1);
 	void DeleteWall (UINT16 wallnum = -1);
 	CDWall *FindWall (INT16 segnum = -1, INT16 sidenum = -1);
@@ -557,6 +557,7 @@ private:
 	INT16 SaveGameData(FILE *savefile);
 	void ReadObject(CDObject *obj,FILE *f,INT32 version);
 	void WriteObject(CDObject *obj,FILE *f,INT32 version);
+	int ReadWall (CDWall* wallP, FILE* fp, INT32 version);
 	void ClearMineData();
 	void UpdateDeltaLights ();
 	double dround_off(double value, double round);

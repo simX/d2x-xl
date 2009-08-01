@@ -23,7 +23,7 @@
 //--------------------------------------------------------------------------
 
 CDWall *CMine::AddWall (INT16 segnum,INT16 sidenum,
-								INT16 type, UINT8 flags, UINT8 keys,
+								INT16 type, UINT16 flags, UINT8 keys,
 								INT8 clipnum, INT16 tmapnum) 
 {
 GetCurrent (segnum, sidenum);

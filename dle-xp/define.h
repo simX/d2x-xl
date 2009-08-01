@@ -444,6 +444,7 @@
 #define WALL_ILLUSION_OFF		32	/* Illusionary wall is shut off. */
 #define WALL_WALL_SWITCH		64	// This wall is openable by a wall switch (Descent 2)
 #define WALL_BUDDY_PROOF		128	// Buddy assumes he cannot get through this wall (Descent 2)
+#define WALL_IGNORE_MARKER		256
 
 //wall clip flags (new for Descent 2)
 #define WCF_EXPLODES		1	//door explodes when opening

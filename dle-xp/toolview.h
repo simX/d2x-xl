@@ -680,6 +680,7 @@ class CWallTool : public CTexToolDlg
 		afx_msg void OnSwitch ();
 		afx_msg void OnBuddyProof ();
 		afx_msg void OnRenderAdditive ();
+		afx_msg void OnIgnoreMarker ();
 		afx_msg void OnAddDoorNormal ();
 		afx_msg void OnAddDoorExit ();
 		afx_msg void OnAddDoorSecretExit ();
