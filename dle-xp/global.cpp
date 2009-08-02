@@ -81,7 +81,7 @@ UINT8 clip_num[D2_NUM_OF_CLIPS] = {
 	40,41,42,43,44,45,46,47,48,49,50
 };
 
-UINT8 wall_flags[9] = {
+UINT16 wall_flags [MAX_WALL_FLAGS] = {
 	WALL_BLASTED,
 	WALL_DOOR_OPENED,
 	WALL_DOOR_LOCKED,

@@ -159,10 +159,10 @@ BEGIN
                     BS_AUTOCHECKBOX | WS_TABSTOP,350,26,54,10
     CONTROL         "Additive",IDC_WALL_RENDER_ADDITIVE,"Button",
                     BS_AUTOCHECKBOX | WS_TABSTOP,350,37,42,10
-    CONTROL         "Fly through",IDC_WALL_FLYTHROUGH,"Button",
-                    BS_AUTOCHECKBOX | WS_TABSTOP,350,47,48,10
     CONTROL         "Ignore marker",IDC_WALL_IGNORE_MARKER,"Button",
-                    BS_AUTOCHECKBOX | WS_TABSTOP,350,57,56,10
+                    BS_AUTOCHECKBOX | WS_TABSTOP,350,47,56,10
+    CONTROL         "Fly through",IDC_WALL_FLYTHROUGH,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,350,57,48,10
     PUSHBUTTON      "&add",IDC_WALL_ADD,416,13,48,12,WS_GROUP
     PUSHBUTTON      "&delete",IDC_WALL_DELETE,416,27,48,12,WS_GROUP
     PUSHBUTTON      "delete &all",IDC_WALL_DELETEALL,416,41,48,12,WS_GROUP
@@ -2220,10 +2220,10 @@ BEGIN
                     BS_AUTOCHECKBOX | WS_TABSTOP,138,150,54,10
     CONTROL         "Additive",IDC_WALL_RENDER_ADDITIVE,"Button",
                     BS_AUTOCHECKBOX | WS_TABSTOP,138,160,42,10
-    CONTROL         "Fly through",IDC_WALL_FLYTHROUGH,"Button",
-                    BS_AUTOCHECKBOX | WS_TABSTOP,138,171,48,10
     CONTROL         "Ignore marker",IDC_WALL_IGNORE_MARKER,"Button",
-                    BS_AUTOCHECKBOX | WS_TABSTOP,138,180,56,10
+                    BS_AUTOCHECKBOX | WS_TABSTOP,138,170,56,10
+    CONTROL         "Fly through",IDC_WALL_FLYTHROUGH,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,138,180,48,10
     PUSHBUTTON      "&add",IDC_WALL_ADD,22,214,48,12,WS_GROUP
     PUSHBUTTON      "&delete",IDC_WALL_DELETE,22,229,48,12,WS_GROUP
     PUSHBUTTON      "delete &all",IDC_WALL_DELETEALL,22,243,48,12,WS_GROUP
@@ -7143,8 +7143,8 @@ END
 //
 
 VS_VERSION_INFO VERSIONINFO
- FILEVERSION 1,7,41,0
- PRODUCTVERSION 1,7,41,0
+ FILEVERSION 1,7,42,0
+ PRODUCTVERSION 1,7,42,0
  FILEFLAGSMASK 0x3fL
 #ifdef _DEBUG
  FILEFLAGS 0x1L
@@ -7161,12 +7161,12 @@ BEGIN
         BEGIN
             VALUE "Comments", "MFC port and enhancements: Dietfrid Mali. Logo and icon: Steve Chamberlain."
             VALUE "FileDescription", "Descent Level Editor XP [2 aug 2009]"
-            VALUE "FileVersion", "1, 7, 41, 0"
+            VALUE "FileVersion", "1, 7, 42, 0"
             VALUE "InternalName", "DLE-XP"
             VALUE "LegalCopyright", "Copyright (C) 1998 - 2007 Bryan Aamot"
             VALUE "OriginalFilename", "DLE-XP.EXE"
             VALUE "ProductName", "Descent Level Editor XP"
-            VALUE "ProductVersion", "1, 7, 41, 0"
+            VALUE "ProductVersion", "1, 7, 42, 0"
         END
     END
     BLOCK "VarFileInfo"
@@ -7193,7 +7193,7 @@ IDR_COMOBJ              REGISTRY                "resource/registry/ComObj.rgs"
 
 STRINGTABLE 
 BEGIN
-    IDR_MAINFRAME           "Descent Level Editor XP 1.7.40\n\nDLE\nDescent Level (*.hog)\n.hog\n\nDLE.Document\nDLE Document"
+    IDR_MAINFRAME           "Descent Level Editor XP 1.7.42\n\nDLE\nDescent Level (*.hog)\n.hog\n\nDLE.Document\nDLE Document"
     IDP_OLE_INIT_FAILED     "OLE initialization failed.  Make sure that the OLE libraries are the correct version."
 END
 

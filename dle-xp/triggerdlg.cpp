@@ -57,8 +57,8 @@ BEGIN_MESSAGE_MAP (CTriggerTool, CTexToolDlg)
 	ON_CBN_SELCHANGE (IDC_TRIGGER_TEXTURE2, OnSelect2nd)
 	ON_EN_KILLFOCUS (IDC_TRIGGER_STRENGTH, OnStrength)
 	ON_EN_KILLFOCUS (IDC_TRIGGER_TIME, OnTime)
-	ON_EN_UPDATE (IDC_TRIGGER_STRENGTH, OnStrength)
-	ON_EN_UPDATE (IDC_TRIGGER_TIME, OnTime)
+	//ON_EN_UPDATE (IDC_TRIGGER_STRENGTH, OnStrength)
+	//ON_EN_UPDATE (IDC_TRIGGER_TIME, OnTime)
 END_MESSAGE_MAP ()
 
 //------------------------------------------------------------------------

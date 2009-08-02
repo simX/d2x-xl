@@ -633,7 +633,7 @@ class CWallTool : public CTexToolDlg
 		double	m_nCloak;
 		int		m_bFlyThrough;
 		int		m_bKeys [4];
-		int		m_bFlags [7];
+		int		m_bFlags [MAX_WALL_FLAGS];
 		char		m_szMsg [256];
 		CDWall	*m_pWall [2];
 		CDWall	m_defWall;

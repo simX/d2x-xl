@@ -411,6 +411,7 @@ return false;
 
 if (!m_mine)
 	return false;
+theApp.ToolView ()->Refresh ();
 CountCustomTextures ();
 if (enable_delta_shading)
 	theApp.ToolView ()->LightTool ()->OnShowDelta ();
