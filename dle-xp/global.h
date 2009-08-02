@@ -70,7 +70,7 @@ extern int level_modified;
 //extern UINT8 texture_modified[1+MAX_D2_TEXTURES/8];
 extern int disable_saves;
 extern UINT8 clip_num[D2_NUM_OF_CLIPS];
-extern UINT8 wall_flags[8];
+extern UINT8 wall_flags[9];
 extern int texture_resource;
 extern long ScrnMemMax;
 extern int ScrnWidth;
