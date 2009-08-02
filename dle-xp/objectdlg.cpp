@@ -790,7 +790,7 @@ rInfo.attack_type = BtnCtrl (IDC_OBJ_AI_CHARGE)->GetCheck ();
 rInfo.energy_drain = BtnCtrl (IDC_OBJ_AI_EDRAIN)->GetCheck ();
 rInfo.lighting = BtnCtrl (IDC_OBJ_BRIGHT)->GetCheck ();
 rInfo.cloak_type = BtnCtrl (IDC_OBJ_CLOAKED)->GetCheck ();
-m_mine->CurrObj ()->bMultiplayer = BtnCtrl (IDC_OBJ_MULTIPLAYER)->GetCheck ();
+m_mine->CurrObj ()->multiplayer = BtnCtrl (IDC_OBJ_MULTIPLAYER)->GetCheck ();
 
 // get list box changes
 int index;
@@ -1742,31 +1742,7 @@ UpdateRobot ();
 
 afx_msg void CObjectTool::OnMultiplayer ()
 {
-if (!GetMine ())
-	return;
-CDObject *obj = m_mine->CurrObj ();
-theApp.SetModified (TRUE);
-theApp.UnlockUndo ();
-
-int i = CBSpawnType ()->GetCurSel () - 1;
-if ((i < 0) || (i == MAX_CONTAINS_NUMBER)) {
-	obj->contains_count = 0;
-	obj->contains_type = -1;
-	obj->contains_id = -1;
-	}
-else {
-	obj->contains_type = 
-	selection = contains_list [i];
-	SetObjectId (CBSpawnId (),selection,0,1);
-	UpdateData (TRUE);
-	if (m_nSpawnQty < 1) {
-		m_nSpawnQty = 1;
-		UpdateData (FALSE);
-		}
-	OnSetSpawnQty ();
-	OnSetSpawnId ();
-	}
-theApp.LockUndo ();
+UpdateRobot ();
 }
 
                         /*--------------------------*/

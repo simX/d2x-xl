@@ -408,7 +408,7 @@ if (!bInitApp) {
 angle_rate = m_rotateRates [m_iRotateRate];
 move_rate = (long) (m_moveRate * 0x10000L);
 bExpertMode = (m_bExpertMode != 0);
-theApp.GetMine ()->UseTexColors () = (bool) m_bUseTexColors;
+theApp.GetMine ()->UseTexColors () = m_bUseTexColors != 0;
 if (!bInitApp)
 	SaveAppSettings (false);
 theApp.m_bSplashScreen = m_bSplashScreen;

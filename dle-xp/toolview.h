@@ -422,6 +422,7 @@ class CObjectTool : public CToolDlg
 		afx_msg void OnAIBossType ();
 		afx_msg void OnBright ();
 		afx_msg void OnCloaked ();
+		afx_msg void OnMultiplayer ();
 		afx_msg void OnSort ();
 
 		inline CComboBox *CBObjNo ()
