@@ -1499,7 +1499,7 @@ void CMine::ReadObject(CDObject *obj, FILE *f, INT32 version)
 	obj->movement_type = read_INT8(f);
 	obj->render_type = read_INT8(f);
 	obj->flags = read_INT8(f);
-	if (version > 36)
+	if (version > 37)
 		obj->multiplayer = read_INT8(f);
 	else
 		obj->multiplayer = 0;
@@ -2206,7 +2206,7 @@ INT16 CMine::SaveGameData(FILE *savefile)
 		}
 	else {
 		GameInfo ().fileinfo_signature = 0x6705;
-		GameInfo ().fileinfo_version = (level_version < 13) ? 31 : 37;
+		GameInfo ().fileinfo_version = (level_version < 13) ? 31 : 38;
 		GameInfo ().fileinfo_size = (level_version < 13) ? 143 : sizeof (GameInfo ()); // same as sizeof(GameInfo ())
 		GameInfo ().level = 0;
 	}
