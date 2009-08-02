@@ -558,6 +558,7 @@ private:
 	void ReadObject(CDObject *obj,FILE *f,INT32 version);
 	void WriteObject(CDObject *obj,FILE *f,INT32 version);
 	int ReadWall (CDWall* wallP, FILE* fp, INT32 version);
+	void WriteWall (CDWall* wallP, FILE* fp, INT32 version);
 	void ClearMineData();
 	void UpdateDeltaLights ();
 	double dround_off(double value, double round);

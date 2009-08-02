@@ -2265,8 +2265,8 @@ INT16 CMine::SaveGameData(FILE *savefile)
 	//       when saving D1 level
 	GameInfo ().walls.offset = ftell(savefile);
 	if (GameInfo ().fileinfo_version >= 20) {
-//	for (i = 0; i < GameInfo ().walls.count; i++)
-			fwrite(Walls (), TotalSize (GameInfo ().walls), 1, savefile);
+		for (i = 0; i < GameInfo ().walls.count; i++)
+			WriteWall (Walls (i), savefile, GameInfo ().fileinfo_version);
 	}
 
 	//==================== = WRITE DOOR INFO============================
@@ -2366,6 +2366,27 @@ INT16 CMine::SaveGameData(FILE *savefile)
 	fseek(savefile, end_offset, SEEK_SET);
 #endif //DEMO
 	return(0);
+}
+
+// ------------------------------------------------------------------------
+
+void CMine::WriteWall (CDWall* wallP, FILE* fp, INT32 version)
+{
+write_INT32 (wallP->segnum, fp);
+write_INT32 (wallP->sidenum, fp); 
+write_FIX (wallP->hps, fp);
+write_INT32 (wallP->linked_wall, fp);
+write_INT8 (wallP->type, fp);
+if (version < 37) 
+	write_INT8 (wallP->flags, fp);
+else
+	write_INT16 (wallP->flags, fp);         
+write_INT8 (wallP->state, fp);         
+write_INT8 (wallP->trigger, fp);       
+write_INT8 (wallP->clip_num, fp);      
+write_INT8 (wallP->keys, fp);          
+write_INT8 (wallP->controlling_trigger, fp);
+write_INT8 (wallP->cloak_value, fp);
 }
 
 // ------------------------------------------------------------------------

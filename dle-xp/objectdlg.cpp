@@ -578,12 +578,15 @@ SetObjectId (CBObjId (), obj->type, obj->id);
 
 // ungray most buttons and combo boxes
 CToolDlg::EnableControls (IDC_OBJ_OBJNO, IDC_OBJ_SPAWN_QTY, TRUE);
+CToolDlg::EnableControls (IDC_OBJ_MULTIPLAYER, IDC_OBJ_MULTIPLAYER, TRUE);
 
 // gray contains and behavior if not a robot type object
 if (obj->type != OBJ_ROBOT) {
 //	CBObjProps ()->EnableWindow (FALSE);
 	CToolDlg::EnableControls (IDC_OBJ_SPAWN_TYPE, IDC_OBJ_SPAWN_QTY, FALSE);
 	CToolDlg::EnableControls (IDC_OBJ_BRIGHT, IDT_OBJ_CONT_PROB, FALSE);
+	if (obj->type != OBJ_POWERUP)
+		CToolDlg::EnableControls (IDC_OBJ_MULTIPLAYER, IDC_OBJ_MULTIPLAYER, FALSE);
 	for (i = IDC_OBJ_SOUND_EXPLODE; i <= IDC_OBJ_SOUND_DEATH; i++)
 		CBCtrl (i)->SetCurSel (-1);
 	}
@@ -635,11 +638,11 @@ void CObjectTool::RefreshRobot ()
 if (!GetMine ())
 	return;
 
-  int i,j;
+  int i,j, nType;
   ROBOT_INFO rInfo;
 
   // get selection
-if (object_list [CBObjType ()->GetCurSel ()] != OBJ_ROBOT) {
+if ((nType = object_list [CBObjType ()->GetCurSel ()]) != OBJ_ROBOT) {
 	CBContId ()->SetCurSel (-1);
 	CBWeapon1 ()->SetCurSel (-1);
 	CBWeapon2 ()->SetCurSel (-1);
@@ -661,6 +664,8 @@ if (object_list [CBObjType ()->GetCurSel ()] != OBJ_ROBOT) {
 	BtnCtrl (IDC_OBJ_AI_EDRAIN)->SetCheck (FALSE);
 	BtnCtrl (IDC_OBJ_BRIGHT)->SetCheck (FALSE);
 	BtnCtrl (IDC_OBJ_CLOAKED)->SetCheck (FALSE);
+	if (nType != OBJ_POWERUP)
+		BtnCtrl (IDC_OBJ_MULTIPLAYER)->SetCheck (FALSE);
 	// update scroll bars
 	SlCtrl (IDC_OBJ_SCORE)->SetPos (0);
 	SlCtrl (IDC_OBJ_STRENGTH)->SetPos (0);
@@ -719,6 +724,8 @@ BtnCtrl (IDC_OBJ_AI_CHARGE)->SetCheck (rInfo.attack_type);
 BtnCtrl (IDC_OBJ_AI_EDRAIN)->SetCheck (rInfo.energy_drain);
 BtnCtrl (IDC_OBJ_BRIGHT)->SetCheck (rInfo.lighting);
 BtnCtrl (IDC_OBJ_CLOAKED)->SetCheck (rInfo.cloak_type);
+BtnCtrl (IDC_OBJ_MULTIPLAYER)->SetCheck (m_mine->CurrObj ()->multiplayer);
+
 // update scroll bars
 SlCtrl (IDC_OBJ_SCORE)->SetPos ((int) (rInfo.score_value / SliderFactor (IDC_OBJ_SCORE)));
 SlCtrl (IDC_OBJ_STRENGTH)->SetPos (fix_log(rInfo.strength));
