@@ -499,6 +499,7 @@ public:
   UINT8      movement_type; /* how this object moves */
   UINT8      render_type;   /*  how this object renders */
   UINT8      flags;         /* misc flags */
+  UINT8		 multiplayer;   /* object only available in multiplayer games */
   INT16      segnum;        /* segment number containing object */
   vms_vector pos;           /* absolute x,y,z coordinate of center of object */
   vms_matrix orient;        /* orientation of object in world */

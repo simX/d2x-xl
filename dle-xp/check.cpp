@@ -674,13 +674,13 @@ for (objectnum = 0;objectnum < objCount ; objectnum++, obj++) {
     }
 
     // check for non-zero flags (I don't know what these flags are for)
-    flags = obj->flags;
-    if (flags != 0) {
-		 if (m_bAutoFixBugs) {
-			 obj->flags = 0;
+   flags = obj->flags;
+	if (flags != 0) {
+		if (m_bAutoFixBugs) {
+			obj->flags = 0;
 			sprintf (message,"FIXED: Flags for object non-zero (object=%d,flags=%d)",objectnum,flags);
 			}
-		 else
+		else
 			sprintf (message,"ERROR: Flags for object non-zero (object=%d,flags=%d)",objectnum,flags);
       if (UpdateStats (message, 1, segnum, -1, -1, -1, -1, -1, -1, objectnum)) 
 			return true;

@@ -2,8 +2,8 @@
 // Microsoft Visual C++ generated include file.
 // Used by dlc.rc
 //
-#define IDC_WALL_IGNORE_MARKER          10143
-#define IDC_WALL_IGNORE_MARKER2         10144
+#define IDC_OBJ_AI_KAMIKAZE2            10586
+#define IDC_OBJ_MULTIPLAYER             10586
 
 // Next default values for new objects
 // 

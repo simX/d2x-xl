@@ -464,7 +464,8 @@
 #define IDC_OBJ_CONT_PROB					 10581
 #define IDT_OBJ_CONT_PROB					 10582
 #define IDT_OBJ_COUNT						 10583
-#define IDC_OBJ_SORT                    10584
+#define IDC_OBJ_MULTIPLAYER             10584
+#define IDC_OBJ_SORT                    10585
 
 #define IDD_HOGMANAGER                  10600
 #define IDC_HOG_FILES                   10600

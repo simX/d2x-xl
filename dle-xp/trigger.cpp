@@ -168,7 +168,7 @@ for (i = GameInfo ().walls.count; i; i--, wallP++)
 // update number of Triggers ()
 CDTrigger *trigP = Triggers ();
 for (i = NumTriggers (); i; i--, trigP++)
-	if (trigP->type == TT_MASTER)
+	if (trigP->type >= TT_MASTER)
 		DeleteTriggerTarget (trigP, nSegment, nSide, false);
 if (nTrigger < --GameInfo ().triggers.count)
 	memcpy(Triggers (nTrigger), Triggers (nTrigger + 1), (GameInfo ().triggers.count - nTrigger) * sizeof(CDTrigger));

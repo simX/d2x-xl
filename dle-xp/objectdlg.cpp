@@ -121,6 +121,7 @@ BEGIN_MESSAGE_MAP (CObjectTool, CToolDlg)
 	ON_BN_CLICKED (IDC_OBJ_AI_EDRAIN, OnAIEDrain)
 	ON_BN_CLICKED (IDC_OBJ_BRIGHT, OnBright)
 	ON_BN_CLICKED (IDC_OBJ_CLOAKED, OnCloaked)
+	ON_BN_CLICKED (IDC_OBJ_MULTIPLAYER, OnMultiplayer)
 	ON_BN_CLICKED (IDC_OBJ_SORT, OnSort)
 	ON_CBN_SELCHANGE (IDC_OBJ_OBJNO, OnSetObject)
 	ON_CBN_SELCHANGE (IDC_OBJ_TYPE, OnSetObjType)
@@ -601,7 +602,7 @@ if (file_type == RDL_FILE)
 	CToolDlg::EnableControls (IDC_OBJ_BRIGHT, IDT_OBJ_CONT_PROB, FALSE);
 
 // set contains data
-type = (obj->contains_type == -1) ? MAX_CONTAINS_NUMBER: contains_selection [obj->contains_type];
+type = (obj->contains_type == -1) ? MAX_CONTAINS_NUMBER : contains_selection [obj->contains_type];
 //if (type == -1)
 //	type = MAX_CONTAINS_NUMBER;
 
@@ -786,9 +787,10 @@ rInfo.thief = BtnCtrl (IDC_OBJ_AI_THIEF)->GetCheck ();
 rInfo.smart_blobs = BtnCtrl (IDC_OBJ_AI_SMARTBLOBS)->GetCheck ();
 rInfo.pursuit = BtnCtrl (IDC_OBJ_AI_PURSUE)->GetCheck ();
 rInfo.attack_type = BtnCtrl (IDC_OBJ_AI_CHARGE)->GetCheck ();
-rInfo.energy_drain= BtnCtrl (IDC_OBJ_AI_EDRAIN)->GetCheck ();
+rInfo.energy_drain = BtnCtrl (IDC_OBJ_AI_EDRAIN)->GetCheck ();
 rInfo.lighting = BtnCtrl (IDC_OBJ_BRIGHT)->GetCheck ();
 rInfo.cloak_type = BtnCtrl (IDC_OBJ_CLOAKED)->GetCheck ();
+m_mine->CurrObj ()->bMultiplayer = BtnCtrl (IDC_OBJ_MULTIPLAYER)->GetCheck ();
 
 // get list box changes
 int index;
@@ -833,8 +835,7 @@ void CObjectTool::SetTextureOverride ()
 {
 if (!GetMine ())
 	return;
-CDObject *obj;
-obj = m_mine->CurrObj ();
+CDObject *obj = m_mine->CurrObj ();
 #if 0
 CRect rc;
 m_showTextureWnd.GetClientRect (&rc);
@@ -1735,6 +1736,37 @@ UpdateRobot ();
 afx_msg void CObjectTool::OnCloaked ()
 {
 UpdateRobot ();
+}
+
+                        /*--------------------------*/
+
+afx_msg void CObjectTool::OnMultiplayer ()
+{
+if (!GetMine ())
+	return;
+CDObject *obj = m_mine->CurrObj ();
+theApp.SetModified (TRUE);
+theApp.UnlockUndo ();
+
+int i = CBSpawnType ()->GetCurSel () - 1;
+if ((i < 0) || (i == MAX_CONTAINS_NUMBER)) {
+	obj->contains_count = 0;
+	obj->contains_type = -1;
+	obj->contains_id = -1;
+	}
+else {
+	obj->contains_type = 
+	selection = contains_list [i];
+	SetObjectId (CBSpawnId (),selection,0,1);
+	UpdateData (TRUE);
+	if (m_nSpawnQty < 1) {
+		m_nSpawnQty = 1;
+		UpdateData (FALSE);
+		}
+	OnSetSpawnQty ();
+	OnSetSpawnId ();
+	}
+theApp.LockUndo ();
 }
 
                         /*--------------------------*/

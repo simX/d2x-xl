@@ -1499,6 +1499,10 @@ void CMine::ReadObject(CDObject *obj, FILE *f, INT32 version)
 	obj->movement_type = read_INT8(f);
 	obj->render_type = read_INT8(f);
 	obj->flags = read_INT8(f);
+	if (version > 36)
+		obj->multiplayer = read_INT8(f);
+	else
+		obj->multiplayer = 0;
 	obj->segnum = read_INT16(f);
 	read_vector(&obj->pos, f);
 	read_matrix(&obj->orient, f);
@@ -2377,6 +2381,8 @@ void CMine::WriteObject(CDObject *obj, FILE *f, INT32 version)
 	write_INT8(obj->movement_type, f);
 	write_INT8(obj->render_type, f);
 	write_INT8(obj->flags, f);
+	if (version > 36)
+		write_INT8(obj->multiplayer, f);
 	write_INT16(obj->segnum, f);
 	write_vector(&obj->pos, f);
 	write_matrix(&obj->orient, f);

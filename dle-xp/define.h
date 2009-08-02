@@ -352,7 +352,9 @@
 #define TT_MESSAGE				29
 #define TT_SOUND					30
 #define TT_MASTER					31
-#define NUM_TRIGGER_TYPES		32
+#define TT_ENABLE_TRIGGER		32
+#define TT_DISABLE_TRIGGER		33
+#define NUM_TRIGGER_TYPES		34
 
 #define TT_SHIELD_DAMAGE         100    // added to support d1 shield damage
 #define TT_ENERGY_DRAIN          101    // added to support d1 energy drain

@@ -180,7 +180,9 @@ static tTriggerData triggerData [] = {
 	{"set spawn", TT_SET_SPAWN},
 	{"message", TT_MESSAGE},
 	{"sound", TT_SOUND},
-	{"master", TT_MASTER}
+	{"master", TT_MASTER},
+	{"enable", TT_ENABLE_TRIGGER},
+	{"disable", TT_DISABLE_TRIGGER}
 	};
 
 
