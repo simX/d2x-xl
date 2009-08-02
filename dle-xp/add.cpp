@@ -813,7 +813,7 @@ if (!GetTriggerResources (wallnum))
 // make a new wall and a new trigger
 bool bUndo = theApp.SetModified (TRUE);
 theApp.LockUndo ();
-if (AddWall (Current ()->segment, Current ()->side, (UINT8) wall_type, (UINT8) wall_flags, KEY_NONE, -1, -1) &&
+if (AddWall (Current ()->segment, Current ()->side, (UINT8) wall_type, wall_flags, KEY_NONE, -1, -1) &&
 	 AddTrigger (GameInfo ().walls.count - 1, trigger_type)) {
 	INT16 trignum = GameInfo ().triggers.count - 1;
 	// set link to trigger target

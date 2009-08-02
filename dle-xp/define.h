@@ -155,8 +155,8 @@
 #define MAX_D1_TEXTURES   584
 #define MAX_D2_TEXTURES   910
 #define MAX_D1_WALL_FLAGS 5
-#define MAX_D2_WALL_FLAGS 8
-#define MAX_WALL_FLAGS    8
+#define MAX_D2_WALL_FLAGS 9
+#define MAX_WALL_FLAGS    9
 #define NUM_LIGHTS_D1     48
 #define NUM_LIGHTS_D2     85
 
