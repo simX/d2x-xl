@@ -247,7 +247,7 @@ for (i = 2; i < 5; i++)
 for (i = 0; i < 10; i++)
 	DDX_Check (pDX, IDC_TRIGGER_CONTROLDOORS + i, m_bD1Flags [i]);
 if (TriggerHasSlider () || (m_nType == TT_SHIELD_DAMAGE_D2) || (m_nType == TT_ENERGY_DRAIN_D2))
-	DDX_Double (pDX, IDC_TRIGGER_STRENGTH, m_nStrength, -100, 100, "%3.1f");
+	DDX_Double (pDX, IDC_TRIGGER_STRENGTH, m_nStrength, -1000, 1000, "%3.1f");
 else if ((m_nType == TT_MESSAGE) || (m_nType == TT_SOUND))
 	DDX_Double (pDX, IDC_TRIGGER_STRENGTH, m_nStrength, 0, 1000, "%1.0f");
 else if ((file_type == RDL_FILE) && (m_bD1Flags [1] || m_bD1Flags [2]))	// D1 shield/energy drain
