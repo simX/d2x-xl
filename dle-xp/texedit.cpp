@@ -696,7 +696,7 @@ bool CTextureEdit::LoadBitmap (FILE *file)
 	BITMAPINFOHEADER bmih;
 	UINT8 color_map[256];
 	bool bFuncRes = false;
-	int x, y, width, palette_size;
+	UINT32 x, y, width, palette_size;
 
    palette = (RGBQUAD *) malloc(256*sizeof(RGBQUAD));
 	if (!palette) {

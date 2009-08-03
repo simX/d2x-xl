@@ -798,7 +798,7 @@ nOffset += (d2texture.flags & 0x80) ? pTexture->m_size * 4: pTexture->m_size;
 // check for transparency and super transparency
 if (!pTexture->m_nFormat)
 	if (pSrc = (UINT8 *) pTexture->m_pDataBM) {
-		int j;
+		UINT32 j;
 		for (j = 0; j < pTexture->m_size; j++, pSrc++) {
 			if (*pSrc == 255) 
 				d2texture.flags |= BM_FLAG_TRANSPARENT;
@@ -1201,7 +1201,7 @@ if (bShowTexture) {
 			}
 		else {
 			double scale = tx.Scale ();
-			int x, y;
+			UINT32 x, y;
 			for (x = 0; x < tx.m_width; x = (int) (x + scale))
 				for (y = 0; y < tx.m_width; y = (int) (y + scale))
 					pDC->SetPixel ((INT16) (x / scale), (INT16) (y / scale), PALETTEINDEX (bmBuf [y*tx.m_width+x]));

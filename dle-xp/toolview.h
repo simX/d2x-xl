@@ -801,6 +801,8 @@ class CTriggerTool : public CTexToolDlg
 		afx_msg void OnD1Flag8 ();
 		afx_msg void OnD1Flag9 ();
 		afx_msg void OnD1Flag10 ();
+		afx_msg void OnD1Flag11 ();
+		afx_msg void OnD1Flag12 ();
 		afx_msg void OnAddOpenDoor ();
 		afx_msg void OnAddRobotMaker ();
 		afx_msg void OnAddShieldDrain ();

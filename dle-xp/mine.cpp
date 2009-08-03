@@ -2378,7 +2378,7 @@ write_FIX (wallP->hps, fp);
 write_INT32 (wallP->linked_wall, fp);
 write_INT8 (wallP->type, fp);
 if (version < 37) 
-	write_INT8 (wallP->flags, fp);
+	write_INT8 (INT8 (wallP->flags), fp);
 else
 	write_INT16 (wallP->flags, fp);         
 write_INT8 (wallP->state, fp);         
