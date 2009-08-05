@@ -308,16 +308,19 @@
 #define TRIGGER_DEFAULT     2*F1_0
 
 // Trigger flags for Descent 1
-#define	TRIGGER_CONTROL_DOORS	1	/* Control Trigger */
-#define	TRIGGER_SHIELD_DAMAGE	2	/* Shield Damage Trigger */
-#define	TRIGGER_ENERGY_DRAIN	   4	/* Energy Drain Trigger */
-#define	TRIGGER_EXIT				8	/* End of level Trigger */
-#define	TRIGGER_ON					16	/* Whether Trigger is active */
-#define	TRIGGER_ONE_SHOT			32	/* If Trigger can only be triggered once */
-#define	TRIGGER_MATCEN				64	/* Trigger for materialization centers */
-#define	TRIGGER_ILLUSION_OFF		128	/* Switch Illusion OFF trigger */
-#define	TRIGGER_SECRET_EXIT		256	/* Exit to secret level */
-#define	TRIGGER_ILLUSION_ON		512	/* Switch Illusion ON trigger */
+#define	TRIGGER_CONTROL_DOORS		1	/* Control Trigger */
+#define	TRIGGER_SHIELD_DAMAGE		2	/* Shield Damage Trigger */
+#define	TRIGGER_ENERGY_DRAIN			4	/* Energy Drain Trigger */
+#define	TRIGGER_EXIT					8	/* End of level Trigger */
+#define	TRIGGER_ON						16	/* Whether Trigger is active */
+#define	TRIGGER_ONE_SHOT				32	/* If Trigger can only be triggered once */
+#define	TRIGGER_MATCEN					64	/* Trigger for materialization centers */
+#define	TRIGGER_ILLUSION_OFF			128	/* Switch Illusion OFF trigger */
+#define	TRIGGER_SECRET_EXIT			256	/* Exit to secret level */
+#define	TRIGGER_ILLUSION_ON			512	/* Switch Illusion ON trigger */
+#define	TRIGGER_OPEN_WALL				1024
+#define	TRIGGER_CLOSE_WALL			2048
+#define	TRIGGER_MAKE_ILLUSIONARY	4096
 
 // Trigger types for Descent 2
 #define TT_OPEN_DOOR				0	// Open a door

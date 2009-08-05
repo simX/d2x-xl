@@ -245,19 +245,19 @@ BEGIN
                     BS_AUTOCHECKBOX | WS_TABSTOP,168,22,51,10
     CONTROL         "energy drain",IDC_TRIGGER_ENERGYDRAIN,"Button",
                     BS_AUTOCHECKBOX | WS_TABSTOP,168,32,55,10
-    CONTROL         "end level",IDC_TRIGGER_ENDLEVEL,"Button",
-                    BS_AUTOCHECKBOX | WS_TABSTOP,168,42,45,10
-    CONTROL         "active",IDC_TRIGGER_ACTIVE,"Button",BS_AUTOCHECKBOX | 
-                    WS_TABSTOP,168,51,35,10
-    CONTROL         "one shot",IDC_TRIGGER_ONESHOTD1,"Button",
-                    BS_AUTOCHECKBOX | WS_TABSTOP,168,61,44,8
-    CONTROL         "robot maker",IDC_TRIGGER_ROBOTMAKER,"Button",
-                    BS_AUTOCHECKBOX | WS_TABSTOP,228,15,52,8
-    CONTROL         "illusion off",IDC_TRIGGER_ILLUSIONOFF,"Button",
-                    BS_AUTOCHECKBOX | WS_TABSTOP,228,24,52,8
-    CONTROL         "illusion on",IDC_TRIGGER_ILLUSIONON,"Button",
-                    BS_AUTOCHECKBOX | WS_TABSTOP,228,33,52,8
+    CONTROL         "exit",IDC_TRIGGER_ENDLEVEL,"Button",BS_AUTOCHECKBOX | 
+                    WS_TABSTOP,168,42,27,10
     CONTROL         "secret exit",IDC_TRIGGER_SECRETEXIT,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,168,51,52,8
+    CONTROL         "active",IDC_TRIGGER_ACTIVE,"Button",BS_AUTOCHECKBOX | 
+                    WS_TABSTOP,168,60,35,10
+    CONTROL         "one shot",IDC_TRIGGER_ONESHOTD1,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,228,15,44,8
+    CONTROL         "robot maker",IDC_TRIGGER_ROBOTMAKER,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,228,24,52,8
+    CONTROL         "illusion off",IDC_TRIGGER_ILLUSIONOFF,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,228,33,52,8
+    CONTROL         "illusion on",IDC_TRIGGER_ILLUSIONON,"Button",
                     BS_AUTOCHECKBOX | WS_TABSTOP,228,42,52,8
     CONTROL         "open wall",IDC_TRIGGER_OPENWALL,"Button",
                     BS_AUTOCHECKBOX | WS_TABSTOP,228,51,52,8
@@ -2112,20 +2112,20 @@ BEGIN
                     BS_AUTOCHECKBOX | WS_TABSTOP,83,80,51,10
     CONTROL         "energy drain",IDC_TRIGGER_ENERGYDRAIN,"Button",
                     BS_AUTOCHECKBOX | WS_TABSTOP,83,89,55,10
-    CONTROL         "end level",IDC_TRIGGER_ENDLEVEL,"Button",
-                    BS_AUTOCHECKBOX | WS_TABSTOP,83,98,45,10
-    CONTROL         "active",IDC_TRIGGER_ACTIVE,"Button",BS_AUTOCHECKBOX | 
-                    WS_TABSTOP,83,107,35,10
-    CONTROL         "one shot",IDC_TRIGGER_ONESHOTD1,"Button",
-                    BS_AUTOCHECKBOX | WS_TABSTOP,83,117,44,8
-    CONTROL         "robot maker",IDC_TRIGGER_ROBOTMAKER,"Button",
-                    BS_AUTOCHECKBOX | WS_TABSTOP,83,126,52,8
-    CONTROL         "illusion off",IDC_TRIGGER_ILLUSIONOFF,"Button",
-                    BS_AUTOCHECKBOX | WS_TABSTOP,83,135,52,8
-    CONTROL         "illusion on",IDC_TRIGGER_ILLUSIONON,"Button",
-                    BS_AUTOCHECKBOX | WS_TABSTOP,83,144,52,8
+    CONTROL         "exit",IDC_TRIGGER_ENDLEVEL,"Button",BS_AUTOCHECKBOX | 
+                    WS_TABSTOP,83,98,27,10
     CONTROL         "secret exit",IDC_TRIGGER_SECRETEXIT,"Button",
-                    BS_AUTOCHECKBOX | WS_TABSTOP,83,153,52,8
+                    BS_AUTOCHECKBOX | WS_TABSTOP,83,107,52,8
+    CONTROL         "active",IDC_TRIGGER_ACTIVE,"Button",BS_AUTOCHECKBOX | 
+                    WS_TABSTOP,83,115,35,10
+    CONTROL         "one shot",IDC_TRIGGER_ONESHOTD1,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,83,125,44,8
+    CONTROL         "robot maker",IDC_TRIGGER_ROBOTMAKER,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,83,134,52,8
+    CONTROL         "illusion off",IDC_TRIGGER_ILLUSIONOFF,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,83,143,52,8
+    CONTROL         "illusion on",IDC_TRIGGER_ILLUSIONON,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,83,152,52,8
     CONTROL         "open wall",IDC_TRIGGER_OPENWALL,"Button",
                     BS_AUTOCHECKBOX | WS_TABSTOP,83,162,52,8
     CONTROL         "close wall",IDC_TRIGGER_CLOSEWALL,"Button",
@@ -2668,8 +2668,8 @@ BEGIN
                     TBS_AUTOTICKS | TBS_ENABLESELRANGE | WS_GROUP | 
                     WS_TABSTOP,152,77,63,12
     CTEXT           "speed boost:",IDC_TRIGGER_SLIDER_TEXT,154,69,59,8
-    CONTROL         "control",IDC_TRIGGER_CONTROLDOORS,"Button",BS_AUTOCHECKBOX | 
-                    WS_TABSTOP,90,10,37,10
+    CONTROL         "control",IDC_TRIGGER_CONTROLDOORS,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,90,10,37,10
     CONTROL         "shield drain",IDC_TRIGGER_SHIELDDRAIN,"Button",
                     BS_AUTOCHECKBOX | WS_TABSTOP,90,19,51,10
     CONTROL         "energy drain",IDC_TRIGGER_ENERGYDRAIN,"Button",
@@ -2853,8 +2853,8 @@ BEGIN
                     TBS_AUTOTICKS | TBS_ENABLESELRANGE | WS_GROUP | 
                     WS_TABSTOP,11,222,63,12
     CTEXT           "speed boost:",IDC_TRIGGER_SLIDER_TEXT,13,215,59,8
-    CONTROL         "control",IDC_TRIGGER_CONTROLDOORS,"Button",BS_AUTOCHECKBOX | 
-                    WS_TABSTOP,92,147,37,10
+    CONTROL         "control",IDC_TRIGGER_CONTROLDOORS,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,92,147,37,10
     CONTROL         "shield drain",IDC_TRIGGER_SHIELDDRAIN,"Button",
                     BS_AUTOCHECKBOX | WS_TABSTOP,92,156,51,10
     CONTROL         "energy drain",IDC_TRIGGER_ENERGYDRAIN,"Button",
@@ -7151,8 +7151,8 @@ END
 //
 
 VS_VERSION_INFO VERSIONINFO
- FILEVERSION 1,7,43,0
- PRODUCTVERSION 1,7,43,0
+ FILEVERSION 1,7,44,0
+ PRODUCTVERSION 1,7,44,0
  FILEFLAGSMASK 0x3fL
 #ifdef _DEBUG
  FILEFLAGS 0x1L
@@ -7168,13 +7168,13 @@ BEGIN
         BLOCK "040904b0"
         BEGIN
             VALUE "Comments", "MFC port and enhancements: Dietfrid Mali. Logo and icon: Steve Chamberlain."
-            VALUE "FileDescription", "Descent Level Editor XP [3 aug 2009]"
-            VALUE "FileVersion", "1, 7, 43, 0"
+            VALUE "FileDescription", "Descent Level Editor XP [5 aug 2009]"
+            VALUE "FileVersion", "1, 7, 44, 0"
             VALUE "InternalName", "DLE-XP"
             VALUE "LegalCopyright", "Copyright (C) 1998 - 2007 Bryan Aamot"
             VALUE "OriginalFilename", "DLE-XP.EXE"
             VALUE "ProductName", "Descent Level Editor XP"
-            VALUE "ProductVersion", "1, 7, 43, 0"
+            VALUE "ProductVersion", "1, 7, 44, 0"
         END
     END
     BLOCK "VarFileInfo"
@@ -7201,7 +7201,7 @@ IDR_COMOBJ              REGISTRY                "resource/registry/ComObj.rgs"
 
 STRINGTABLE 
 BEGIN
-    IDR_MAINFRAME           "Descent Level Editor XP 1.7.43\n\nDLE\nDescent Level (*.hog)\n.hog\n\nDLE.Document\nDLE Document"
+    IDR_MAINFRAME           "Descent Level Editor XP 1.7.44\n\nDLE\nDescent Level (*.hog)\n.hog\n\nDLE.Document\nDLE Document"
     IDP_OLE_INIT_FAILED     "OLE initialization failed.  Make sure that the OLE libraries are the correct version."
 END
 

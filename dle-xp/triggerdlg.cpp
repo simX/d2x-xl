@@ -30,23 +30,26 @@ BEGIN_MESSAGE_MAP (CTriggerTool, CTexToolDlg)
 	ON_BN_CLICKED (IDC_TRIGGER_PASTE, OnPasteTrigger)
 	ON_BN_CLICKED (IDC_TRIGGER_STANDARD, OnStandardTrigger)
 	ON_BN_CLICKED (IDC_TRIGGER_OBJECT, OnObjectTrigger)
+
 	ON_BN_CLICKED (IDC_TRIGGER_NOMESSAGE, OnD2Flag1)
 	ON_BN_CLICKED (IDC_TRIGGER_ONESHOT, OnD2Flag2)
 	ON_BN_CLICKED (IDC_TRIGGER_PERMANENT, OnD2Flag3)
 	ON_BN_CLICKED (IDC_TRIGGER_ALTERNATE, OnD2Flag4)
 	ON_BN_CLICKED (IDC_TRIGGER_SET_ORIENT, OnD2Flag5)
+
 	ON_BN_CLICKED (IDC_TRIGGER_CONTROLDOORS, OnD1Flag1)
 	ON_BN_CLICKED (IDC_TRIGGER_SHIELDDRAIN, OnD1Flag2)
 	ON_BN_CLICKED (IDC_TRIGGER_ENERGYDRAIN, OnD1Flag3)
 	ON_BN_CLICKED (IDC_TRIGGER_ENDLEVEL, OnD1Flag4)
-	ON_BN_CLICKED (IDC_TRIGGER_ACTIVE, OnD1Flag5)
-	ON_BN_CLICKED (IDC_TRIGGER_ONESHOTD1, OnD1Flag6)
-	ON_BN_CLICKED (IDC_TRIGGER_ROBOTMAKER, OnD1Flag7)
-	ON_BN_CLICKED (IDC_TRIGGER_ILLUSIONOFF, OnD1Flag8)
-	ON_BN_CLICKED (IDC_TRIGGER_SECRETEXIT, OnD1Flag9)
+	ON_BN_CLICKED (IDC_TRIGGER_SECRETEXIT, OnD1Flag5)
+	ON_BN_CLICKED (IDC_TRIGGER_ACTIVE, OnD1Flag6)
+	ON_BN_CLICKED (IDC_TRIGGER_ONESHOTD1, OnD1Flag7)
+	ON_BN_CLICKED (IDC_TRIGGER_ROBOTMAKER, OnD1Flag8)
+	ON_BN_CLICKED (IDC_TRIGGER_ILLUSIONOFF, OnD1Flag9)
 	ON_BN_CLICKED (IDC_TRIGGER_ILLUSIONON, OnD1Flag10)
 	ON_BN_CLICKED (IDC_TRIGGER_OPENWALL, OnD1Flag11)
 	ON_BN_CLICKED (IDC_TRIGGER_CLOSEWALL, OnD1Flag12)
+
 	ON_BN_CLICKED (IDC_TRIGGER_ADD_OPENDOOR, OnAddOpenDoor)
 	ON_BN_CLICKED (IDC_TRIGGER_ADD_ROBOTMAKER, OnAddRobotMaker)
 	ON_BN_CLICKED (IDC_TRIGGER_ADD_SHIELDDRAIN, OnAddShieldDrain)
@@ -244,7 +247,7 @@ for (i = 0; i < 2; i++)
 	DDX_Check (pDX, IDC_TRIGGER_NOMESSAGE + i, m_bD2Flags [i]);
 for (i = 2; i < 5; i++)
 	DDX_Check (pDX, IDC_TRIGGER_NOMESSAGE + i, m_bD2Flags [i + 1]);
-for (i = 0; i < 10; i++)
+for (i = 0; i < MAX_TRIGGER_FLAGS; i++)
 	DDX_Check (pDX, IDC_TRIGGER_CONTROLDOORS + i, m_bD1Flags [i]);
 if (TriggerHasSlider () || (m_nType == TT_SHIELD_DAMAGE_D2) || (m_nType == TT_ENERGY_DRAIN_D2))
 	DDX_Double (pDX, IDC_TRIGGER_STRENGTH, m_nStrength, -1000, 1000, "%3.1f");
@@ -762,6 +765,21 @@ m_pTrigger->time = m_nTime;
 // CTriggerTool - TriggerFlags0Msg
 //------------------------------------------------------------------------
 
+static INT16 triggerFlags [MAX_TRIGGER_FLAGS] = {
+	TRIGGER_CONTROL_DOORS,
+	TRIGGER_SHIELD_DAMAGE,
+	TRIGGER_ENERGY_DRAIN,
+	TRIGGER_EXIT,
+	TRIGGER_SECRET_EXIT,
+	TRIGGER_ON,
+	TRIGGER_ONE_SHOT,
+	TRIGGER_MATCEN,
+	TRIGGER_ILLUSION_OFF,
+	TRIGGER_ILLUSION_ON,
+	TRIGGER_OPEN_WALL,
+	TRIGGER_CLOSE_WALL
+	};
+
 bool CTriggerTool::OnD1Flag (int i, int j)
 {
 if (!GetMine ())	
@@ -771,13 +789,15 @@ if (m_nTrigger == -1)
 	return false;
 SetTriggerPtr ();
 theApp.SetModified (TRUE);
-int h = 1 << i;
-if ((m_bD1Flags [i] = ((CButton *) GetDlgItem (IDC_TRIGGER_CONTROLDOORS + j))->GetCheck ()))
-	m_pTrigger->flags |= h;
+if ((m_bD1Flags [i] = !m_bD1Flags [i]))
+//if ((m_bD1Flags [i] = ((CButton *) GetDlgItem (IDC_TRIGGER_CONTROLDOORS + j))->GetCheck ()))
+	m_pTrigger->flags |= triggerFlags [i];
 else
-	m_pTrigger->flags &= ~h;
+	m_pTrigger->flags &= ~triggerFlags [i];
+((CButton *) GetDlgItem (IDC_TRIGGER_CONTROLDOORS + i))->SetCheck (m_bD1Flags [i]);
 if (m_bD1Flags [i] && (j >= 0)) {
 	m_bD1Flags [j] = 0;
+	m_pTrigger->flags &= ~triggerFlags [j];
 	((CButton *) GetDlgItem (IDC_TRIGGER_CONTROLDOORS + j))->SetCheck (0);
 	}
 UpdateData (FALSE);
@@ -809,13 +829,13 @@ UpdateData (FALSE);
 void CTriggerTool::OnD1Flag1 () { OnD1Flag (0); }
 void CTriggerTool::OnD1Flag2 () { OnD1Flag (1); }
 void CTriggerTool::OnD1Flag3 () { OnD1Flag (2); }
-void CTriggerTool::OnD1Flag4 () { OnD1Flag (3, 9); }
-void CTriggerTool::OnD1Flag5 () { OnD1Flag (4); }
+void CTriggerTool::OnD1Flag4 () { OnD1Flag (3, 4); }
+void CTriggerTool::OnD1Flag5 () { OnD1Flag (4, 3); }
 void CTriggerTool::OnD1Flag6 () { OnD1Flag (5); }
 void CTriggerTool::OnD1Flag7 () { OnD1Flag (6); }
-void CTriggerTool::OnD1Flag8 () { OnD1Flag (7, 8); }
-void CTriggerTool::OnD1Flag9 () { OnD1Flag (8, 7); }
-void CTriggerTool::OnD1Flag10 () { OnD1Flag (9, 3); }
+void CTriggerTool::OnD1Flag8 () { OnD1Flag (7); }
+void CTriggerTool::OnD1Flag9 () { OnD1Flag (8, 9); }
+void CTriggerTool::OnD1Flag10 () { OnD1Flag (9, 8); }
 void CTriggerTool::OnD1Flag11 () { OnD1Flag (10, 11); }
 void CTriggerTool::OnD1Flag12 () { OnD1Flag (11, 10); }
 
