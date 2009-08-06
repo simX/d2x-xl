@@ -66,6 +66,21 @@ BEGIN_MESSAGE_MAP (CTriggerTool, CTexToolDlg)
 	//ON_EN_UPDATE (IDC_TRIGGER_TIME, OnTime)
 END_MESSAGE_MAP ()
 
+static INT16 triggerFlagsD1 [MAX_TRIGGER_FLAGS] = {
+	TRIGGER_CONTROL_DOORS,
+	TRIGGER_SHIELD_DAMAGE,
+	TRIGGER_ENERGY_DRAIN,
+	TRIGGER_EXIT,
+	TRIGGER_SECRET_EXIT,
+	TRIGGER_ON,
+	TRIGGER_ONE_SHOT,
+	TRIGGER_MATCEN,
+	TRIGGER_ILLUSION_OFF,
+	TRIGGER_ILLUSION_ON,
+	TRIGGER_OPEN_WALL,
+	TRIGGER_CLOSE_WALL
+	};
+
 //------------------------------------------------------------------------
 // DIALOG - CTriggerTool (constructor)
 //------------------------------------------------------------------------
@@ -528,7 +543,7 @@ if (m_nTrigger != -1) {
 		CBType ()->EnableWindow (FALSE);
 		CToolDlg::EnableControls (IDC_TRIGGER_NOMESSAGE, IDC_TRIGGER_ONESHOT, FALSE);
 		for (i = 0; i < MAX_TRIGGER_FLAGS; i++)
-			m_bD1Flags [i] = ((m_pTrigger->flags & (1 << i)) != 0);
+			m_bD1Flags [i] = ((m_pTrigger->flags & triggerFlagsD1 [i]) != 0);
 		m_nStrength = (double) m_pTrigger->value / F1_0;
 		}
 	OnSetTarget ();
@@ -765,21 +780,6 @@ m_pTrigger->time = m_nTime;
 // CTriggerTool - TriggerFlags0Msg
 //------------------------------------------------------------------------
 
-static INT16 triggerFlags [MAX_TRIGGER_FLAGS] = {
-	TRIGGER_CONTROL_DOORS,
-	TRIGGER_SHIELD_DAMAGE,
-	TRIGGER_ENERGY_DRAIN,
-	TRIGGER_EXIT,
-	TRIGGER_SECRET_EXIT,
-	TRIGGER_ON,
-	TRIGGER_ONE_SHOT,
-	TRIGGER_MATCEN,
-	TRIGGER_ILLUSION_OFF,
-	TRIGGER_ILLUSION_ON,
-	TRIGGER_OPEN_WALL,
-	TRIGGER_CLOSE_WALL
-	};
-
 bool CTriggerTool::OnD1Flag (int i, int j)
 {
 if (!GetMine ())	
@@ -791,13 +791,13 @@ SetTriggerPtr ();
 theApp.SetModified (TRUE);
 if ((m_bD1Flags [i] = !m_bD1Flags [i]))
 //if ((m_bD1Flags [i] = ((CButton *) GetDlgItem (IDC_TRIGGER_CONTROLDOORS + j))->GetCheck ()))
-	m_pTrigger->flags |= triggerFlags [i];
+	m_pTrigger->flags |= triggerFlagsD1 [i];
 else
-	m_pTrigger->flags &= ~triggerFlags [i];
+	m_pTrigger->flags &= ~triggerFlagsD1 [i];
 ((CButton *) GetDlgItem (IDC_TRIGGER_CONTROLDOORS + i))->SetCheck (m_bD1Flags [i]);
 if (m_bD1Flags [i] && (j >= 0)) {
 	m_bD1Flags [j] = 0;
-	m_pTrigger->flags &= ~triggerFlags [j];
+	m_pTrigger->flags &= ~triggerFlagsD1 [j];
 	((CButton *) GetDlgItem (IDC_TRIGGER_CONTROLDOORS + j))->SetCheck (0);
 	}
 UpdateData (FALSE);
