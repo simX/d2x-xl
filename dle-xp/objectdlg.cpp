@@ -263,31 +263,6 @@ pcb->SetCurSel (0);
 
                         /*--------------------------*/
 
-int CObjectTool::CBAddString (CComboBox *pcb, char *str)
-{
-	int	i = 0, m = 0, l = 0, r = pcb->GetCount () - 1;
-	char	h [80], *hsz, *psz;
-
-psz = isalpha (*str) ? str: strstr (str, ":") + 1;
-while (l <= r) {
-	m = (l + r) / 2;
-	pcb->GetLBText (m, h);
-	hsz = isalpha (*h) ? h: strstr (h, ":") + 1;
-	i = strcmp (psz, hsz);
-	if (i < 0)
-		r = m - 1;
-	else if (i > 0)
-		l = m + 1;
-	else
-		break;
-	}
-if (i > 0)
-	m++;
-return pcb->InsertString (m, str);
-}
-
-                        /*--------------------------*/
-
 double CObjectTool::SliderFactor (int nId)
 {
 int h = sizeof (sliderData) / sizeof (tSliderData);

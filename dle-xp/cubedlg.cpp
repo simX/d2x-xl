@@ -106,34 +106,42 @@ pcb->SetCurSel (m_nCube);
 
 BOOL CCubeTool::OnInitDialog ()
 {
+	static char* pszCubeTypes [] = {
+		"Normal",
+		"Fuel Center",
+		"Repair Center",
+		"Reactor",
+		"Robot Maker",
+		"Blue Goal",
+		"Red Goal",
+		"Water",
+		"Lava",
+		"Blue Team",
+		"Red Team",
+		"Speed Boost",
+		"Blocked",
+		"No Damage",
+		"Sky Box",
+		"Equip Maker",
+		"Outdoors"
+		};
+
 CToolDlg::OnInitDialog ();
 CComboBox *pcb = CBType ();
-pcb->AddString ("Normal");
-pcb->AddString ("Fuel Center");
-pcb->AddString ("Repair Center");
-pcb->AddString ("Reactor");
-pcb->AddString ("Robot Maker");
-//if (file_type != RDL_FILE) {
-	pcb->AddString ("Blue Goal");
-	pcb->AddString ("Red Goal");
-	pcb->AddString ("Water");
-	pcb->AddString ("Lava");
-	pcb->AddString ("Blue Team");
-	pcb->AddString ("Red Team");
-	pcb->AddString ("Speed Boost");
-	pcb->AddString ("Blocked");
-	pcb->AddString ("No Damage");
-	pcb->AddString ("Sky Box");
-	pcb->AddString ("Equip Maker");
-	pcb->AddString ("Outdoor");
-//	if (level_version >= 9) {
-		pcb = CBOwner ();
-		pcb->AddString ("Neutral");
-		pcb->AddString ("Unowned");
-		pcb->AddString ("Blue Team");
-		pcb->AddString ("Red Team");
-//		}
-//	}
+pcb->ResetContent ();
+
+int h, i, j;
+for (j = sizeof (pszCubeTypes) / sizeof (*pszCubeTypes), i = 0; i < j; i++) {
+	h = pcb->AddString (pszCubeTypes [i]);
+	pcb->SetItemData (h, i);
+	}
+pcb = CBOwner ();
+pcb->ResetContent ();
+
+pcb->AddString ("Neutral");
+pcb->AddString ("Unowned");
+pcb->AddString ("Blue Team");
+pcb->AddString ("Red Team");
 m_bInited = TRUE;
 return TRUE;
 }
@@ -146,7 +154,8 @@ if (!GetMine ())
 	return;
 
 DDX_CBIndex (pDX, IDC_CUBE_CUBENO, m_nCube);
-DDX_CBIndex (pDX, IDC_CUBE_TYPE, m_nType);
+//DDX_CBIndex (pDX, IDC_CUBE_TYPE, m_nType);
+SelectItemData (CBType (), m_nType);
 DDX_Double (pDX, IDC_CUBE_LIGHT, m_nLight);
 DDX_Radio (pDX, IDC_CUBE_SIDE1, m_nSide);
 DDX_Radio (pDX, IDC_CUBE_POINT1, m_nPoint);
@@ -325,7 +334,8 @@ m_nPoint = m_mine->Current ()->point;
 m_nType = seg->special;
 m_nOwner = seg->owner;
 m_nGroup = seg->group;
-CBType ()->SetCurSel (m_nType);
+//CBType ()->SetCurSel (m_nType);
+SelectItemData (CBType (), m_nType);
 OnResetCoord ();
   // show Triggers () that point at this cube
 LBTriggers()->ResetContent();
@@ -555,7 +565,8 @@ bool bUndo = theApp.SetModified (TRUE);
 theApp.LockUndo ();
 theApp.MineView ()->DelayRefresh (true);
 m_nLastCube = -1; //force Refresh() to rebuild all dialog data
-UINT8 nType = CBType ()->GetCurSel ();
+int i = CBType ()->GetCurSel ();
+UINT8 nType = UINT8 (CBType ()->GetItemData (CBType ()->GetCurSel ()));
 if (bMarked) {
 	nMinSeg = 0;
 	nMaxSeg = m_mine->SegCount ();

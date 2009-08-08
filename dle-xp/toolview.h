@@ -115,6 +115,7 @@ class CToolDlg : public CPropertyPage
 		int DDX_Flag (CDataExchange * pDX, int nIdC, int i);
 		void InitSlider (int nIdC, int nMin, int nMax);
 		int GetCheck (int nIdC);
+		int CBAddString (CComboBox *pcb, char *str);
 		void SelectItemData (CComboBox *pcb, int nItemData);
 		CMine *GetMine ();
 		void EnableControls (int nIdFirst, int nIdLast, BOOL bEnable);
@@ -374,7 +375,6 @@ class CObjectTool : public CToolDlg
 		void SetObjectId (CComboBox *pcb, INT16 type, INT16 id, INT16 flag = 0);
 
 		void CBInit (CComboBox *pcb, char* pszNames [], UINT8 *pIndex, UINT8 *pItemData, int nMax, int nType = 0, bool bAddNone = false);
-		int CBAddString (CComboBox *pcb, char *psz);
 		void InitSliders ();
 		void UpdateSliders (int i = -1);
 		int GetSliderData (CScrollBar *pScrollBar);
