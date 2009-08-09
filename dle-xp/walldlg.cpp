@@ -125,6 +125,18 @@ return m_pWall [0] != NULL;
 
 BOOL CWallTool::OnInitDialog ()
 {
+	static char* pszWallTypes [] = {
+		"Normal",
+		"Blastable",
+		"Door",
+		"Illusion",
+		"Open",
+		"Close",
+		"Overlay",
+		"Cloaked",
+		"Transparent"
+		};
+
 	GetMine ();
 	CComboBox *pcb;
 
@@ -133,19 +145,16 @@ InitCBWallNo ();
 
 pcb = CBType ();
 pcb->ResetContent ();
-pcb->AddString ("Normal");
-pcb->AddString ("Blastable");
-pcb->AddString ("Door");
-pcb->AddString ("Illusion");
-pcb->AddString ("Open");
-pcb->AddString ("Close");
-pcb->AddString ("Overlay");
-pcb->AddString ("Cloaked");
-pcb->AddString ("Transparent");
+
+int h, i, j = sizeof (pszWallTypes) /  sizeof (*pszWallTypes);
+for (i = 0; i < j; i++) {
+	h = pcb->AddString (pszWallTypes [i]);
+	pcb->SetItemData (h, i);
+	}	
 
 pcb = CBClipNo ();
 pcb->ResetContent ();
-int i, j = (file_type != RDL_FILE) ? D2_NUM_OF_CLIPS : NUM_OF_CLIPS;
+j = (file_type != RDL_FILE) ? D2_NUM_OF_CLIPS : NUM_OF_CLIPS;
 for (i = 0; i < j; i++) {
 	sprintf (m_szMsg, i ? "door%02d" : "wall%02d", clip_door_number [i]);
 	pcb->AddString (m_szMsg);
@@ -182,7 +191,8 @@ DDX_Text (pDX, IDC_WALL_CUBE, m_nCube);
 DDX_Text (pDX, IDC_WALL_SIDE, m_nSide);
 DDX_Text (pDX, IDC_WALL_TRIGGER, m_nTrigger);
 DDX_CBIndex (pDX, IDC_WALL_WALLNO, m_nWall [0]);
-DDX_CBIndex (pDX, IDC_WALL_TYPE, m_nType);
+//DDX_CBIndex (pDX, IDC_WALL_TYPE, m_nType);
+SelectItemData (CBType (), m_nType);
 DDX_CBIndex (pDX, IDC_WALL_CLIPNO, m_nClip);
 DDX_Double (pDX, IDC_WALL_STRENGTH, m_nStrength, -100, 100, "%3.1f");
 DDX_Double (pDX, IDC_WALL_CLOAK, m_nCloak, 0, 100, "%3.1f");
@@ -255,7 +265,8 @@ if (!(m_pWall [0] = m_mine->FindWall ())) {
 		CToolDlg::EnableControls (IDC_WALL_ADD_DOOR_NORMAL, IDC_WALL_ADD_WALL_LAVAFALL, TRUE);
 	GetDlgItem (IDC_WALL_ADD)->EnableWindow (TRUE);
 	GetDlgItem (IDC_WALL_TYPE)->EnableWindow (TRUE);
-	CBType ()->SetCurSel (m_nType);
+	//CBType ()->SetCurSel (m_nType);
+	SelectItemData (CBType (), m_nType);
 	CBClipNo ()->SetCurSel (-1);
 	Reset ();
 	} 
@@ -297,7 +308,8 @@ else {
 		m_nStrength = -m_nStrength;
 	m_nCloak = ((double) (m_pWall [0]->cloak_value % 32)) * 100.0 / 31.0;
 	CBWallNo ()->SetCurSel (m_nWall [0]);
-	CBType ()->SetCurSel (m_nType);
+	//CBType ()->SetCurSel (m_nType);
+	SelectItemData (CBType (), m_nType);
 	CBClipNo ()->EnableWindow ((m_nType == WALL_BLASTABLE) || (m_nType == WALL_DOOR));
 	// select list box index for clip
 	int i;
@@ -524,7 +536,7 @@ void CWallTool::OnSetType ()
 	int			nType;
 
 GetWalls ();
-nType = CBType ()->GetCurSel ();
+nType = CBType ()->GetItemData (CBType ()->GetCurSel ());
 if ((nType > WALL_CLOSED) && !file_type) 
 	return;
 if ((nType > WALL_CLOAKED) && (level_version < 9)) 

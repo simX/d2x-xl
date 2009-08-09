@@ -565,7 +565,6 @@ bool bUndo = theApp.SetModified (TRUE);
 theApp.LockUndo ();
 theApp.MineView ()->DelayRefresh (true);
 m_nLastCube = -1; //force Refresh() to rebuild all dialog data
-int i = CBType ()->GetCurSel ();
 UINT8 nType = UINT8 (CBType ()->GetItemData (CBType ()->GetCurSel ()));
 if (bMarked) {
 	nMinSeg = 0;
