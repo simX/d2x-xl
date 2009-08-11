@@ -36,6 +36,7 @@ BEGIN_MESSAGE_MAP (CTriggerTool, CTexToolDlg)
 	ON_BN_CLICKED (IDC_TRIGGER_PERMANENT, OnD2Flag3)
 	ON_BN_CLICKED (IDC_TRIGGER_ALTERNATE, OnD2Flag4)
 	ON_BN_CLICKED (IDC_TRIGGER_SET_ORIENT, OnD2Flag5)
+	ON_BN_CLICKED (IDC_TRIGGER_AUTOPLAY, OnD2Flag7)
 
 	ON_BN_CLICKED (IDC_TRIGGER_CONTROLDOORS, OnD1Flag1)
 	ON_BN_CLICKED (IDC_TRIGGER_SHIELDDRAIN, OnD1Flag2)
@@ -530,6 +531,7 @@ if (m_nTrigger != -1) {
 		m_bD2Flags [3] = ((m_pTrigger->flags & TF_PERMANENT) != 0);
 		m_bD2Flags [4] = ((m_pTrigger->flags & TF_ALTERNATE) != 0);
 		m_bD2Flags [5] = ((m_pTrigger->flags & TF_SET_ORIENT) != 0);
+		m_bD2Flags [7] = ((m_pTrigger->flags & TF_AUTOPLAY) != 0);
 		if (m_nType == TT_SPEEDBOOST)
 			m_nSliderValue = m_pTrigger->value;
 		if (m_nType == TT_TELEPORT)
@@ -845,6 +847,7 @@ void CTriggerTool::OnD2Flag2 () { OnD2Flag (1); }
 void CTriggerTool::OnD2Flag3 () { OnD2Flag (3, -1); }
 void CTriggerTool::OnD2Flag4 () { OnD2Flag (4, -1); }
 void CTriggerTool::OnD2Flag5 () { OnD2Flag (5, -1); }
+void CTriggerTool::OnD2Flag7 () { OnD2Flag (7, -1); }
 
 //------------------------------------------------------------------------
 // CTriggerTool - Add cube/side to trigger list

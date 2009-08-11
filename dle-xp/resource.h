@@ -2,6 +2,8 @@
 // Microsoft Visual C++ generated include file.
 // Used by dlc.rc
 //
+#define IDC_TRIGGER_SET_ORIENT2         10210
+
 // Next default values for new objects
 // 
 #ifdef APSTUDIO_INVOKED

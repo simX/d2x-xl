@@ -369,6 +369,7 @@
 #define TF_PERMANENT		   8	// indestructable switch for repeated operation
 #define TF_ALTERNATE			16 // switch will assume the opposite function after operation
 #define TF_SET_ORIENT		32 // switch will assume the opposite function after operation
+#define TF_AUTOPLAY			128
 
 #define	MAX_DL_INDICES_D2		500
 #define	MAX_DELTA_LIGHTS_D2	10000

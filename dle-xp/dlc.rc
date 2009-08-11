@@ -268,11 +268,13 @@ BEGIN
     CONTROL         "one shot",IDC_TRIGGER_ONESHOT,"Button",BS_AUTOCHECKBOX | 
                     WS_TABSTOP,169,98,43,10
     CONTROL         "permanent",IDC_TRIGGER_PERMANENT,"Button",
-                    BS_AUTOCHECKBOX | WS_TABSTOP,231,88,49,10
+                    BS_AUTOCHECKBOX | WS_TABSTOP,231,85,49,10
     CONTROL         "alternating",IDC_TRIGGER_ALTERNATE,"Button",
-                    BS_AUTOCHECKBOX | WS_TABSTOP,231,99,49,10
+                    BS_AUTOCHECKBOX | WS_TABSTOP,231,94,49,10
     CONTROL         "set orient",IDC_TRIGGER_SET_ORIENT,"Button",
-                    BS_AUTOCHECKBOX | WS_TABSTOP,231,110,45,10
+                    BS_AUTOCHECKBOX | WS_TABSTOP,231,103,45,10
+    CONTROL         "autoplay",IDC_TRIGGER_AUTOPLAY,"Button",BS_AUTOCHECKBOX,
+                    231,112,43,10
     EDITTEXT        IDC_TRIGGER_TARGET,296,18,48,12,ES_CENTER
     PUSHBUTTON      "add -->",IDC_TRIGGER_ADDTGT,296,32,48,10
     PUSHBUTTON      "<-- del",IDC_TRIGGER_DELTGT,296,42,48,10
@@ -2136,11 +2138,13 @@ BEGIN
     CONTROL         "one shot",IDC_TRIGGER_ONESHOT,"Button",BS_AUTOCHECKBOX | 
                     WS_TABSTOP,146,89,43,10
     CONTROL         "permanent",IDC_TRIGGER_PERMANENT,"Button",
-                    BS_AUTOCHECKBOX | WS_TABSTOP,146,130,49,10
+                    BS_AUTOCHECKBOX | WS_TABSTOP,146,127,49,10
     CONTROL         "alternating",IDC_TRIGGER_ALTERNATE,"Button",
-                    BS_AUTOCHECKBOX | WS_TABSTOP,146,141,49,10
+                    BS_AUTOCHECKBOX | WS_TABSTOP,146,138,49,10
     CONTROL         "set orient",IDC_TRIGGER_SET_ORIENT,"Button",
-                    BS_AUTOCHECKBOX | WS_TABSTOP,146,152,45,10
+                    BS_AUTOCHECKBOX | WS_TABSTOP,146,149,45,10
+    CONTROL         "autoplay",IDC_TRIGGER_AUTOPLAY,"Button",BS_AUTOCHECKBOX,
+                    146,160,43,10
     EDITTEXT        IDC_TRIGGER_TARGET,36,198,48,12,ES_CENTER
     PUSHBUTTON      "add -->",IDC_TRIGGER_ADDTGT,36,213,48,10
     PUSHBUTTON      "<-- del",IDC_TRIGGER_DELTGT,36,223,48,10
@@ -7152,8 +7156,8 @@ END
 //
 
 VS_VERSION_INFO VERSIONINFO
- FILEVERSION 1,7,46,0
- PRODUCTVERSION 1,7,46,0
+ FILEVERSION 1,7,47,0
+ PRODUCTVERSION 1,7,47,0
  FILEFLAGSMASK 0x3fL
 #ifdef _DEBUG
  FILEFLAGS 0x1L
@@ -7169,13 +7173,13 @@ BEGIN
         BLOCK "040904b0"
         BEGIN
             VALUE "Comments", "MFC port and enhancements: Dietfrid Mali. Logo and icon: Steve Chamberlain."
-            VALUE "FileDescription", "Descent Level Editor XP [9 aug 2009]"
-            VALUE "FileVersion", "1, 7, 46, 0"
+            VALUE "FileDescription", "Descent Level Editor XP [11 aug 2009]"
+            VALUE "FileVersion", "1, 7, 47, 0"
             VALUE "InternalName", "DLE-XP"
             VALUE "LegalCopyright", "Copyright (C) 1998 - 2007 Bryan Aamot"
             VALUE "OriginalFilename", "DLE-XP.EXE"
             VALUE "ProductName", "Descent Level Editor XP"
-            VALUE "ProductVersion", "1, 7, 46, 0"
+            VALUE "ProductVersion", "1, 7, 47, 0"
         END
     END
     BLOCK "VarFileInfo"
@@ -7202,7 +7206,7 @@ IDR_COMOBJ              REGISTRY                "resource/registry/ComObj.rgs"
 
 STRINGTABLE 
 BEGIN
-    IDR_MAINFRAME           "Descent Level Editor XP 1.7.46\n\nDLE\nDescent Level (*.hog)\n.hog\n\nDLE.Document\nDLE Document"
+    IDR_MAINFRAME           "Descent Level Editor XP 1.7.47\n\nDLE\nDescent Level (*.hog)\n.hog\n\nDLE.Document\nDLE Document"
     IDP_OLE_INIT_FAILED     "OLE initialization failed.  Make sure that the OLE libraries are the correct version."
 END
 
