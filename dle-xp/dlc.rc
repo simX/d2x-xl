@@ -948,19 +948,21 @@ BEGIN
                     ES_AUTOHSCROLL | ES_READONLY
 END
 
-IDD_HOGMANAGER DIALOG  0, 0, 162, 157
+IDD_HOGMANAGER DIALOGEX 0, 0, 162, 157
 STYLE DS_SETFONT | DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
 CAPTION "HOG Manager"
-FONT 8, "MS Sans Serif"
+FONT 8, "MS Sans Serif", 0, 0, 0x0
 BEGIN
     LISTBOX         IDC_HOG_FILES,2,14,102,140,LBS_SORT | 
                     LBS_NOINTEGRALHEIGHT | WS_VSCROLL | WS_TABSTOP
     DEFPUSHBUTTON   "Open",IDOK,108,14,50,12
-    PUSHBUTTON      "Delete",IDC_HOG_DELETE,108,27,50,12
-    PUSHBUTTON      "Rename",IDC_HOG_RENAME,108,40,50,12
-    PUSHBUTTON      "Import",IDC_HOG_IMPORT,108,53,50,12
-    PUSHBUTTON      "Export",IDC_HOG_EXPORT,108,66,50,12
-    PUSHBUTTON      "Cancel",IDCANCEL,108,79,50,12
+    PUSHBUTTON      "Rename",IDC_HOG_RENAME,108,26,50,12
+    PUSHBUTTON      "Import",IDC_HOG_IMPORT,108,39,50,12
+    PUSHBUTTON      "Export",IDC_HOG_EXPORT,108,52,50,12
+    PUSHBUTTON      "Cancel",IDCANCEL,108,65,50,12
+    PUSHBUTTON      "Delete",IDC_HOG_DELETE,108,82,50,12
+    CONTROL         "show all files",IDC_HOG_FILTER,"Button",BS_AUTOCHECKBOX | 
+                    WS_TABSTOP,108,100,51,10
     EDITTEXT        IDC_HOG_SIZE,108,122,50,12,ES_CENTER | ES_AUTOHSCROLL | 
                     ES_READONLY
     EDITTEXT        IDC_HOG_OFFSET,108,143,50,12,ES_CENTER | ES_AUTOHSCROLL | 
@@ -968,8 +970,6 @@ BEGIN
     CTEXT           "Files",IDC_STATIC,4,4,100,8
     CTEXT           "Size",IDC_STATIC,108,114,50,8
     CTEXT           "Offset",IDC_STATIC,108,135,50,8
-    CONTROL         "show all files",IDC_HOG_FILTER,"Button",BS_AUTOCHECKBOX | 
-                    WS_TABSTOP,108,98,51,10
 END
 
 IDD_INPDLG DIALOG  0, 0, 206, 53
@@ -7156,8 +7156,8 @@ END
 //
 
 VS_VERSION_INFO VERSIONINFO
- FILEVERSION 1,7,47,0
- PRODUCTVERSION 1,7,47,0
+ FILEVERSION 1,7,48,0
+ PRODUCTVERSION 1,7,48,0
  FILEFLAGSMASK 0x3fL
 #ifdef _DEBUG
  FILEFLAGS 0x1L
@@ -7174,12 +7174,12 @@ BEGIN
         BEGIN
             VALUE "Comments", "MFC port and enhancements: Dietfrid Mali. Logo and icon: Steve Chamberlain."
             VALUE "FileDescription", "Descent Level Editor XP [11 aug 2009]"
-            VALUE "FileVersion", "1, 7, 47, 0"
+            VALUE "FileVersion", "1, 7, 48, 0"
             VALUE "InternalName", "DLE-XP"
             VALUE "LegalCopyright", "Copyright (C) 1998 - 2007 Bryan Aamot"
             VALUE "OriginalFilename", "DLE-XP.EXE"
             VALUE "ProductName", "Descent Level Editor XP"
-            VALUE "ProductVersion", "1, 7, 47, 0"
+            VALUE "ProductVersion", "1, 7, 48, 0"
         END
     END
     BLOCK "VarFileInfo"
@@ -7206,7 +7206,7 @@ IDR_COMOBJ              REGISTRY                "resource/registry/ComObj.rgs"
 
 STRINGTABLE 
 BEGIN
-    IDR_MAINFRAME           "Descent Level Editor XP 1.7.47\n\nDLE\nDescent Level (*.hog)\n.hog\n\nDLE.Document\nDLE Document"
+    IDR_MAINFRAME           "Descent Level Editor XP 1.7.48\n\nDLE\nDescent Level (*.hog)\n.hog\n\nDLE.Document\nDLE Document"
     IDP_OLE_INIT_FAILED     "OLE initialization failed.  Make sure that the OLE libraries are the correct version."
 END
 
