@@ -585,6 +585,8 @@ type = (obj->contains_type == -1) ? MAX_CONTAINS_NUMBER : contains_selection [ob
 //	type = MAX_CONTAINS_NUMBER;
 
 CBSpawnType ()->SetCurSel (type + 1);
+BtnCtrl (IDC_OBJ_MULTIPLAYER)->SetCheck (m_mine->CurrObj ()->multiplayer);
+m_mine->CurrObj ()->multiplayer = BtnCtrl (IDC_OBJ_MULTIPLAYER)->GetCheck ();
 //SelectItemData (CBSpawnType (), type);
 SetObjectId (CBSpawnId (), obj->contains_type, obj->contains_id, 1);
 m_nSpawnQty = obj->contains_count;
@@ -699,7 +701,6 @@ BtnCtrl (IDC_OBJ_AI_CHARGE)->SetCheck (rInfo.attack_type);
 BtnCtrl (IDC_OBJ_AI_EDRAIN)->SetCheck (rInfo.energy_drain);
 BtnCtrl (IDC_OBJ_BRIGHT)->SetCheck (rInfo.lighting);
 BtnCtrl (IDC_OBJ_CLOAKED)->SetCheck (rInfo.cloak_type);
-BtnCtrl (IDC_OBJ_MULTIPLAYER)->SetCheck (m_mine->CurrObj ()->multiplayer);
 
 // update scroll bars
 SlCtrl (IDC_OBJ_SCORE)->SetPos ((int) (rInfo.score_value / SliderFactor (IDC_OBJ_SCORE)));
@@ -772,7 +773,6 @@ rInfo.attack_type = BtnCtrl (IDC_OBJ_AI_CHARGE)->GetCheck ();
 rInfo.energy_drain = BtnCtrl (IDC_OBJ_AI_EDRAIN)->GetCheck ();
 rInfo.lighting = BtnCtrl (IDC_OBJ_BRIGHT)->GetCheck ();
 rInfo.cloak_type = BtnCtrl (IDC_OBJ_CLOAKED)->GetCheck ();
-m_mine->CurrObj ()->multiplayer = BtnCtrl (IDC_OBJ_MULTIPLAYER)->GetCheck ();
 
 // get list box changes
 int index;
@@ -1724,7 +1724,8 @@ UpdateRobot ();
 
 afx_msg void CObjectTool::OnMultiplayer ()
 {
-UpdateRobot ();
+m_mine->CurrObj ()->multiplayer = BtnCtrl (IDC_OBJ_MULTIPLAYER)->GetCheck ();
+Refresh ();
 }
 
                         /*--------------------------*/
