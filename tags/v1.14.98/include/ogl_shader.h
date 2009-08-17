@@ -1,0 +1,20 @@
+#ifndef _OGL_SHADER_H
+#define _OGL_SHADER_H
+
+#ifdef _WIN32
+#include <windows.h>
+#include <stddef.h>
+#endif
+
+extern GLhandleARB	genShaderProg;
+
+char *LoadShader (char* fileName);
+int CreateShaderProg (GLhandleARB *progP);
+int CreateShaderFunc (GLhandleARB *progP, GLhandleARB *fsP, GLhandleARB *vsP, 
+		const char *fsName, const char *vsName, int bFromFile);
+int LinkShaderProg (GLhandleARB *progP);
+void DeleteShaderProg (GLhandleARB *progP);
+void InitShaders (void);
+void OglInitShaders (void);
+
+#endif
